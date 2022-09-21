@@ -118,11 +118,11 @@ def main():
             start = cstTimeNow.isoformat("T", "seconds")
             #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
-            if not overlapCheck(service, start, end):
-                text = createEvent(service, start, end)
-            #text = createEvent(service, start, end)
-            else:
-                text = "Overlap detected"
+            #if not overlapCheck(service, start, end):
+            #    text = createEvent(service, start, end)
+            text = createEvent(service, start, end)
+            #else:
+            #    text = "Overlap detected"
         else:
             text = "Még nincs lekódolva"
     except HttpError as error:
