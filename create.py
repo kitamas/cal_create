@@ -72,9 +72,9 @@ def webhook():
 def createEvent(service, minTime, maxTime):
     try:
         event = {
-            "summary": "Google I/O 2022",
+            "summary": "create from wh",
             "location": "Budapest",
-            "description": "A chance to hear more about Google's developer products.",
+            "description": "desc",
             "start": {
                 "dateTime": str(minTime),
                 "timeZone": "Europe/Budapest",
@@ -118,11 +118,11 @@ def main():
             start = cstTimeNow.isoformat("T", "seconds")
             #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
-            #if not overlapCheck(service, start, end):
-                #text = createEvent(service, start, end)
-            text = createEvent(service, start, end)
-            #else:
-            #    text = "Overlap detected"
+            if not overlapCheck(service, start, end):
+                text = createEvent(service, start, end)
+            #text = createEvent(service, start, end)
+            else:
+                text = "Overlap detected"
         else:
             text = "Még nincs lekódolva"
     except HttpError as error:
