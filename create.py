@@ -64,9 +64,6 @@ def webhook():
     print("Request:")
     print(json.dumps(req, indent=4))
 
-    res = processRequest(req)
-    res = json.dumps(res, indent=4)
-
     #text = "webhook flask text response"
     text = main()
 
