@@ -60,11 +60,20 @@ def authentication():
 def webhook():
     req = request.get_json(force=True)
     print(req)
+
+    #def handle_webhook(request):
+    #    req = request.get_json()
+    session_name = req.get('sessionInfo').get('session')
+
+    #query_result = req.get('queryResult')
+    #num1 = int(query_result.get('parameters').get('number'))
+
     #text = "webhook flask text response"
+
     text = main()
 
     res = {
-        "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
+        "fulfillment_response": {"messages": [{"text": {"text": [text + session_name]}}]}
     }
     return res
 
