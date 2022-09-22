@@ -80,13 +80,13 @@ def webhook():
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
     #req = request.get_json()
-    #session_name = req.get('sessionInfo').get('session')
-    session_name = "AAA"
+    session_name = req.get('sessionInfo').get('session')
+    #session_name = "AAA"
     try:
         event = {
             "summary": session_name,
-            "location": "AAA Budapest",
-            "description": "AAA parkolo",
+            "location": "Budapest",
+            "description": "parkolo",
             "start": {
                 "dateTime": str(minTime),
                 "timeZone": "Europe/Budapest",
@@ -109,7 +109,7 @@ def createEvent(service, minTime, maxTime):
                     {"method": "popup", "minutes": 10},
                 ],
             },
-            "colorId": 8,
+            "colorId": 6,
         }
         event = (
             service.events()
