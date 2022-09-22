@@ -140,6 +140,7 @@ def createEvent(service, minTime, maxTime):
 
 def main():
     print("MAIN FUNCTION")
+    webhook()
     try:
         date = "next-week"
         creds = authentication()
