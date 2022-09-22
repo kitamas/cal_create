@@ -81,9 +81,9 @@ def createEvent(service, minTime, maxTime):
     print(json.dumps(req, indent=4))
 
     #query_result = req.get('queryResult')
-    session_name = req.get('sessionInfo').get('session')
+    #session_name = req.get('sessionInfo').get('session')
 
-    #session_name = "BBB"
+    session_name = "BBB"
     try:
         event = {
             "summary": session_name,
