@@ -74,7 +74,7 @@ def createEvent(service, minTime, maxTime):
         event = {
             "summary": "create from wh",
             "location": "Budapest",
-            "description": "desc",
+            "description": "parkolo",
             "start": {
                 "dateTime": str(minTime),
                 "timeZone": "Europe/Budapest",
