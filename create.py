@@ -97,6 +97,7 @@ def createEvent(service, minTime, maxTime):
                     {"method": "popup", "minutes": 10},
                 ],
             },
+            "colorId": 6,
         }
         event = (
             service.events()
