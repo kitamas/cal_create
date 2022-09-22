@@ -66,6 +66,10 @@ def webhook():
     print("session_name =")
     print(session_name)
 
+    parameterany = req.get('parameters').get('any')
+    print("parameterany =")
+    print(parameterany)
+
     #text = "webhook flask text response"
 
     text = main()
