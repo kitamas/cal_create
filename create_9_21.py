@@ -83,13 +83,6 @@ def createEvent(service, minTime, maxTime):
                 "dateTime": str(maxTime),
                 "timeZone": "Europe/Budapest",
             },
-            "recurrence": {
-                "RRULE": "FREQ=DAILY;COUNT=2"
-            },
-            "attendees": {
-                "email": "lpage@example.com",
-                "email": "sbrin@example.com",
-            },
             "reminders": {
                 "useDefault": False,
                 "overrides": [
