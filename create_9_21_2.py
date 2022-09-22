@@ -69,18 +69,19 @@ def webhook():
     }
     return res
 
+"""
     #def handle_webhook(request):
     #    req = request.get_json()
     #    session_name = req.get('sessionInfo').get('session')
 
     #query_result = req.get('queryResult')
     #num1 = int(query_result.get('parameters').get('number'))
+"""
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-    #req = request.get_json(force=True)
-    #print(req)
-    #session_name = req.get('sessionInfo').get('session')
+
+
     session_name = "AAA"
     try:
         event = {

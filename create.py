@@ -58,7 +58,7 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    #req = request.get_json(force=True)
+    req = request.get_json(force=True)
 
     #print("Request:")
     #print(json.dumps(req, indent=4))
@@ -72,18 +72,28 @@ def webhook():
     }
     return res
 
+
+"""
+    #def handle_webhook(request):
+    #    req = request.get_json()
+    #    session_name = req.get('sessionInfo').get('session')
+
+    #query_result = req.get('queryResult')
+    #num1 = int(query_result.get('parameters').get('number'))
+"""
+
+
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-    req = request.get_json(silent=True, force=True)
-    #Parses the incoming JSON request data and returns it
+    #req = request.get_json(silent=True, force=True)
 
-    print("Request:")
-    print(json.dumps(req, indent=4))
+    #print("Request:")
+    #print(json.dumps(req, indent=4))
 
     #query_result = req.get('queryResult')
     #session_name = req.get('sessionInfo').get('session')
 
-    session_name = "BBB"
+    session_name = "CCC"
     try:
         event = {
             "summary": session_name,
