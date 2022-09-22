@@ -59,7 +59,7 @@ def authentication():
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
     req = request.get_json(silent=True, force=True)
-    print(req)
+    #print(req)
     #query_result = req.get('queryResult')
     #session_name = req.get('sessionInfo').get('session')
 
