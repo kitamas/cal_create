@@ -58,10 +58,10 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    #req = request.get_json(force=True)
+    req = request.get_json(force=True)
 
-    #print("Request:")
-    #print(json.dumps(req, indent=4))
+    print("Request 111:")
+    print(json.dumps(req, indent=4))
 
     #text = "webhook flask text response"
 
@@ -85,9 +85,8 @@ def webhook():
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-    req = request.get_json(force=True)
 
-    #print("Request:")
+    print("Request 222:")
     #print(json.dumps(req, indent=4))
 
     #query_result = req.get('queryResult')
