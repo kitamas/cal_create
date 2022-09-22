@@ -56,39 +56,12 @@ def authentication():
     )
     return creds
 
-"""
-@app.route('/webhook', methods=['GET','POST'])
-def webhook():
-    req = request.get_json(force=True)
-
-    print("Request 111:")
-    print(json.dumps(req, indent=4))
-
-    #text = "webhook flask text response"
-
-    text = main()
-
-    res = {
-        "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
-    }
-    return res
-
-
-
-    #def handle_webhook(request):
-    #    req = request.get_json()
-    #    session_name = req.get('sessionInfo').get('session')
-
-    #query_result = req.get('queryResult')
-    #num1 = int(query_result.get('parameters').get('number'))
-"""
-
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-    req = request.get_json(force=True)
+    #req = request.get_json(force=True)
     print("Request 222:")
-    print(json.dumps(req, indent=4))
+    #print(json.dumps(req, indent=4))
 
     #query_result = req.get('queryResult')
     #session_name = req.get('sessionInfo').get('session')
