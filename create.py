@@ -81,7 +81,7 @@ def webhook():
 def createEvent(service, minTime, maxTime):
     #req = request.get_json(force=True)
     #session_name = req.get('sessionInfo').get('session')
-    #session_name = "AAA"
+    session_name = "AAA"
     try:
         event = {
             "summary": session_name,
