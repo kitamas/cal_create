@@ -58,7 +58,7 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    req = request.get_json(force=True)
+    global req = request.get_json(force=True)
 
     print("Request 111:")
     print(json.dumps(req, indent=4))
