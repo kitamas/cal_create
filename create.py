@@ -61,7 +61,7 @@ def webhook():
     req = request.get_json(force=True)
 
     print("WEBHOOK FUNCTION")
-    #print(json.dumps(req, indent=4))
+    print(json.dumps(req, indent=4))
 
     #text = "webhook flask text response"
 
@@ -140,7 +140,7 @@ def createEvent(service, minTime, maxTime):
 
 def main():
     print("MAIN FUNCTION")
-    webhook()
+
     try:
         date = "next-week"
         creds = authentication()
