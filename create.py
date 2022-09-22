@@ -63,7 +63,7 @@ def webhook():
 
     #def handle_webhook(request):
     #    req = request.get_json()
-    session_name = req.get('sessionInfo').get('session')
+    #    session_name = req.get('sessionInfo').get('session')
 
     #query_result = req.get('queryResult')
     #num1 = int(query_result.get('parameters').get('number'))
@@ -73,15 +73,18 @@ def webhook():
     text = main()
 
     res = {
-        "fulfillment_response": {"messages": [{"text": {"text": [text + session_name]}}]}
+        "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
     }
     return res
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
+    req = request.get_json()
+    session_name = req.get('sessionInfo').get('session')
+    session_name = "AAA"
     try:
         event = {
-            "summary": "create from wh",
+            "summary": session_name,
             "location": "Budapest",
             "description": "parkolo",
             "start": {
