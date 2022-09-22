@@ -136,9 +136,11 @@ def createEvent(service, minTime, maxTime):
     except HttpError as error:
         return "Creation failed"
 
-
+@app.route('/main', methods=['GET','POST'])
 def main():
-    print("MAIN FUNCTION:")
+    print("MAIN FUNCTION 111:")
+    req = request.get_json(silent=True, force=True)
+    print("MAIN FUNCTION 222:")
     try:
         date = "next-week"
         creds = authentication()
