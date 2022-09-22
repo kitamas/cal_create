@@ -110,6 +110,7 @@ def createEvent(service, minTime, maxTime):
 @app.route('/main', methods=['GET','POST'])
 def main():
     print("MAIN FUNCTION")
+    req = request.get_json(force=True)
 
     try:
         date = "next-week"
