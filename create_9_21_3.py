@@ -58,7 +58,7 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    #req = request.get_json(force=True)
+    req = request.get_json(force=True)
 
     #print("Request:")
     #print(json.dumps(req, indent=4))
@@ -85,10 +85,10 @@ def webhook():
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-    req = request.get_json(silent=True, force=True)
+    #req = request.get_json(silent=True, force=True)
 
-    print("Request:")
-    print(json.dumps(req, indent=4))
+    #print("Request:")
+    #print(json.dumps(req, indent=4))
 
     #query_result = req.get('queryResult')
     #session_name = req.get('sessionInfo').get('session')
