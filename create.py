@@ -60,8 +60,8 @@ def authentication():
 def webhook():
     req = request.get_json(force=True)
 
-    #print("Request:")
-    #print(json.dumps(req, indent=4))
+    print("WEBHOOK FUNCTION REQ JSON DUMP:")
+    print(json.dumps(req, indent=4))
 
     #text = "webhook flask text response"
 
@@ -87,7 +87,7 @@ def webhook():
 def createEvent(service, minTime, maxTime):
     #req = request.get_json(silent=True, force=True)
 
-    #print("Request:")
+    print("CREATE EVENT FUNCTION JSON DUMP:")
     #print(json.dumps(req, indent=4))
 
     #query_result = req.get('queryResult')
@@ -138,6 +138,7 @@ def createEvent(service, minTime, maxTime):
 
 
 def main():
+    print("MAIN FUNCTION:")
     try:
         date = "next-week"
         creds = authentication()
