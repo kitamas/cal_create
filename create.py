@@ -56,14 +56,15 @@ def authentication():
     )
     return creds
 
+
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-    req = request.get_json(silent=True, force=True)
+    #req = request.get_json(silent=True, force=True)
     #print(req)
     #query_result = req.get('queryResult')
     #session_name = req.get('sessionInfo').get('session')
 
-    session_name = "AAA"
+    session_name = "BBB"
     try:
         event = {
             "summary": session_name,
