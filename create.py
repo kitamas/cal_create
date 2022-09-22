@@ -58,13 +58,13 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    req = request.get_json(force=True)
-    print(req)
+    #req = request.get_json(force=True)
 
-    print("Request:")
-    print(json.dumps(req, indent=4))
+    #print("Request:")
+    #print(json.dumps(req, indent=4))
 
     #text = "webhook flask text response"
+
     text = main()
 
     res = {
@@ -74,13 +74,16 @@ def webhook():
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-    #req = request.get_json(silent=True, force=True)
+    req = request.get_json(silent=True, force=True)
     #Parses the incoming JSON request data and returns it
-    #print(req)
-    #query_result = req.get('queryResult')
-    #session_name = req.get('sessionInfo').get('session')
 
-    session_name = "BBB"
+    print("Request:")
+    print(json.dumps(req, indent=4))
+
+    #query_result = req.get('queryResult')
+    session_name = req.get('sessionInfo').get('session')
+
+    #session_name = "BBB"
     try:
         event = {
             "summary": session_name,
