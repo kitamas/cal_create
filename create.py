@@ -85,7 +85,7 @@ def webhook():
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-    #req = request.get_json(silent=True, force=True)
+    req = request.get_json(force=True)
 
     #print("Request:")
     #print(json.dumps(req, indent=4))
