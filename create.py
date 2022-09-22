@@ -59,9 +59,8 @@ def authentication():
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-    req = request.get_json(force=True)
-    print("Request 222:")
-    print(json.dumps(req, indent=4))
+
+    print("createEvent function")
 
     #query_result = req.get('queryResult')
     #session_name = req.get('sessionInfo').get('session')
@@ -111,6 +110,10 @@ def createEvent(service, minTime, maxTime):
 
 
 def main():
+    req = request.get_json(force=True)
+    print("main function")
+    print(json.dumps(req, indent=4))
+
     try:
         date = "next-week"
         creds = authentication()
