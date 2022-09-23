@@ -66,14 +66,13 @@ def webhook():
     print("session_name =")
     print(session_name)
 
-    global parameterany
     parameterany = req.get('sessionInfo').get('parameters').get('any')
     print("parameterany =")
     print(parameterany)
 
     #text = "webhook flask text response"
 
-    text = main()
+    # text = main()
 
     res = {
         "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
