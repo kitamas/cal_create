@@ -71,11 +71,11 @@ def webhook():
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
 #def createEvent(service, minTime, maxTime, day, time_hours):
-    #summary = "SUMMARY"
+    summary = "SUMMARY"
 
     try:
         event = {
-            "summary": time_hours,
+            "summary": summary,
             "location": "Budapest",
             "description": "parkolo",
             "start": {
