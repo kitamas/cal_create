@@ -70,9 +70,7 @@ def webhook():
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-#def createEvent(service, minTime, maxTime, day, time_hours):
-    summary = "SUMMARY"
-
+    summary = "J J J"
     try:
         event = {
             "summary": summary,
@@ -117,8 +115,9 @@ def createEvent(service, minTime, maxTime):
 
 
 def main():
+
     req = request.get_json(force=True)
-    print(json.dumps(req, indent=4))
+    #print(json.dumps(req, indent=4))
 
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
     print("PARAMETERS DAY:")
@@ -143,14 +142,11 @@ def main():
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
-            print("START:")
-            print(start)
+            #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
-            print("END:")
-            print(end)
             #if not overlapCheck(service, start, end):
+            #    text = createEvent(service, start, end)
             text = createEvent(service, start, end)
-            #text = createEvent(service, start, end, day, time_hours)
             #else:
             #    text = "Overlap detected"
         else:
@@ -158,17 +154,6 @@ def main():
     except HttpError as error:
         print("An error occured")
     print(text)
-
-"""
-PARAMETERS DAY:
-24.0
-PARAMETERS HOURS:
-0.0
-START:
-2022-09-23T10:57:08+01:00
-END:
-2022-09-23T12:57:08+01:00
-"""
 
 #main()
 
