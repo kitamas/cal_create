@@ -56,45 +56,15 @@ def authentication():
     )
     return creds
 
-@app.route('/webhook', methods=['GET','POST'])
-def webhook():
-    print("WEBHOOK FUNCTION")
-    #req = request.get_json(force=True)
-    #print(json.dumps(req, indent=4))
+#@app.route('/webhook', methods=['GET','POST'])
+#def webhook():
 
-    #session_name = req.get('sessionInfo').get('session')
-    #print(session_name)
-    #paramany = req.get('sessionInfo').get('parameters').get('any')
-    #print("PARAMANY:")
-    #print(paramany)
-
-    #query_result = req.get('queryResult')
-    #session_name = req.get('sessionInfo').get('session')
-
-    #text = "webhook flask text response"
-
-    text = main()
-
-    res = {
-        "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
-    }
-    return res
-
-
-"""
-    #def handle_webhook(request):
-    #    req = request.get_json()
-    #    session_name = req.get('sessionInfo').get('session')
-
-    #query_result = req.get('queryResult')
-    #num1 = int(query_result.get('parameters').get('number'))
-"""
 
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
     print("CREATE EVENT FUNCTION")
-    session_name = "Y Y Y"
+    session_name = "H H H"
     try:
         event = {
             "summary": session_name,

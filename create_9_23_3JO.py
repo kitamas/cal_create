@@ -58,16 +58,28 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    req = request.get_json(force=True)
-    print(req)
+    print("WEBHOOK FUNCTION")
+    #req = request.get_json(force=True)
+    #print(json.dumps(req, indent=4))
+
+    #session_name = req.get('sessionInfo').get('session')
+    #print(session_name)
+    #paramany = req.get('sessionInfo').get('parameters').get('any')
+    #print("PARAMANY:")
+    #print(paramany)
+
+    #query_result = req.get('queryResult')
+    #session_name = req.get('sessionInfo').get('session')
 
     #text = "webhook flask text response"
+
     text = main()
 
     res = {
         "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
     }
     return res
+
 
 """
     #def handle_webhook(request):
@@ -78,11 +90,11 @@ def webhook():
     #num1 = int(query_result.get('parameters').get('number'))
 """
 
+
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-
-
-    session_name = "AAA"
+    print("CREATE EVENT FUNCTION")
+    session_name = "Y Y Y"
     try:
         event = {
             "summary": session_name,
@@ -127,6 +139,17 @@ def createEvent(service, minTime, maxTime):
 
 
 def main():
+    print("MAIN FUNCTION")
+    req = request.get_json(force=True)
+    #print(json.dumps(req, indent=4))
+
+    paramany = req.get('sessionInfo').get('parameters').get('any')
+    print("PARAMANY:")
+    print(paramany)
+
+    #session_name = req.get('sessionInfo').get('session')
+    #print(session_name)
+
     try:
         date = "next-week"
         creds = authentication()
@@ -150,8 +173,8 @@ def main():
         print("An error occured")
     print(text)
 
-main()
+#main()
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
     app.run()
