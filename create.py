@@ -115,13 +115,12 @@ def createEvent(service, minTime, maxTime):
 
 
 def main():
-    print("MAIN FUNCTION")
     req = request.get_json(force=True)
     print(json.dumps(req, indent=4))
 
     day = req.get('sessionInfo').get('parameters').get('date').get('resolvedValue').get('day')
     time_hours = req.get('sessionInfo').get('parameters').get('time').get('resolvedValue').get('hours')
-    print("PARAMETERS:")
+    print("PARAMETERS: PARAMETERS: PARAMETERS:")
     print(day)
     print(time_hours)
 
