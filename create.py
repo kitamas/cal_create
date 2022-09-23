@@ -140,6 +140,7 @@ def createEvent(service, minTime, maxTime):
 
 def main():
     print("MAIN FUNCTION")
+    req = request.get_json(force=True)
     try:
         date = "next-week"
         creds = authentication()
