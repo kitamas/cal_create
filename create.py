@@ -70,16 +70,15 @@ def webhook():
 
 @app.route('/createEvent', methods=['GET','POST'])
 #def createEvent(service, minTime, maxTime):
-def createEvent(service, minTime, maxTime, day, hours):
-
+def createEvent(service, minTime, maxTime, day):
+    summary = "HJ HJ HJ"
     try:
         event = {
             "summary": day,
-            "location": hours,
+            "location": "Budapest",
             "description": "parkolo",
             "start": {
-                #"dateTime": str(minTime),
-                "dateTime": "2022-09-23T13:00:00-01:00",
+                "dateTime": str(minTime),
                 "timeZone": "Europe/Budapest",
             },
             "end": {
@@ -119,16 +118,15 @@ def createEvent(service, minTime, maxTime, day, hours):
 def main():
 
     req = request.get_json(force=True)
-    print(json.dumps(req, indent=4))
+    #print(json.dumps(req, indent=4))
 
-    year = req.get('sessionInfo').get('parameters').get('date').get('year')
-    month = req.get('sessionInfo').get('parameters').get('date').get('month')
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
-    print("DATE PARAMETERS:", year, month, day)
+    print("PARAMETERS DAY:")
+    print(day)
 
-    hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
-    minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
-    print("TIME PARAMETERS:", hours, minutes)
+    time_hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
+    print("PARAMETERS HOURS:")
+    print(time_hours)
 
     #szab_idop = [{'datum': "2022.08.18.", 'ora': "08:00" },{'datum': "2022.08.18.", 'ora': "09:00" },{'datum': "2022.08.19.", 'ora': "10:00" },{'datum': "2022.08.18.", 'ora': "10:00" }]
 
@@ -145,10 +143,12 @@ def main():
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
+            #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
-                text = createEvent(service, start, end, day, hours)
+            #text = createEvent(service, start, end)
+            text = createEvent(service, start, end, day)
             #else:
             #    text = "Overlap detected"
         else:
