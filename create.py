@@ -78,7 +78,8 @@ def webhook():
     res = {
         "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
     }
-    return res
+    #return res
+    return parameterany
 
 
 """
@@ -148,7 +149,8 @@ def createEvent(service, minTime, maxTime):
 
 def main():
     print("MAIN FUNCTION parameterany =")
-    #print(parameterany)
+    parameterany = webhook()
+    print(parameterany)
 
     try:
         date = "next-week"
