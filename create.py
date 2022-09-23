@@ -75,7 +75,7 @@ def createEvent(service, minTime, maxTime, day, time_hours):
     try:
         event = {
             "summary": day,
-            "location": time_hours,
+            "location": "Budapest",
             "description": "parkolo",
             "start": {
                 "dateTime": str(minTime),
