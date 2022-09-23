@@ -118,7 +118,7 @@ def createEvent(service, minTime, maxTime, day, time_hours):
 def main():
 
     req = request.get_json(force=True)
-    #print(json.dumps(req, indent=4))
+    print(json.dumps(req, indent=4))
 
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
     print("PARAMETERS DAY:")
