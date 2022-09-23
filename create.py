@@ -70,11 +70,12 @@ def webhook():
 
 @app.route('/createEvent', methods=['GET','POST'])
 #def createEvent(service, minTime, maxTime):
-def createEvent(service, minTime, maxTime, day):
+#def createEvent(service, minTime, maxTime, day):
+def createEvent(service, minTime, maxTime, time_hours):
     summary = "HJ HJ HJ"
     try:
         event = {
-            "summary": day,
+            "summary": time_hours,
             "location": "Budapest",
             "description": "parkolo",
             "start": {
@@ -148,7 +149,7 @@ def main():
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
             #text = createEvent(service, start, end)
-            text = createEvent(service, start, end, day)
+            text = createEvent(service, start, end, time_hours)
             #else:
             #    text = "Overlap detected"
         else:
