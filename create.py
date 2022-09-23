@@ -66,7 +66,7 @@ def webhook():
     print("session_name =")
     print(session_name)
 
-    parameterany = req.get('parameters').get('any')
+    parameterany = req.get('sessionInfo').get('parameters').get('any')
     print("parameterany =")
     print(parameterany)
 
