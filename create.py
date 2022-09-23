@@ -72,12 +72,14 @@ def webhook():
 
     #text = "webhook flask text response"
 
-    # text = main()
+    """
+    text = main()
 
     res = {
         "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
     }
-    #return res
+    return res
+    """
     return parameterany
 
 
