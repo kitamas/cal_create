@@ -69,8 +69,9 @@ def webhook():
 
 
 @app.route('/createEvent', methods=['GET','POST'])
-def createEvent(service, minTime, maxTime):
-    session_name = "J J J"
+#def createEvent(service, minTime, maxTime):
+def createEvent(service, minTime, maxTime, date, time_hours):
+    session_name = "date"
     try:
         event = {
             "summary": session_name,
@@ -147,7 +148,7 @@ def main():
             print(end)
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
-            text = createEvent(service, start, end)
+            text = createEvent(service, start, end, day, time_hours)
             #else:
             #    text = "Overlap detected"
         else:
@@ -155,6 +156,17 @@ def main():
     except HttpError as error:
         print("An error occured")
     print(text)
+
+"""
+PARAMETERS DAY:
+24.0
+PARAMETERS HOURS:
+0.0
+START:
+2022-09-23T10:57:08+01:00
+END:
+2022-09-23T12:57:08+01:00
+"""
 
 #main()
 
