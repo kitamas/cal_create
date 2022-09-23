@@ -120,8 +120,9 @@ def main():
 
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
     time_hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
-    print("PARAMETERS: PARAMETERS: PARAMETERS:")
+    print("PARAMETERS DAY:")
     print(day)
+    print("PARAMETERS HOURS:")
     print(time_hours)
 
     #szab_idop = [{'datum': "2022.08.18.", 'ora': "08:00" },{'datum': "2022.08.18.", 'ora': "09:00" },{'datum': "2022.08.19.", 'ora': "10:00" },{'datum': "2022.08.18.", 'ora': "10:00" }]
@@ -139,8 +140,11 @@ def main():
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
-            #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
+            print("START:")
+            print(start)
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
+            print("END:")
+            print(end)
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
             text = createEvent(service, start, end)
