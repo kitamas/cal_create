@@ -155,6 +155,17 @@ def main():
         print("An error occured")
     print(text)
 
+"""
+PARAMETERS DAY:
+24.0
+PARAMETERS HOURS:
+0.0
+START:
+2022-09-23T10:57:08+01:00
+END:
+2022-09-23T12:57:08+01:00
+"""
+
 #main()
 
 #if __name__ == "__main__":
