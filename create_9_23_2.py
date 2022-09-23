@@ -59,14 +59,14 @@ def authentication():
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
     print("WEBHOOK FUNCTION")
-    #req = request.get_json(force=True)
+    req = request.get_json(force=True)
     #print(json.dumps(req, indent=4))
 
     #session_name = req.get('sessionInfo').get('session')
     #print(session_name)
-    #paramany = req.get('sessionInfo').get('parameters').get('any')
-    #print("PARAMANY:")
-    #print(paramany)
+    paramany = req.get('sessionInfo').get('parameters').get('any')
+    print("PARAMANY:")
+    print(paramany)
 
     #query_result = req.get('queryResult')
     #session_name = req.get('sessionInfo').get('session')
@@ -141,15 +141,6 @@ def createEvent(service, minTime, maxTime):
 def main():
     print("MAIN FUNCTION")
     req = request.get_json(force=True)
-    #print(json.dumps(req, indent=4))
-
-    paramany = req.get('sessionInfo').get('parameters').get('any')
-    print("PARAMANY:")
-    print(paramany)
-
-    #session_name = req.get('sessionInfo').get('session')
-    #print(session_name)
-
     try:
         date = "next-week"
         creds = authentication()
