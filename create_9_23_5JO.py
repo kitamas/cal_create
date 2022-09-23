@@ -120,7 +120,7 @@ def createEvent(service, minTime, maxTime, day, hours):
 def main():
 
     req = request.get_json(force=True)
-    print(json.dumps(req, indent=4))
+    #print(json.dumps(req, indent=4))
 
     year = req.get('sessionInfo').get('parameters').get('date').get('year')
     month = req.get('sessionInfo').get('parameters').get('date').get('month')
@@ -159,6 +159,13 @@ def main():
     except HttpError as error:
         print("An error occured")
     print(text)
+
+
+#PARAMETERS DAY: 24.0
+#PARAMETERS HOURS: 0.0
+#START: 2022-09-23T10:57:08+01:00
+#END: 2022-09-23T12:57:08+01:00
+
 
 #main()
 
