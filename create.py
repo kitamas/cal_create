@@ -62,8 +62,8 @@ def webhook():
     req = request.get_json(force=True)
     print(json.dumps(req, indent=4))
 
-    session_name = req.get('sessionInfo').get('session')
-    print(session_name)
+    #session_name = req.get('sessionInfo').get('session')
+    #print(session_name)
     paramany = req.get('sessionInfo').get('parameters').get('any')
     print("PARAMANY:")
     print(paramany)
@@ -93,7 +93,7 @@ def webhook():
 
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
-
+    print("CREATE EVENT FUNCTION")
     session_name = "CCC"
     try:
         event = {
@@ -139,6 +139,7 @@ def createEvent(service, minTime, maxTime):
 
 
 def main():
+    print("MAIN FUNCTION")
     try:
         date = "next-week"
         creds = authentication()
