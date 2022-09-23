@@ -118,8 +118,8 @@ def main():
     req = request.get_json(force=True)
     print(json.dumps(req, indent=4))
 
-    day = req.get('sessionInfo').get('parameters').get('date').get('resolvedValue').get('day')
-    time_hours = req.get('sessionInfo').get('parameters').get('time').get('resolvedValue').get('hours')
+    day = req.get('sessionInfo').get('parameters').get('date').get('day')
+    time_hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
     print("PARAMETERS: PARAMETERS: PARAMETERS:")
     print(day)
     print(time_hours)
