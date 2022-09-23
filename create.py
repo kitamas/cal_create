@@ -60,7 +60,7 @@ def authentication():
 def webhook():
     print("WEBHOOK FUNCTION")
     req = request.get_json(force=True)
-    print(json.dumps(req, indent=4))
+    #print(json.dumps(req, indent=4))
 
     #session_name = req.get('sessionInfo').get('session')
     #print(session_name)
@@ -94,7 +94,7 @@ def webhook():
 @app.route('/createEvent', methods=['GET','POST'])
 def createEvent(service, minTime, maxTime):
     print("CREATE EVENT FUNCTION")
-    session_name = "CCC"
+    session_name = "Y Y Y"
     try:
         event = {
             "summary": session_name,
