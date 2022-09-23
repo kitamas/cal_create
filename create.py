@@ -78,7 +78,8 @@ def createEvent(service, minTime, maxTime, day, hours):
             "location": hours,
             "description": "parkolo",
             "start": {
-                "dateTime": str(minTime),
+                #"dateTime": str(minTime),
+                "dateTime": "2022-09-23T13:00:00-01:00",
                 "timeZone": "Europe/Budapest",
             },
             "end": {
@@ -144,12 +145,10 @@ def main():
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
-            #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
-            #text = createEvent(service, start, end)
-            text = createEvent(service, start, end, day, hours)
+                text = createEvent(service, start, end, day, hours)
             #else:
             #    text = "Overlap detected"
         else:
