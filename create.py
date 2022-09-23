@@ -66,6 +66,7 @@ def webhook():
     print("session_name =")
     print(session_name)
 
+    global parameterany
     parameterany = req.get('sessionInfo').get('parameters').get('any')
     print("parameterany =")
     print(parameterany)
@@ -146,7 +147,8 @@ def createEvent(service, minTime, maxTime):
 
 
 def main():
-    print("MAIN FUNCTION")
+    print("MAIN FUNCTION parameterany =")
+    print(parameterany)
 
     try:
         date = "next-week"
