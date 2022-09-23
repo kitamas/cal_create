@@ -117,7 +117,7 @@ def createEvent(service, minTime, maxTime):
 def main():
     print("MAIN FUNCTION")
     req = request.get_json(force=True)
-    print(json.dumps(req, indent=4))
+    #print(json.dumps(req, indent=4))
 
     paramany = req.get('sessionInfo').get('parameters').get('any')
     print("PARAMANY:")
