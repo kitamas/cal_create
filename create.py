@@ -70,12 +70,12 @@ def webhook():
 
 @app.route('/createEvent', methods=['GET','POST'])
 #def createEvent(service, minTime, maxTime):
-def createEvent(service, minTime, maxTime, day):
-    summary = "HJ HJ HJ"
+def createEvent(service, minTime, maxTime, day, hours):
+
     try:
         event = {
             "summary": day,
-            "location": "Budapest",
+            "location": hours,
             "description": "parkolo",
             "start": {
                 #"dateTime": str(minTime),
@@ -122,13 +122,14 @@ def main():
     req = request.get_json(force=True)
     #print(json.dumps(req, indent=4))
 
+    year = req.get('sessionInfo').get('parameters').get('date').get('year')
+    month = req.get('sessionInfo').get('parameters').get('date').get('month')
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
-    print("PARAMETERS DAY:")
-    print(day)
+    print("DATE PARAMETERS:", year, month, day)
 
-    time_hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
-    print("PARAMETERS HOURS:")
-    print(time_hours)
+    hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
+    minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
+    print("TIME PARAMETERS:", hours, minutes)
 
     #szab_idop = [{'datum': "2022.08.18.", 'ora': "08:00" },{'datum': "2022.08.18.", 'ora': "09:00" },{'datum': "2022.08.19.", 'ora': "10:00" },{'datum': "2022.08.18.", 'ora': "10:00" }]
 
@@ -150,7 +151,7 @@ def main():
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
             #text = createEvent(service, start, end)
-            text = createEvent(service, start, end, day)
+            text = createEvent(service, start, end, day, hours)
             #else:
             #    text = "Overlap detected"
         else:
