@@ -119,9 +119,13 @@ def main():
     req = request.get_json(force=True)
     print(json.dumps(req, indent=4))
 
-    paramany = req.get('sessionInfo').get('parameters').get('any')
-    print("PARAMANY:")
-    print(paramany)
+    day = req.get('sessionInfo').get('parameters').get('date').get('resolvedValue').get('day')
+    time_hours = req.get('sessionInfo').get('parameters').get('time').get('resolvedValue').get('hours')
+    print("PARAMETERS:")
+    print(day)
+    print(time_hours)
+
+    #szab_idop = [{'datum': "2022.08.18.", 'ora': "08:00" },{'datum': "2022.08.18.", 'ora': "09:00" },{'datum': "2022.08.19.", 'ora': "10:00" },{'datum': "2022.08.18.", 'ora': "10:00" }]
 
     #session_name = req.get('sessionInfo').get('session')
     #print(session_name)
