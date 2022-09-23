@@ -147,7 +147,8 @@ def main():
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
-                 text = createEvent(service, start, end, day)
+            #text = createEvent(service, start, end)
+            text = createEvent(service, start, end, day)
             #else:
             #    text = "Overlap detected"
         else:
