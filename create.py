@@ -148,7 +148,7 @@ def createEvent(service, minTime, maxTime):
 
 def main():
     print("MAIN FUNCTION parameterany =")
-    print(parameterany)
+    #print(parameterany)
 
     try:
         date = "next-week"
