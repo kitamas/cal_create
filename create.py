@@ -74,12 +74,11 @@ def createEvent(service, minTime, maxTime, day, hours):
 
     try:
         event = {
-            "summary": day,
-            "location": hours,
+            "summary": "parkol",
+            "location": "Budapest",
             "description": "parkolo",
             "start": {
-                #"dateTime": str(minTime),
-                "dateTime": "2022-09-23T17:00:00",
+                "dateTime": str(minTime),
                 "timeZone": "Europe/Budapest",
             },
             "end": {
