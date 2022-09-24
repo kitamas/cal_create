@@ -145,6 +145,9 @@ def main():
             tzObject = datetime.timezone(cstTimeDelta, name="CST")
             dateTime = datetime.datetime.today()
 
+            #dt = datetime(2021, 10, 24, 8, 48, 34, 685496)
+            #print('Input Datetime:', dt)
+
             #x = datetime.datetime.today()
             #print("x = datetime.datetime.today()")
             #print(x)
