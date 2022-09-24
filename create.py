@@ -144,6 +144,16 @@ def main():
             cstTimeDelta = datetime.timedelta(hours=1)
             tzObject = datetime.timezone(cstTimeDelta, name="CST")
             dateTime = datetime.datetime.today()
+
+            dt = datetime(2021, 10, 24, 8, 48, 34, 685496)
+            print('Input Datetime:', dt)
+
+            x = datetime.datetime.today()
+            print("x = datetime.datetime.today()")
+            print(x)
+            d = x.isoformat("T", "seconds")
+            print("ISO 8601 format:", d)
+
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
             #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
