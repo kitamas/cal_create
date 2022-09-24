@@ -145,7 +145,7 @@ def main():
             tzObject = datetime.timezone(cstTimeDelta, name="CST")
             dateTime = datetime.datetime.today()
 
-            x = datetime.today()
+            x = datetime.datetime.today()
             print("Normal format:",x)
             d = x.isoformat()
             print("ISO 8601 format:", d)
