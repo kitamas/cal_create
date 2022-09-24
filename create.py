@@ -133,7 +133,8 @@ def main():
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
 
     sep = ","
-    dt_param_1 = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
+    sep1 = "1"
+    dt_param_1 = str(int(year)) + sep + sep1 + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + sep1 + str(int(minutes))
     print('DATE TIME PARAMETERS 1:',dt_param_1)
 
 
@@ -141,7 +142,7 @@ def main():
 
     #datetime_object = datetime.strptime(datetime_str, '%m/%d/%y %H:%M:%S')
 
-    datetime_object = datetime.datetime.strptime(dt_param_1, '%y,0%m,%d,%H,1%M')
+    datetime_object = datetime.datetime.strptime(dt_param_1, '%y,%m,%d,%H,%M')
     print("AAAAAAA",datetime_object)
 
     #s = "2022-07-04T03:15:00Z"
