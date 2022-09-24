@@ -145,11 +145,11 @@ def main():
             tzObject = datetime.timezone(cstTimeDelta, name="CST")
             dateTime = datetime.datetime.today()
 
-            x = datetime.datetime.today()
-            print("x = datetime.datetime.today()")
-            print(x)
-            d = x.isoformat("T", "seconds")
-            print("ISO 8601 format:", d)
+            #x = datetime.datetime.today()
+            #print("x = datetime.datetime.today()")
+            #print(x)
+            #d = x.isoformat("T", "seconds")
+            #print("ISO 8601 format:", d)
 
 
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
