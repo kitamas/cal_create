@@ -141,7 +141,7 @@ def main():
 
     #dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
     #dt = datetime.datetime(2022, 11, 10, 11, 48)
-    dt = datetime.datetime(dt_param_1)
+    dt = datetime.datetime.strptime(dt_param_1)
 
     d = dt.isoformat("T", "seconds")
     print('Input Datetime string to ISO 8601 format:', d)
