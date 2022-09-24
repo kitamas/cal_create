@@ -133,16 +133,13 @@ def main():
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
 
     sep = ","
-
-    dt_param_1 = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
-    print('DATE TIME PARAMETERS 1:',dt_param_1)
+    dt_param = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
+    print('DATE TIME PARAMETERS 1:',dt_param)
 
     #datetime_str = '2022,09,24,17,10'
     #datetime_object = datetime.datetime.strptime(datetime_str, '%Y,%m,%d,%H,%M')
-
-    datetime_object = datetime.datetime.strptime(dt_param_1, '%Y,%m,%d,%H,%M')
-    print("datetime_object = ",datetime_object)
-
+    #datetime_object = datetime.datetime.strptime(dt_param, '%Y,%m,%d,%H,%M')
+    #print("datetime_object = ",datetime_object)
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
     # KEZDO NEM LEHET NULLA !!!
@@ -150,16 +147,10 @@ def main():
     #dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
     #dt = datetime.datetime(2022, 11, 10, 11, 48)
 
-    #dt = datetime.datetime(dt_param_1)
-    dt = datetime.datetime.strptime(dt_param_1, '%Y,%m,%d,%H,%M')
+    dt = datetime.datetime.strptime(dt_param, '%Y,%m,%d,%H,%M')
 
-    d = dt.isoformat("T", "seconds")
-    print('Input Datetime string to ISO 8601 format:', d)
-
-    #szab_idop = [{'datum': "2022.08.18.", 'ora': "08:00" },{'datum': "2022.08.18.", 'ora': "09:00" },{'datum': "2022.08.19.", 'ora': "10:00" },{'datum': "2022.08.18.", 'ora': "10:00" }]
-
-    #session_name = req.get('sessionInfo').get('session')
-    #print(session_name)
+    dstart = dt.isoformat("T", "seconds")
+    print('DATE TIME PARAMETERS Input Datetime string to ISO 8601 format:', dstart)
 
     try:
         date = "next-week"
@@ -171,6 +162,10 @@ def main():
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
+            print("START")
+            print(start)
+            print("D START")
+            print(dstart)
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
