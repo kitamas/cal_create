@@ -136,7 +136,20 @@ def main():
     dt_param_1 = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
     print('DATE TIME PARAMETERS 1:',dt_param_1)
 
-    print("The variable, dt_param_1 is of type:", type(dt_param_1))
+
+    #datetime_str = '09/19/18 13:55:26'
+
+    #datetime_object = datetime.strptime(datetime_str, '%m/%d/%y %H:%M:%S')
+
+    datetime_object = datetime.strptime(dt_param_1, '%y-%m-%dT%H:%M:%S')
+    print("AAAAAAA",datetime_object)
+
+    #s = "2022-07-04T03:15:00Z"
+    #s = (datetime.strptime(s, '%Y-%m-%dT%H:%M:%S%z') + timedelta(hours=2)).isoformat()
+    #print(s)
+
+
+    #print("The variable, dt_param_1 is of type:", type(dt_param_1))
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
     # KEZDO NEM LEHET NULLA !!!
