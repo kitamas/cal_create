@@ -166,7 +166,7 @@ def main():
             print(start)
             print("D START")
             print(dstart)
-            end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
+            end = (cstTimeNow + datetime.timedelta(hours=1)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
             text = createEvent(service, start, end)
