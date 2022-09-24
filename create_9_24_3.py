@@ -1,18 +1,41 @@
-# TODO(developer): change entry point to main in cloud function
-# Python 3.9
-
+# FLASK = = = = = = = = = = = 
+import flask
 import json
-import logging.config
 import os
+from flask import send_from_directory, request
+# FLASK = = = = = = = = = = = 
 
-import datetime
-from googleapiclient.errors import HttpError
-
-from googleapiclient.discovery import build
-
+# CRED = = = = = = = = = = =
 import googleapiclient.discovery
-
 from google.oauth2 import service_account as google_oauth2_service_account
+# CRED = = = = = = = = = = =
+
+# QUICKSTART = = = = = = = = = = =
+import datetime
+import os.path
+
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+# QUICKSTART = = = = = = = = = = =
+
+
+# Flask app should start in global layout
+app = flask.Flask(__name__)
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/favicon.png')
+
+@app.route('/')
+@app.route('/home')
+def home():
+    return "Hello World"
+
+@app.route('/authentication')
 
 def authentication():
     creds = google_oauth2_service_account.Credentials.from_service_account_info(
@@ -33,37 +56,43 @@ def authentication():
     )
     return creds
 
-def overlapCheck(service, minTime, maxTime):
-    if (
-        len(
-            service.events()
-            .list(
-                calendarId="61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com",
-                timeMin=minTime,
-                singleEvents=True,
-            )
-            .execute()
-            .get("items", [])
-        )
-        > 0
-    ):
-        return True
-    return False
+@app.route('/webhook', methods=['GET','POST'])
+def webhook():
+    #text = "webhook flask text response"
+
+    text = main()
+
+    res = {
+        "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
+    }
+    return res
 
 
-def createEvent(service, minTime, maxTime):
+@app.route('/createEvent', methods=['GET','POST'])
+#def createEvent(service, minTime, maxTime):
+def createEvent(service, minTime, maxTime, day, hours):
+
     try:
         event = {
-            "summary": "Google I/O 2022",
-            "location": "Budapest",
-            "description": "A chance to hear more about Google's developer products.",
+            "summary": day,
+            "location": hours,
+            "description": "parkolo",
             "start": {
-                "dateTime": str(minTime),
+                #"dateTime": str(minTime),
+                "dateTime": "2022-09-23T17:00:00",
                 "timeZone": "Europe/Budapest",
             },
             "end": {
-                "dateTime": str(maxTime),
+                #"dateTime": str(maxTime),
+                "dateTime": "2022-09-23T18:00:00",
                 "timeZone": "Europe/Budapest",
+            },
+            "recurrence": {
+                "RRULE": "FREQ=DAILY;COUNT=2"
+            },
+            "attendees": {
+                "email": "lpage@example.com",
+                "email": "sbrin@example.com",
             },
             "reminders": {
                 "useDefault": False,
@@ -72,6 +101,7 @@ def createEvent(service, minTime, maxTime):
                     {"method": "popup", "minutes": 10},
                 ],
             },
+            "colorId": 6,
         }
         event = (
             service.events()
@@ -88,6 +118,40 @@ def createEvent(service, minTime, maxTime):
 
 
 def main():
+
+    req = request.get_json(force=True)
+    #print(json.dumps(req, indent=4))
+
+    year = req.get('sessionInfo').get('parameters').get('date').get('year')
+    month = req.get('sessionInfo').get('parameters').get('date').get('month')
+    day = req.get('sessionInfo').get('parameters').get('date').get('day')
+
+    hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
+    minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
+
+    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
+    #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
+
+    sep = ","
+    dt_param = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
+    print('DATE TIME PARAMETERS 1:',dt_param)
+
+    #datetime_str = '2022,09,24,17,10'
+    #datetime_object = datetime.datetime.strptime(datetime_str, '%Y,%m,%d,%H,%M')
+    #datetime_object = datetime.datetime.strptime(dt_param, '%Y,%m,%d,%H,%M')
+    #print("datetime_object = ",datetime_object)
+
+    #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
+    # KEZDO NEM LEHET NULLA !!!
+
+    #dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
+    #dt = datetime.datetime(2022, 11, 10, 11, 48)
+
+    dt = datetime.datetime.strptime(dt_param, '%Y,%m,%d,%H,%M')
+
+    dstart = dt.isoformat("T", "seconds")
+    print('DATE TIME PARAMETERS Input Datetime string to ISO 8601 format:', dstart)
+
     try:
         date = "next-week"
         creds = authentication()
@@ -98,11 +162,15 @@ def main():
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
-            #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
+            print("START")
+            print(start)
+            print("D START")
+            print(dstart)
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
-                #text = createEvent(service, start, end)
-            text = createEvent(service, start, end)
+            #    text = createEvent(service, start, end)
+            #text = createEvent(service, start, end)
+            text = createEvent(service, start, end, day, hours)
             #else:
             #    text = "Overlap detected"
         else:
@@ -112,4 +180,14 @@ def main():
     print(text)
 
 
-main()
+#PARAMETERS DAY: 24.0
+#PARAMETERS HOURS: 0.0
+#START: 2022-09-23T10:57:08+01:00
+#END: 2022-09-23T12:57:08+01:00
+
+
+#main()
+
+#if __name__ == "__main__":
+
+    app.run()
