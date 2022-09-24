@@ -139,12 +139,12 @@ def main():
     print('DATE TIME PARAMETERS 1:',dt_param_1)
 
 
-    #datetime_str = '09/19/18 13:55:26'
+    datetime_str = '2022,9,24,17,0'
 
-    #datetime_object = datetime.strptime(datetime_str, '%m/%d/%y %H:%M:%S')
+    datetime_object = datetime.strptime(datetime_str, '%y,%m,%d,%H,%M')
 
     #datetime_object = datetime.datetime.strptime(dt_param_1, '%y,%m,%d,%H,%M')
-    #print("AAAAAAA",datetime_object)
+    print("datetime_object = ",datetime_object)
 
     #s = "2022-07-04T03:15:00Z"
     #s = (datetime.strptime(s, '%Y-%m-%dT%H:%M:%S%z') + timedelta(hours=2)).isoformat()
