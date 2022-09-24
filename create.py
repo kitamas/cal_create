@@ -139,7 +139,7 @@ def main():
     print('DATE TIME PARAMETERS 1:',dt_param_1)
 
 
-    datetime_str = '2022,09,24,17,0'
+    datetime_str = '2022,09,24,17,10'
 
     datetime_object = datetime.datetime.strptime(datetime_str, '%y,%m,%d,%H,%M')
 
