@@ -125,11 +125,17 @@ def main():
     year = req.get('sessionInfo').get('parameters').get('date').get('year')
     month = req.get('sessionInfo').get('parameters').get('date').get('month')
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
-    print("DATE PARAMETERS:", year, month, day)
 
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
-    print("TIME PARAMETERS:", hours, minutes)
+
+    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
+
+    dt = datetime.datetime(2022, 09, 10, 01, 48, 34, 01)
+    #dt = datetime.datetime(2022, 09, 10, 01, 48, 34)
+    print('Input Datetime:', dt)
+    d = dt.isoformat("T", "seconds")
+    print("ISO 8601 format:", d)
 
     #szab_idop = [{'datum': "2022.08.18.", 'ora': "08:00" },{'datum': "2022.08.18.", 'ora': "09:00" },{'datum': "2022.08.19.", 'ora': "10:00" },{'datum': "2022.08.18.", 'ora': "10:00" }]
 
@@ -144,18 +150,6 @@ def main():
             cstTimeDelta = datetime.timedelta(hours=1)
             tzObject = datetime.timezone(cstTimeDelta, name="CST")
             dateTime = datetime.datetime.today()
-
-            dt = datetime.datetime(2021, 10, 24, 8, 48, 34, 685496)
-            print('Input Datetime:', dt)
-            d = dt.isoformat("T", "seconds")
-            print("ISO 8601 format:", d)
-
-            #x = datetime.datetime.today()
-            #print("x = datetime.datetime.today()")
-            #print(x)
-            #d = x.isoformat("T", "seconds")
-            #print("ISO 8601 format:", d)
-
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
             #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
