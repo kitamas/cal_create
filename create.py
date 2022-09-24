@@ -132,9 +132,12 @@ def main():
     print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
-    dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
-    #d = dt.isoformat("T", "seconds")
-    #print('Input Datetime string to ISO 8601 format:', d)
+    #dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
+    dt = datetime.datetime(2022, 11, 10, 11, 48)
+    # KEZDO NEM LEHET NULLA !!!
+
+    d = dt.isoformat("T", "seconds")
+    print('Input Datetime string to ISO 8601 format:', d)
 
     #szab_idop = [{'datum': "2022.08.18.", 'ora': "08:00" },{'datum': "2022.08.18.", 'ora': "09:00" },{'datum': "2022.08.19.", 'ora': "10:00" },{'datum': "2022.08.18.", 'ora': "10:00" }]
 
