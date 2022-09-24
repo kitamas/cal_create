@@ -133,8 +133,9 @@ def main():
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
 
     sep = ","
-    sep1 = "1"
-    dt_param_1 = str(int(year)) + sep + sep1 + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + sep1 + str(int(minutes))
+    sep1 = "0"
+    sep2 = "1"
+    dt_param_1 = str(int(year)) + sep + sep1 + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + sep2 + str(int(minutes))
     print('DATE TIME PARAMETERS 1:',dt_param_1)
 
 
