@@ -160,7 +160,8 @@ def main():
             tzObject = datetime.timezone(cstTimeDelta, name="CST")
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
-            start = cstTimeNow.isoformat("T", "seconds")
+            #start = cstTimeNow.isoformat("T", "seconds")
+            start = dstart
             print("START")
             print(start)
             print("D START")
