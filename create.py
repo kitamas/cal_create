@@ -136,7 +136,8 @@ def main():
     #str2="World"
     #str=str1+str2
 
-    dt1 = int(year) + int(month) + int(day) + int(hours) + int(minutes)
+    sep = ","
+    dt1 = str(int(year)) + sep + str(int(month)) + str(int(day)) + str(int(hours)) + str(int(minutes))
     print('int(year) + int(month) + int(day) + int(hours) + int(minutes)',dt1)
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
