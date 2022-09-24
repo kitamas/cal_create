@@ -137,21 +137,21 @@ def main():
     dt_param_1 = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
     print('DATE TIME PARAMETERS 1:',dt_param_1)
 
-
     #datetime_str = '2022,09,24,17,10'
     #datetime_object = datetime.datetime.strptime(datetime_str, '%Y,%m,%d,%H,%M')
 
     datetime_object = datetime.datetime.strptime(dt_param_1, '%Y,%m,%d,%H,%M')
     print("datetime_object = ",datetime_object)
 
-    #print("The variable, dt_param_1 is of type:", type(dt_param_1))
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
     # KEZDO NEM LEHET NULLA !!!
 
     #dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
-    dt = datetime.datetime(2022, 11, 10, 11, 48)
+    #dt = datetime.datetime(2022, 11, 10, 11, 48)
+
     #dt = datetime.datetime(dt_param_1)
+    dt = datetime.datetime.strptime(dt_param_1, '%Y,%m,%d,%H,%M')
 
     d = dt.isoformat("T", "seconds")
     print('Input Datetime string to ISO 8601 format:', d)
