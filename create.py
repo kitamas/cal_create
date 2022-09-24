@@ -133,23 +133,17 @@ def main():
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
 
     sep = ","
-    sep1 = "0"
-    sep2 = "1"
-    dt_param_1 = str(int(year)) + sep + sep1 + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + sep2 + str(int(minutes))
+
+    dt_param_1 = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
     print('DATE TIME PARAMETERS 1:',dt_param_1)
 
 
     datetime_str = '2022,09,24,17,10'
 
-    datetime_object = datetime.datetime.strptime(datetime_str, '%y,%m,%d,%H,%M')
+    datetime_object = datetime.datetime.strptime(datetime_str, '%Y,%m,%d,%H,%M')
 
-    #datetime_object = datetime.datetime.strptime(dt_param_1, '%y,%m,%d,%H,%M')
+    #datetime_object = datetime.datetime.strptime(dt_param_1, '%Y,%m,%d,%H,%M')
     print("datetime_object = ",datetime_object)
-
-    #s = "2022-07-04T03:15:00Z"
-    #s = (datetime.strptime(s, '%Y-%m-%dT%H:%M:%S%z') + timedelta(hours=2)).isoformat()
-    #print(s)
-
 
     #print("The variable, dt_param_1 is of type:", type(dt_param_1))
 
