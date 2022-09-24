@@ -83,7 +83,7 @@ def createEvent(service, minTime, maxTime):
             },
             "end": {
                 #"dateTime": str(maxTime),
-                "dateTime": "2022-09-23T18:00:00",
+                "dateTime": "2022-09-24T19:00:00",
                 "timeZone": "Europe/Budapest",
             },
             "recurrence": {
