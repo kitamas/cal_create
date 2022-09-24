@@ -153,8 +153,8 @@ def main():
     #dt = datetime.datetime(dt_param_1)
     dt = datetime.datetime.strptime(dt_param_1, '%Y,%m,%d,%H,%M')
 
-    dJO = dt.isoformat("T", "seconds")
-    print('Input Datetime string to ISO 8601 format:', dJO)
+    d = dt.isoformat("T", "seconds")
+    print('Input Datetime string to ISO 8601 format:', d)
 
     #szab_idop = [{'datum': "2022.08.18.", 'ora': "08:00" },{'datum': "2022.08.18.", 'ora': "09:00" },{'datum': "2022.08.19.", 'ora': "10:00" },{'datum': "2022.08.18.", 'ora': "10:00" }]
 
@@ -170,9 +170,7 @@ def main():
             tzObject = datetime.timezone(cstTimeDelta, name="CST")
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
-            #start = cstTimeNow.isoformat("T", "seconds")
-            start = dJO
-            print(dJO)
+            start = cstTimeNow.isoformat("T", "seconds")
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
