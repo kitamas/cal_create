@@ -120,7 +120,7 @@ def createEvent(service, minTime, maxTime, day, hours):
 def main():
 
     req = request.get_json(force=True)
-    print(json.dumps(req, indent=4))
+    #print(json.dumps(req, indent=4))
 
     year = req.get('sessionInfo').get('parameters').get('date').get('year')
     month = req.get('sessionInfo').get('parameters').get('date').get('month')
@@ -144,19 +144,9 @@ def main():
             cstTimeDelta = datetime.timedelta(hours=1)
             tzObject = datetime.timezone(cstTimeDelta, name="CST")
             dateTime = datetime.datetime.today()
-
-            #dt = datetime(2021, 10, 24, 8, 48, 34, 685496)
-            #print('Input Datetime:', dt)
-
-            #x = datetime.datetime.today()
-            #print("x = datetime.datetime.today()")
-            #print(x)
-            #d = x.isoformat("T", "seconds")
-            #print("ISO 8601 format:", d)
-
-
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
+            #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
@@ -169,6 +159,13 @@ def main():
     except HttpError as error:
         print("An error occured")
     print(text)
+
+
+#PARAMETERS DAY: 24.0
+#PARAMETERS HOURS: 0.0
+#START: 2022-09-23T10:57:08+01:00
+#END: 2022-09-23T12:57:08+01:00
+
 
 #main()
 
