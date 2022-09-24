@@ -141,7 +141,7 @@ def main():
 
     #datetime_object = datetime.strptime(datetime_str, '%m/%d/%y %H:%M:%S')
 
-    datetime_object = datetime.datetime.strptime(dt_param_1, '%y,%m,,%d,%H,%M')
+    datetime_object = datetime.datetime.strptime(dt_param_1, '%y,%m,%d,%H,%M')
     print("AAAAAAA",datetime_object)
 
     #s = "2022-07-04T03:15:00Z"
