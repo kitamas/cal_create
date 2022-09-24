@@ -169,9 +169,7 @@ def main():
             tzObject = datetime.timezone(cstTimeDelta, name="CST")
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
-            #start = cstTimeNow.isoformat("T", "seconds")
-            start = dJO
-            print(dJO)
+            start = cstTimeNow.isoformat("T", "seconds")
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
