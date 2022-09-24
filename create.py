@@ -131,6 +131,11 @@ def main():
 
     print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
 
+    #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
+    #dt = datetime.datetime(2022, 09, 10, 01, 48, 34)
+    #d = dt.isoformat("T", "seconds")
+    #print('Input Datetime string to ISO 8601 format:', d)
+
     #szab_idop = [{'datum': "2022.08.18.", 'ora': "08:00" },{'datum': "2022.08.18.", 'ora': "09:00" },{'datum': "2022.08.19.", 'ora': "10:00" },{'datum': "2022.08.18.", 'ora': "10:00" }]
 
     #session_name = req.get('sessionInfo').get('session')
@@ -146,12 +151,6 @@ def main():
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
-
-            dt = datetime(2022, 09, 10, 01, 48, 34, 01)
-            #dt = datetime.datetime(2022, 09, 10, 01, 48, 34)
-            #d = dt.isoformat("T", "seconds")
-            #print('Input Datetime string to ISO 8601 format:', d)
-
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
