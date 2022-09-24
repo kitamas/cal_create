@@ -129,18 +129,19 @@ def main():
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
-    print("DATE TIME PARAMETERS 1:", year, month, day, hours, minutes)
+    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
 
     sep = ","
-    dt1 = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
-    print('DATE TIME PARAMETERS 2:',dt1)
+    dt_param_1 = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
+    print('DATE TIME PARAMETERS 1:',dt_param_1)
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
     # KEZDO NEM LEHET NULLA !!!
 
     #dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
-    dt = datetime.datetime(2022, 11, 10, 11, 48)
+    #dt = datetime.datetime(2022, 11, 10, 11, 48)
+    dt = dt_param_1
 
     d = dt.isoformat("T", "seconds")
     print('Input Datetime string to ISO 8601 format:', d)
