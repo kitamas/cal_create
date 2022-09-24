@@ -146,6 +146,7 @@ def main():
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
+            print("START hhhhhhhhhhhhhhhhhhhh")
             print(start)
             #end1 = datetime.datetime(2017, 12, 01, 23, 59, 59, 0).isoformat() + 'Z'
             #print(end1)
