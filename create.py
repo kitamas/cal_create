@@ -138,11 +138,10 @@ def main():
     print('DATE TIME PARAMETERS 1:',dt_param_1)
 
 
-    datetime_str = '2022,09,24,17,10'
+    #datetime_str = '2022,09,24,17,10'
+    #datetime_object = datetime.datetime.strptime(datetime_str, '%Y,%m,%d,%H,%M')
 
-    datetime_object = datetime.datetime.strptime(datetime_str, '%Y,%m,%d,%H,%M')
-
-    #datetime_object = datetime.datetime.strptime(dt_param_1, '%Y,%m,%d,%H,%M')
+    datetime_object = datetime.datetime.strptime(dt_param_1, '%Y,%m,%d,%H,%M')
     print("datetime_object = ",datetime_object)
 
     #print("The variable, dt_param_1 is of type:", type(dt_param_1))
