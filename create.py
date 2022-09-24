@@ -141,7 +141,7 @@ def main():
 
     datetime_str = '2022,9,24,17,0'
 
-    datetime_object = datetime.strptime(datetime_str, '%y,%m,%d,%H,%M')
+    datetime_object = datetime.datetime.strptime(datetime_str, '%y,%m,%d,%H,%M')
 
     #datetime_object = datetime.datetime.strptime(dt_param_1, '%y,%m,%d,%H,%M')
     print("datetime_object = ",datetime_object)
