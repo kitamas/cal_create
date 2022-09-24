@@ -74,11 +74,12 @@ def createEvent(service, minTime, maxTime, day, hours):
 
     try:
         event = {
-            "summary": "parkol",
-            "location": "Budapest",
+            "summary": day,
+            "location": hours,
             "description": "parkolo",
             "start": {
-                "dateTime": str(minTime),
+                #"dateTime": str(minTime),
+                "dateTime": "2022-09-23T17:00:00",
                 "timeZone": "Europe/Budapest",
             },
             "end": {
@@ -124,36 +125,11 @@ def main():
     year = req.get('sessionInfo').get('parameters').get('date').get('year')
     month = req.get('sessionInfo').get('parameters').get('date').get('month')
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
+    print("DATE PARAMETERS:", year, month, day)
 
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
-
-    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
-    #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
-
-    sep = ","
-
-    dt_param_1 = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
-    print('DATE TIME PARAMETERS 1:',dt_param_1)
-
-    #datetime_str = '2022,09,24,17,10'
-    #datetime_object = datetime.datetime.strptime(datetime_str, '%Y,%m,%d,%H,%M')
-
-    datetime_object = datetime.datetime.strptime(dt_param_1, '%Y,%m,%d,%H,%M')
-    print("datetime_object = ",datetime_object)
-
-
-    #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
-    # KEZDO NEM LEHET NULLA !!!
-
-    #dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
-    #dt = datetime.datetime(2022, 11, 10, 11, 48)
-
-    #dt = datetime.datetime(dt_param_1)
-    dt = datetime.datetime.strptime(dt_param_1, '%Y,%m,%d,%H,%M')
-
-    dJO = dt.isoformat("T", "seconds")
-    print('Input Datetime string to ISO 8601 format:', dJO)
+    print("TIME PARAMETERS:", hours, minutes)
 
     #szab_idop = [{'datum': "2022.08.18.", 'ora': "08:00" },{'datum': "2022.08.18.", 'ora': "09:00" },{'datum': "2022.08.19.", 'ora': "10:00" },{'datum': "2022.08.18.", 'ora': "10:00" }]
 
@@ -170,6 +146,7 @@ def main():
             dateTime = datetime.datetime.today()
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
+            #end = (cstTimeNow + datetime.timedelta(days=7)).isoformat("T", "seconds")
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
