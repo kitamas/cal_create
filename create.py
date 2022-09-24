@@ -132,8 +132,8 @@ def main():
     print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
 
     #dt = datetime.datetime(2022, 09, 10, 01, 48, 34, 01)
-    #dt = datetime.datetime(2022, 09, 10, 01, 48, 34)
-    #print('Input Datetime:', dt)
+    dt = datetime.datetime(2022, 09, 10, 01, 48, 34)
+    print('Input Datetime:', dt)
     #d = dt.isoformat("T", "seconds")
     #print("ISO 8601 format:", d)
 
