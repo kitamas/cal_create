@@ -137,8 +137,7 @@ def main():
     #str=str1+str2
 
     dt1 = int(year) + int(month) + int(day) + int(hours) + int(minutes)
-    d1 = dt1.isoformat("T", "seconds")
-    print('Input Datetime string to ISO 8601 format:', d1)
+    print('int(year) + int(month) + int(day) + int(hours) + int(minutes)',dt1)
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
     # KEZDO NEM LEHET NULLA !!!
