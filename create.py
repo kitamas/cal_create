@@ -129,16 +129,12 @@ def main():
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
-    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
+    print("DATE TIME PARAMETERS 1:", year, month, day, hours, minutes)
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
-    #print("DATE TIME PARAMETERS INT:", int(year), int(month), int(day), int(hours), int(minutes))
-    #str1="Hello"
-    #str2="World"
-    #str=str1+str2
 
     sep = ","
-    dt1 = str(int(year)) + sep + str(int(month)) + str(int(day)) + str(int(hours)) + str(int(minutes))
-    print('int(year) + int(month) + int(day) + int(hours) + int(minutes)',dt1)
+    dt1 = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
+    print('DATE TIME PARAMETERS 2:',dt1)
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
     # KEZDO NEM LEHET NULLA !!!
