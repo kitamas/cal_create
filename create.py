@@ -132,14 +132,19 @@ def main():
     print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
     #print("DATE TIME PARAMETERS INT:", int(year), int(month), int(day), int(hours), int(minutes))
-    dt = int(year) + int(month) + int(day) + int(hours) + int(minutes)
+    #str1="Hello"
+    #str2="World"
+    #str=str1+str2
+
+    dt1 = int(year) + int(month) + int(day) + int(hours) + int(minutes)
+    d1 = dt1.isoformat("T", "seconds")
+    print('Input Datetime string to ISO 8601 format:', d1)
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
     # KEZDO NEM LEHET NULLA !!!
 
     #dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
     dt = datetime.datetime(2022, 11, 10, 11, 48)
-    # KEZDO NEM LEHET NULLA !!!
 
     d = dt.isoformat("T", "seconds")
     print('Input Datetime string to ISO 8601 format:', d)
