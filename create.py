@@ -130,8 +130,12 @@ def main():
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
     print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
+    #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
+    print("DATE TIME PARAMETERS INT:", int(year), int(month), int(day), int(hours), int(minutes))
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
+    # KEZDO NEM LEHET NULLA !!!
+
     #dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
     dt = datetime.datetime(2022, 11, 10, 11, 48)
     # KEZDO NEM LEHET NULLA !!!
