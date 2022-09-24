@@ -146,21 +146,13 @@ def main():
             dateTime = datetime.datetime.today()
 
             x = datetime.datetime.today()
-            print("Normal format:",x)
-            d = x.isoformat()
+            print("xxxxxxxxxxxx")
+            print(x)
+            d = x.isoformat("T", "seconds")
             print("ISO 8601 format:", d)
 
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
-
-            #end1 = datetime(2017, 12, 11, 23, 59, 59, 1)
-            #end2 = end1.isoformat("T", "seconds")
-            #print("end2 end2 end2 end2")
-            #print(end2)
-            #end_datexx = datetime.datetime(2017, 12, 11, 23, 59, 59, 1).("T", "seconds")
-            #print("end_datexx end_datexx end_datexx end2 end2")
-            #print(end_datexx)
-
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
             #if not overlapCheck(service, start, end):
             #    text = createEvent(service, start, end)
