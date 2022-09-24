@@ -151,6 +151,13 @@ def main():
             d = x.isoformat("T", "seconds")
             print("ISO 8601 format:", d)
 
+            dt = datetime(2021, 10, 24, 8, 48, 34, 685496)
+            print('Input Datetime:', dt)
+
+            # convert datetime to ISO date
+            iso_date = dt.isoformat("T", "seconds")
+            print('ISO Date:', iso_date)
+
             cstTimeNow = dateTime.replace(tzinfo=tzObject)
             start = cstTimeNow.isoformat("T", "seconds")
             end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
