@@ -148,7 +148,7 @@ def main():
             start = cstTimeNow.isoformat("T", "seconds")
 
             #dt = datetime.datetime(2022, 09, 10, 01, 48, 34, 01)
-            #dt = datetime.datetime(2022, 09, 10, 01, 48, 34)
+            dt = datetime.datetime(2022, 09, 10, 01, 48, 34)
             #d = dt.isoformat("T", "seconds")
             #print('Input Datetime string to ISO 8601 format:', d)
 
