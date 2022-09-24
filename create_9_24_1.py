@@ -131,8 +131,7 @@ def main():
 
     print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
-    #print("DATE TIME PARAMETERS INT:", int(year), int(month), int(day), int(hours), int(minutes))
-    dt = int(year) + "," + int(month) + int(day) + int(hours) + int(minutes)
+    print("DATE TIME PARAMETERS INT:", int(year), int(month), int(day), int(hours), int(minutes))
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
     # KEZDO NEM LEHET NULLA !!!
