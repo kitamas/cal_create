@@ -101,6 +101,8 @@ def main():
     #dt = datetime.datetime(2022, 11, 10, 11, 48)
 
     dt = datetime.datetime.strptime(dt_param, '%Y,%m,%d,%H,%M')
+    print("DT DT DT")
+    print(dt)
 
     dstart = dt.isoformat("T", "seconds")
     print('DATE TIME PARAMETERS Input Datetime string to ISO 8601 format:', dstart)
@@ -117,12 +119,15 @@ def main():
 
     start_be = datetime.datetime(2022, 9, 25, 12, 30, 0)
     start = start_be.isoformat("T", "seconds")
+
     print("START")
     print(start)
     #2022-09-25T12:30:00
+    print("START BE")
+    print(start_be)
 
     #end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
-    end = (start_be + datetime.timedelta(hours=5)).isoformat("T", "seconds")
+    end = (start_be + datetime.timedelta(hours=3)).isoformat("T", "seconds")
 
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
