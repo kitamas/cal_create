@@ -117,7 +117,7 @@ def main():
     print(start)
 
     #end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
-    end = start + datetime.timedelta(hours=2).isoformat("T", "seconds")
+    end = (start + datetime.timedelta(hours=3)).isoformat("T", "seconds")
 
     print("END")
     print(end)
