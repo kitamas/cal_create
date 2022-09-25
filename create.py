@@ -111,8 +111,14 @@ def main():
     service = build("calendar", "v3", credentials=creds)
 
     d = datetime.datetime.now().date()
-    today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(days=1)
+    today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
     start = today.isoformat("T", "seconds")
+
+    print("START")
+    print(start)
+    print("DSTART")
+    print(dstart)
+
     end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',

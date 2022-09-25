@@ -21,7 +21,6 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 # QUICKSTART = = = = = = = = = = =
 
-
 # Flask app should start in global layout
 app = flask.Flask(__name__)
 
@@ -68,58 +67,10 @@ def webhook():
     return res
 
 
-@app.route('/createEvent', methods=['GET','POST'])
-def createEvent(service, minTime, maxTime):
-
-    try:
-        event = {
-            "summary": "summary",
-            "location": "Budapest",
-            "description": "parkolo",
-            "start": {
-                #"dateTime": str(minTime),
-                "dateTime": "2022-09-24T18:00:00",
-                "timeZone": "Europe/Budapest",
-            },
-            "end": {
-                #"dateTime": str(maxTime),
-                "dateTime": "2022-09-24T19:00:00",
-                "timeZone": "Europe/Budapest",
-            },
-            "recurrence": {
-                "RRULE": "FREQ=DAILY;COUNT=2"
-            },
-            "attendees": {
-                "email": "lpage@example.com",
-                "email": "sbrin@example.com",
-            },
-            "reminders": {
-                "useDefault": False,
-                "overrides": [
-                    {"method": "email", "minutes": 24 * 60},
-                    {"method": "popup", "minutes": 10},
-                ],
-            },
-            "colorId": 6,
-        }
-        event = (
-            service.events()
-            .insert(
-                calendarId="61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com",
-                body=event,
-            )
-            .execute()
-        )
-        return "Event created"
-
-    except HttpError as error:
-        return "Creation failed"
-
-
 def main():
 
     req = request.get_json(force=True)
-    #print(json.dumps(req, indent=4))
+    print(json.dumps(req, indent=4))
 
     year = req.get('sessionInfo').get('parameters').get('date').get('year')
     month = req.get('sessionInfo').get('parameters').get('date').get('month')
@@ -128,7 +79,10 @@ def main():
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
-    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
+    summary = req.get('sessionInfo').get('parameters').get('summary')
+    location = req.get('sessionInfo').get('parameters').get('location')
+
+    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
 
     sep = ","
@@ -151,35 +105,46 @@ def main():
     dstart = dt.isoformat("T", "seconds")
     print('DATE TIME PARAMETERS Input Datetime string to ISO 8601 format:', dstart)
 
-    try:
-        date = "next-week"
-        creds = authentication()
-        service = build("calendar", "v3", credentials=creds)
-        if date == "next-week":
-            cstTimeDelta = datetime.timedelta(hours=1)
-            tzObject = datetime.timezone(cstTimeDelta, name="CST")
-            dateTime = datetime.datetime.today()
-            cstTimeNow = dateTime.replace(tzinfo=tzObject)
-            start = cstTimeNow.isoformat("T", "seconds")
-            print("START")
-            print(start)
-            print("D START")
-            print(dstart)
-            end = (cstTimeNow + datetime.timedelta(hours=2)).isoformat("T", "seconds")
-            #if not overlapCheck(service, start, end):
-            #    text = createEvent(service, start, end)
-            text = createEvent(service, start, end)
-            #else:
-            #    text = "Overlap detected"
-        else:
-            text = "Még nincs lekódolva"
-    except HttpError as error:
-        print("An error occured")
-    print(text)
 
+    # creates one hour event today 10 AM IST
+    creds = authentication()
+    service = build("calendar", "v3", credentials=creds)
 
-#main()
+    d = datetime.datetime.now().date()
+    today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(days=1)
+    start = today.isoformat("T", "seconds")
+    end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
-#if __name__ == "__main__":
+    event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
+       body={
+           "summary": summary,
+           "location": location,
+           "description": 'This is a tutorial example of automating google calendar with python',
+           "start": {"dateTime": start, "timeZone": 'Europe/Budapest'},
+           "end": {"dateTime": end, "timeZone": 'Europe/Budapest'},
+           "recurrence": {
+                "RRULE": "FREQ=DAILY;COUNT=2"
+            },
+            "attendees": {
+                "email": "lpage@example.com",
+                "email": "sbrin@example.com",
+            },
+            "reminders": {
+                "useDefault": False,
+                "overrides": [
+                    {"method": "email", "minutes": 24 * 60},
+                    {"method": "popup", "minutes": 10},
+                ],
+            },
+            "colorId": 6,
+       }
+    ).execute()
+
+    print("created event")
+    print("id: ", event_result['id'])
+    print("summary: ", event_result['summary'])
+    print("starts at: ", event_result['start']['dateTime'])
+    print("ends at: ", event_result['end']['dateTime'])
+
 
     app.run()
