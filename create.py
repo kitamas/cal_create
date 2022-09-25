@@ -68,54 +68,6 @@ def webhook():
     return res
 
 
-@app.route('/createEvent', methods=['GET','POST'])
-def createEvent(service, minTime, maxTime):
-
-    try:
-        event = {
-            "summary": "summary",
-            "location": "Budapest",
-            "description": "parkolo",
-            "start": {
-                #"dateTime": str(minTime),
-                "dateTime": "2022-09-25T18:00:00",
-                "timeZone": "Europe/Budapest",
-            },
-            "end": {
-                #"dateTime": str(maxTime),
-                "dateTime": "2022-09-25T19:00:00",
-                "timeZone": "Europe/Budapest",
-            },
-            "recurrence": {
-                "RRULE": "FREQ=DAILY;COUNT=2"
-            },
-            "attendees": {
-                "email": "lpage@example.com",
-                "email": "sbrin@example.com",
-            },
-            "reminders": {
-                "useDefault": False,
-                "overrides": [
-                    {"method": "email", "minutes": 24 * 60},
-                    {"method": "popup", "minutes": 10},
-                ],
-            },
-            "colorId": 6,
-        }
-        event = (
-            service.events()
-            .insert(
-                calendarId="61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com",
-                body=event,
-            )
-            .execute()
-        )
-        return "Event created"
-
-    except HttpError as error:
-        return "Creation failed"
-
-
 def main():
 
     req = request.get_json(force=True)
@@ -152,33 +104,29 @@ def main():
     print('DATE TIME PARAMETERS Input Datetime string to ISO 8601 format:', dstart)
 
 
-   # creates one hour event tomorrow 10 AM IST
-   creds = authentication()
-   service = build("calendar", "v3", credentials=creds)
+    # creates one hour event today 10 AM IST
+    creds = authentication()
+    service = build("calendar", "v3", credentials=creds)
 
-   d = datetime.now().date()
-   tomorrow = datetime(d.year, d.month, d.day, 10)+timedelta(days=1)
-   start = tomorrow.isoformat()
-   end = (tomorrow + timedelta(hours=1)).isoformat()
+    d = datetime.now().date()
+    today = datetime(d.year, d.month, d.day, 10)+timedelta(days=1)
+    start = today.isoformat("T", "seconds")
+    end = (today + timedelta(hours=1)).isoformat("T", "seconds")
 
-   event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
+    event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
            "summary": 'Automating calendar',
            "description": 'This is a tutorial example of automating google calendar with python',
            "start": {"dateTime": start, "timeZone": 'Europe/Budapest'},
-            print("START")
-            print(start)
-            print("D START")
-            #print(dstart)
            "end": {"dateTime": end, "timeZone": 'Europe/Budapest'},
        }
-   ).execute()
+    ).execute()
 
-   print("created event")
-   print("id: ", event_result['id'])
-   print("summary: ", event_result['summary'])
-   print("starts at: ", event_result['start']['dateTime'])
-   print("ends at: ", event_result['end']['dateTime'])
+    print("created event")
+    print("id: ", event_result['id'])
+    print("summary: ", event_result['summary'])
+    print("starts at: ", event_result['start']['dateTime'])
+    print("ends at: ", event_result['end']['dateTime'])
 
 
     app.run()
