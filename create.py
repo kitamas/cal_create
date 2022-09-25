@@ -127,8 +127,8 @@ def main():
     print("END")
     print(end)
 
-    start_time = datetime(2022, 9, 25, 16, 30, 0)
-    end_time = start_time + timedelta(hours=1)
+    start_time = datetime.datetime(2022, 9, 25, 16, 30, 0)
+    end_time = start_time + datetime.timedelta(hours=1)
     print("START start_time")
     print(start_time)
     print("END end_time")
