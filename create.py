@@ -151,36 +151,34 @@ def main():
     dstart = dt.isoformat("T", "seconds")
     print('DATE TIME PARAMETERS Input Datetime string to ISO 8601 format:', dstart)
 
-    try:
-        date = "next-week"
-        creds = authentication()
-        service = build("calendar", "v3", credentials=creds)
-        if date == "next-week":
-            cstTimeDelta = datetime.timedelta(hours=1)
-            tzObject = datetime.timezone(cstTimeDelta, name="CST")
-            dateTime = datetime.datetime.today()
-            cstTimeNow = dateTime.replace(tzinfo=tzObject)
-            #start = cstTimeNow.isoformat("T", "seconds")
-            start = dstart
+
+   # creates one hour event tomorrow 10 AM IST
+   creds = authentication()
+   service = build("calendar", "v3", credentials=creds)
+
+   d = datetime.now().date()
+   tomorrow = datetime(d.year, d.month, d.day, 10)+timedelta(days=1)
+   start = tomorrow.isoformat()
+   end = (tomorrow + timedelta(hours=1)).isoformat()
+
+   event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
+       body={
+           "summary": 'Automating calendar',
+           "description": 'This is a tutorial example of automating google calendar with python',
+           "start": {"dateTime": start, "timeZone": 'Europe/Budapest'},
             print("START")
             print(start)
             print("D START")
-            print(dstart)
-            end = (cstTimeNow + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-            #if not overlapCheck(service, start, end):
-            #    text = createEvent(service, start, end)
-            text = createEvent(service, start, end)
-            #else:
-            #    text = "Overlap detected"
-        else:
-            text = "Még nincs lekódolva"
-    except HttpError as error:
-        print("An error occured")
-    print(text)
+            #print(dstart)
+           "end": {"dateTime": end, "timeZone": 'Europe/Budapest'},
+       }
+   ).execute()
 
+   print("created event")
+   print("id: ", event_result['id'])
+   print("summary: ", event_result['summary'])
+   print("starts at: ", event_result['start']['dateTime'])
+   print("ends at: ", event_result['end']['dateTime'])
 
-#main()
-
-#if __name__ == "__main__":
 
     app.run()
