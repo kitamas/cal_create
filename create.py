@@ -105,20 +105,19 @@ def main():
     dstart = dt.isoformat("T", "seconds")
     print('DATE TIME PARAMETERS Input Datetime string to ISO 8601 format:', dstart)
 
-
-    # creates one hour event today 10 AM IST
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
 
     d = datetime.datetime.now().date()
     today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
     #start = today.isoformat("T", "seconds")
+
     start = datetime.datetime(2022, 9, 25, 12, 30, 0).isoformat("T", "seconds")
     print("START")
     print(start)
 
-    end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
-    #end = start + datetime.timedelta(hours=1)
+    #end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
+    end = start + datetime.timedelta(hours=2)
 
     print("END")
     print(end)
