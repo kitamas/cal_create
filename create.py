@@ -114,24 +114,23 @@ def main():
 
     d = datetime.datetime.now().date()
     today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
-    print("TODAY")
-    print(today)
     #2022-09-25 11:00:00
     #start = today.isoformat("T", "seconds")
 
     #start_be = datetime.datetime(2022, 9, 25, 12, 30, 0)
+
     start_be = dt
+
     start = start_be.isoformat("T", "seconds")
 
-    print("START")
     print(start)
     #2022-09-25T12:30:00
-    print("START BE")
+
     print(start_be)
     #2022-09-25 12:30:00
 
-    #end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
-    end = (start_be + datetime.timedelta(hours=3)).isoformat("T", "seconds")
+    #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = (start_be + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
