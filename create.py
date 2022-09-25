@@ -112,22 +112,20 @@ def main():
 
     d = datetime.datetime.now().date()
     today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
-    start = today.isoformat("T", "seconds")
-    #start = dt.isoformat("T", "seconds")
-
+    #start = today.isoformat("T", "seconds")
+    start = dt.isoformat("T", "seconds")
 
     print("START")
     print(start)
-    result1 = type(start)
-    print("TYPE 1",result1)
 
     print("DSTART")
     print(dstart)
-    result2 = type(dstart)
-    print("TYPE2", result2)
 
     end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
     #end = (start + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+
+    print("END")
+    print(end)
 
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
