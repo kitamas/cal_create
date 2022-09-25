@@ -103,9 +103,11 @@ def main():
     dt = datetime.datetime.strptime(dt_param, '%Y,%m,%d,%H,%M')
     print("DT DT DT")
     print(dt)
+    #2022-09-25 00:00:00
 
     dstart = dt.isoformat("T", "seconds")
     print('DATE TIME PARAMETERS Input Datetime string to ISO 8601 format:', dstart)
+    #ISO 8601 format: 2022-09-25T00:00:00
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
@@ -117,7 +119,8 @@ def main():
     #2022-09-25 11:00:00
     #start = today.isoformat("T", "seconds")
 
-    start_be = datetime.datetime(2022, 9, 25, 12, 30, 0)
+    #start_be = datetime.datetime(2022, 9, 25, 12, 30, 0)
+    start_be = dt
     start = start_be.isoformat("T", "seconds")
 
     print("START")
@@ -125,6 +128,7 @@ def main():
     #2022-09-25T12:30:00
     print("START BE")
     print(start_be)
+    #2022-09-25 12:30:00
 
     #end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
     end = (start_be + datetime.timedelta(hours=3)).isoformat("T", "seconds")
