@@ -21,6 +21,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 # QUICKSTART = = = = = = = = = = =
 
+import timedelta
 
 # Flask app should start in global layout
 app = flask.Flask(__name__)
