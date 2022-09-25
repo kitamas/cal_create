@@ -126,7 +126,8 @@ def main():
     result2 = type(dstart)
     print("TYPE2", result2)
 
-    end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    # ORIG end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = (start + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
