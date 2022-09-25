@@ -112,12 +112,12 @@ def main():
 
     d = datetime.datetime.now().date()
     today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
-    start = today.isoformat("T", "seconds")
-    #start = datetime.datetime(2022, 9, 25, 16, 30, 0)
+    #start = today.isoformat("T", "seconds")
+    start = datetime.datetime(2022, 9, 25, 18, 30, 0).isoformat("T", "seconds")
     print("START")
     print(start)
 
-    end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
     #end = start + datetime.timedelta(hours=1)
 
     print("END")
