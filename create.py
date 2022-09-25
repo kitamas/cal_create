@@ -82,7 +82,7 @@ def main():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, summary, location)
+    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
 
     sep = ","
@@ -117,10 +117,26 @@ def main():
 
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
-           "summary": 'Automating calendar',
+           "summary": summary,
+           "location": location,
            "description": 'This is a tutorial example of automating google calendar with python',
            "start": {"dateTime": start, "timeZone": 'Europe/Budapest'},
            "end": {"dateTime": end, "timeZone": 'Europe/Budapest'},
+           "recurrence": {
+                "RRULE": "FREQ=DAILY;COUNT=2"
+            },
+            "attendees": {
+                "email": "lpage@example.com",
+                "email": "sbrin@example.com",
+            },
+            "reminders": {
+                "useDefault": False,
+                "overrides": [
+                    {"method": "email", "minutes": 24 * 60},
+                    {"method": "popup", "minutes": 10},
+                ],
+            },
+            "colorId": 6,
        }
     ).execute()
 
