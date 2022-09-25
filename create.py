@@ -121,8 +121,8 @@ def main():
     print(start)
     #2022-09-25T12:30:00
 
-    end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
-    #end = (start + datetime.timedelta(hours=3)).isoformat("T", "seconds")
+    #end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
+    end = (start + datetime.timedelta(hours=3)).isoformat("T", "seconds")
 
     print("END")
     print(end)
