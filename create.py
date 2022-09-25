@@ -70,7 +70,7 @@ def webhook():
 def main():
 
     req = request.get_json(force=True)
-    #print(json.dumps(req, indent=4))
+    print(json.dumps(req, indent=4))
 
     year = req.get('sessionInfo').get('parameters').get('date').get('year')
     month = req.get('sessionInfo').get('parameters').get('date').get('month')
@@ -79,7 +79,10 @@ def main():
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
-    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes)
+    summary = req.get('sessionInfo').get('parameters').get('summary')
+    location = req.get('sessionInfo').get('parameters').get('location')
+
+    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, summary, location)
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
 
     sep = ","
