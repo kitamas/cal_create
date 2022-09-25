@@ -117,9 +117,13 @@ def main():
 
     print("START")
     print(start)
+    result1 = type(start)
+    print("TYPE 1",result1)
 
     print("DSTART")
     print(dstart)
+    result2 = type(dstart)
+    print("TYPE2", result2)
 
     end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
