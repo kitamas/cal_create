@@ -108,7 +108,7 @@ def main():
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
 
-    d = datetime.now().date()
+    d = datetime.datetime.now().date()
     today = datetime(d.year, d.month, d.day, 10)+timedelta(days=1)
     start = today.isoformat("T", "seconds")
     end = (today + timedelta(hours=1)).isoformat("T", "seconds")
