@@ -113,10 +113,12 @@ def main():
     d = datetime.datetime.now().date()
     today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
     #start = today.isoformat("T", "seconds")
-    start = dstart
+    start = dt
 
     print("START")
     print(start)
+    print("DT")
+    print(dt)
     print("DSTART")
     print(dstart)
 
