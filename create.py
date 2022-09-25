@@ -21,8 +21,6 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 # QUICKSTART = = = = = = = = = = =
 
-import timedelta
-
 # Flask app should start in global layout
 app = flask.Flask(__name__)
 
@@ -112,7 +110,7 @@ def main():
     d = datetime.datetime.now().date()
     today = datetime.datetime(d.year, d.month, d.day, 10)+timedelta(days=1)
     start = today.isoformat("T", "seconds")
-    end = (today + timedelta(hours=1)).isoformat("T", "seconds")
+    end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
