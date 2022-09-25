@@ -112,11 +112,14 @@ def main():
     today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
     print("TODAY")
     print(today)
+    #2022-09-25 11:00:00
     #start = today.isoformat("T", "seconds")
 
-    start = datetime.datetime(2022, 9, 25, 12, 30, 0).isoformat("T", "seconds")
+    start_be = datetime.datetime(2022, 9, 25, 12, 30, 0)
+    start = start_be.isoformat("T", "seconds")
     print("START")
     print(start)
+    #2022-09-25T12:30:00
 
     end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
     #end = (start + datetime.timedelta(hours=3)).isoformat("T", "seconds")
