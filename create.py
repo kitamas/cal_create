@@ -122,7 +122,7 @@ def main():
     #2022-09-25T12:30:00
 
     #end = (today + datetime.timedelta(hours=3)).isoformat("T", "seconds")
-    end = (start + datetime.timedelta(hours=5)).isoformat("T", "seconds")
+    end = (start_be + datetime.timedelta(hours=5)).isoformat("T", "seconds")
 
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
