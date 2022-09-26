@@ -108,7 +108,7 @@ def main():
     start = start_parameter.isoformat("T", "seconds")
 
     #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-    end = (start_be + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = (start_parameter + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
@@ -140,6 +140,5 @@ def main():
     print("summary: ", event_result['summary'])
     print("starts at: ", event_result['start']['dateTime'])
     print("ends at: ", event_result['end']['dateTime'])
-
 
     app.run()
