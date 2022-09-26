@@ -57,9 +57,9 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    #text = "webhook flask text response"
+    text = "webhook flask text response"
 
-    text = main()
+    "text = main()
 
     res = {
         "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
@@ -139,5 +139,7 @@ def main():
     print("summary: ", event_result['summary'])
     print("starts at: ", event_result['start']['dateTime'])
     print("ends at: ", event_result['end']['dateTime'])
+
+    webhook()
 
     app.run()
