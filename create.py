@@ -135,13 +135,13 @@ def main():
        }
     ).execute()
 
-    print("created event")
-    print("id: ", event_result['id'])
-    print("summary: ", event_result['summary'])
-    print("starts at: ", event_result['start']['dateTime'])
-    print("ends at: ", event_result['end']['dateTime'])
+    #print("created event")
+    #print("id: ", event_result['id'])
+    #print("summary: ", event_result['summary'])
+    #print("starts at: ", event_result['start']['dateTime'])
+    #print("ends at: ", event_result['end']['dateTime'])
 
-    text = "main text response"
-    return text
+    text = "Event created. Starts at: ", event_result['start']['dateTime'], "Ends at: ", event_result['end']['dateTime'], "id: ", event_result['id']
+    return df_resp
 
     app.run()
