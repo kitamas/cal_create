@@ -141,7 +141,7 @@ def main():
     #print("starts at: ", event_result['start']['dateTime'])
     #print("ends at: ", event_result['end']['dateTime'])
 
-    text = "Event created. Starts at: + event_result['start']['dateTime'] + "Ends at: " + event_result['end']['dateTime'] + "id: " + event_result['id']
+    text = "Event created. Starts at:" + event_result['start']['dateTime'] + "Ends at: " + event_result['end']['dateTime'] + "id: " + event_result['id']
     return text
 
     app.run()
