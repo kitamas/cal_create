@@ -142,5 +142,6 @@ def main():
     print("ends at: ", event_result['end']['dateTime'])
 
     text = "main text response"
+    return text
 
     app.run()
