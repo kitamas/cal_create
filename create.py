@@ -113,7 +113,7 @@ def main():
        body={
            "summary": summary,
            "location": location,
-           "description": 'This is a tutorial example of automating google calendar with python',
+           "description": 'description text (parkolo/targyalo)',
            "start": {"dateTime": start, "timeZone": 'Europe/Budapest'},
            "end": {"dateTime": end, "timeZone": 'Europe/Budapest'},
            "recurrence": {
@@ -139,7 +139,5 @@ def main():
     print("summary: ", event_result['summary'])
     print("starts at: ", event_result['start']['dateTime'])
     print("ends at: ", event_result['end']['dateTime'])
-
-    webhook()
 
     app.run()
