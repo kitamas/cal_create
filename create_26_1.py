@@ -58,7 +58,6 @@ def authentication():
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
     #text = "webhook flask text response"
-
     text = main()
 
     res = {
@@ -82,32 +81,16 @@ def main():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
+    print("DATE TIME PARAMETER:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
     #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
 
     sep = ","
-    dt_param = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
-    print('DATE TIME PARAMETERS 1:',dt_param)
-
-    #datetime_str = '2022,09,24,17,10'
-    #datetime_object = datetime.datetime.strptime(datetime_str, '%Y,%m,%d,%H,%M')
-    #datetime_object = datetime.datetime.strptime(dt_param, '%Y,%m,%d,%H,%M')
-    #print("datetime_object = ",datetime_object)
+    dt_parameter = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
+    print('DATE TIME PARAMETERS: ',dt_parameter)
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
-    # KEZDO NEM LEHET NULLA !!!
-
-    #dt = datetime.datetime(2022, 11, 10, 11, 48, 34)
-    #dt = datetime.datetime(2022, 11, 10, 11, 48)
-
-    dt = datetime.datetime.strptime(dt_param, '%Y,%m,%d,%H,%M')
-    print("DT DT DT")
-    print(dt)
+    dt_str_date = datetime.datetime.strptime(dt_parameter, '%Y,%m,%d,%H,%M')
     #2022-09-25 00:00:00
-
-    dstart = dt.isoformat("T", "seconds")
-    print('DATE TIME PARAMETERS Input Datetime string to ISO 8601 format:', dstart)
-    #ISO 8601 format: 2022-09-25T00:00:00
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
@@ -117,33 +100,27 @@ def main():
     #2022-09-25 11:00:00
     #start = today.isoformat("T", "seconds")
 
-    #start_be = datetime.datetime(2022, 9, 25, 12, 30, 0)
+    #start_parameter = datetime.datetime(2022, 9, 25, 12, 30, 0)
 
-    start_be = dt
+    start_parameter = dt_str_date
 
-    start = start_be.isoformat("T", "seconds")
-
-    print(start)
-    #2022-09-25T12:30:00
-
-    print(start_be)
-    #2022-09-25 12:30:00
+    start = start_parameter.isoformat("T", "seconds")
 
     #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-    end = (start_be + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = (start_parameter + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
            "summary": summary,
            "location": location,
-           "description": 'This is a tutorial example of automating google calendar with python',
-           "start": {"dateTime": start, "timeZone": 'Europe/Budapest'},
-           "end": {"dateTime": end, "timeZone": 'Europe/Budapest'},
+           "description": "This is the description (parkolo/targyalo, stb)",
+           "start": {"dateTime": start, "timeZone": "Europe/Budapest"},
+           "end": {"dateTime": end, "timeZone": "Europe/Budapest"},
            "recurrence": {
                 "RRULE": "FREQ=DAILY;COUNT=2"
             },
             "attendees": {
-                "email": "lpage@example.com",
+                "email": "tsystems.ai@gmail.com",
                 "email": "sbrin@example.com",
             },
             "reminders": {
@@ -157,11 +134,7 @@ def main():
        }
     ).execute()
 
-    print("created event")
-    print("id: ", event_result['id'])
-    print("summary: ", event_result['summary'])
-    print("starts at: ", event_result['start']['dateTime'])
-    print("ends at: ", event_result['end']['dateTime'])
-
+    text = "Event created. Starts:" + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    return text
 
     app.run()

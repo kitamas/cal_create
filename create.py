@@ -58,11 +58,27 @@ def authentication():
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
     #text = "webhook flask text response"
+    session_name = "session name"
+    event_id = "event_id"
+
     text = main()
+
+    #res = {
+    #    "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
+    #}
 
     res = {
         "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
     }
+    ,
+        "session_info": {
+            "session" : session_name,
+            "parameters": {
+                "event_id" : event_id
+            }
+        }
+    }
+
     return res
 
 
