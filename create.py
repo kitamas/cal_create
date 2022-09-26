@@ -114,14 +114,14 @@ def main():
        body={
            "summary": summary,
            "location": location,
-           "description": 'This is a tutorial example of automating google calendar with python',
-           "start": {"dateTime": start, "timeZone": 'Europe/Budapest'},
-           "end": {"dateTime": end, "timeZone": 'Europe/Budapest'},
+           "description": "This is the description (parkolo/targyalo, stb)",
+           "start": {"dateTime": start, "timeZone": "Europe/Budapest"},
+           "end": {"dateTime": end, "timeZone": "Europe/Budapest"},
            "recurrence": {
                 "RRULE": "FREQ=DAILY;COUNT=2"
             },
             "attendees": {
-                "email": "lpage@example.com",
+                "email": "tsystems.ai@gmail.com",
                 "email": "sbrin@example.com",
             },
             "reminders": {
