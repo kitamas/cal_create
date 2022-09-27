@@ -143,7 +143,7 @@ def main():
             "reminders": {
                 "useDefault": False,
                 "overrides": [
-                    {"method": "email", "minutes": 24 * 60},
+                    {"method": "email", "minutes": 1 * 1},
                     {"method": "popup", "minutes": 10},
                 ],
             },
