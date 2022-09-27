@@ -60,10 +60,6 @@ def webhook():
     #text = "webhook flask text response"
     text = main()
 
-    #res = {
-    #    "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
-    #}
-
     res = {
         "fulfillment_response": {
             "messages": [
@@ -79,7 +75,7 @@ def webhook():
         "session_info": {
             "session" : "session_name",
             "parameters": {
-                "event_id" : "valid"
+                "event_id" : event_result['id']
             }
         }
     }
@@ -156,6 +152,7 @@ def main():
     ).execute()
 
     text = "Event created. Starts:" + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    #event_id = event_result['id']   
     return text
 
     app.run()
