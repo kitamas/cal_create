@@ -60,9 +60,30 @@ def webhook():
     #text = "webhook flask text response"
     text = main()
 
+    #res = {
+    #    "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
+    #}
+
     res = {
-        "fulfillment_response": {"messages": [{"text": {"text": [text]}}]}
+        "fulfillment_response": {
+            "messages": [
+                {
+                    "text": {
+                        "text": [
+                            text
+                        ]
+                    }
+                }
+            ]
+        },
+        "session_info": {
+            "session" : "session_name",
+            "parameters": {
+                "event_id" : "valid"
+            }
+        }
     }
+
     return res
 
 
