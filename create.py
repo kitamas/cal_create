@@ -58,7 +58,8 @@ def authentication():
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
     #text = "webhook flask text response"
-    text = main()
+    #text = main()
+    return_text_param['text']
 
     res = {
         "fulfillment_response": {
@@ -126,8 +127,8 @@ def main():
     #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
     end = (start_parameter + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
-    #event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
-    event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',sendUpdates='all',
+    #event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',sendUpdates='all',
+    event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
            "summary": summary,
            "location": location,
@@ -144,7 +145,7 @@ def main():
             "reminders": {
                 "useDefault": False,
                 "overrides": [
-                    {"method": "email", "minutes": 1 * 1},
+                    {"method": "email", "minutes": 24 * 60},
                     {"method": "popup", "minutes": 10},
                 ],
             },
@@ -152,10 +153,12 @@ def main():
        }
     ).execute()
 
-     #               {"method": "email", "minutes": 24 * 60},
 
+=
     text = "Event created. Starts:" + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
-    #event_id = event_result['id']   
-    return text
+    return_text_param = {"text": text, "event_id":event_result['id']}
+  
+    #return text
+    return return_text_param
 
     app.run()
