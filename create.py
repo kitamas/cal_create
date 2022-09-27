@@ -75,7 +75,7 @@ def webhook():
         "session_info": {
             "session" : "session_name",
             "parameters": {
-                "event_id" : event_result['id']
+                "event_id" : "event_id"
             }
         }
     }
