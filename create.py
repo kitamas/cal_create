@@ -61,6 +61,7 @@ def webhook():
     #text = main()
     text_param =  main()
     text = text_param['text']
+    event_id = text_param['event_id']
 
     res = {
         "fulfillment_response": {
@@ -77,7 +78,7 @@ def webhook():
         "session_info": {
             "session" : "session_name",
             "parameters": {
-                "event_id" : "event_id"
+                "event_id" : event_id
             }
         }
     }
