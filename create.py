@@ -59,7 +59,8 @@ def authentication():
 def webhook():
     #text = "webhook flask text response"
     #text = main()
-    return_text_param['text']
+    return_text_param =  main()
+    text = return_text_param['text']
 
     res = {
         "fulfillment_response": {
@@ -156,7 +157,10 @@ def main():
 
 =
     text = "Event created. Starts:" + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
-    return_text_param = {"text": text, "event_id":event_result['id']}
+
+    return_text_param = {}
+    return_text_param['text'] = text
+    return_text_param['event_id'] = event_result['id']
   
     #return text
     return return_text_param
