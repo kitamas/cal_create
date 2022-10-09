@@ -101,28 +101,26 @@ def main():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
+    # print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
     # DATE TIME PARAMETERS: 2022.0 10.0 9.0 12.0 0.0 summary:  q location:  q
 
     dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
-    print('DATE TIME PARAMETERS STRING: ',dt_parameter_string)
+    # print('DATE TIME PARAMETERS STRING: ',dt_parameter_string)
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
     dt_date = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
-    print('dt_date ',dt_date)
-    #2022-09-25 00:00:00
+    # 2022-09-25 00:00:00
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
 
-    d = datetime.datetime.now().date()
-    today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
-    #2022-09-25 11:00:00
-    #start = today.isoformat("T", "seconds")
+    # d = datetime.datetime.now().date()
+    # today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
+    # 2022-09-25 11:00:00
+    # start = today.isoformat("T", "seconds")
 
     #start_parameter = datetime.datetime(2022, 9, 25, 12, 30, 0)
-
-    start_parameter = dt_str_date
+    start_parameter = dt_parameter_string
 
     start = start_parameter.isoformat("T", "seconds")
 
