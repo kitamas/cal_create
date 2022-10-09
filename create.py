@@ -111,39 +111,20 @@ def main():
     datetime_dt_parameter_string = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00
 
-    start1 = datetime_dt_parameter_string.isoformat("T", "seconds")
-    print("start1")
-    print(start1)
-
     # d = datetime.datetime.now().date()
     # today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
     # 2022-09-25 11:00:00
     # start = today.isoformat("T", "seconds")
     # 2022-10-09T11:00:00
 
-    # start_parameter1 = datetime.datetime(2022, 9, 25, 12, 30, 0)
-    # 2022-09-25 12:30:00
-
-
-    # start_parameter = dt_parameter_string
-    # 2022,10,9,12,0
-
-
     #start_date = datetime.datetime(2017, 10, 30, 00, 00, 00, 0).isoformat() + 'Z'
 
-
-    # start_parameter = datetime.datetime(2022, 9, 25, 12, 30, 0)
-    #start_parameter2 = datetime.datetime('dt_parameter_string')
-    #print("start_parameter2")
-    #print(start_parameter2)
-
-
-    start = start_parameter.isoformat("T", "seconds")
-    print("start")
-    print(start)
+    start = datetime_dt_parameter_string.isoformat("T", "seconds")
+    # 2022-10-09T12:00:00
 
     #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-    end = (start_parameter + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    #end = (start_parameter + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = (datetime_dt_parameter_string + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
