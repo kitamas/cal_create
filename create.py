@@ -154,7 +154,7 @@ def main():
     print(json.dumps(event_result, indent=4))
 
     qq =event_result['start']['dateTime']
-    datetimeObj = datetime.datetime.strptime(qq,'%Y-%m-%dT%H:%M:%S+%H:%M.%f')
+    datetimeObj = datetime.datetime.strptime(qq,'%Y-%m-%dT%H:%M:%S+02:00.%f')
     print(datetimeObj)
 
     text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime']
