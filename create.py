@@ -151,7 +151,10 @@ def main():
 
     #text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
 
-    print(json.dumps(event_result, indent=4))
+    qq =event_result['start']['dateTime']
+    datetimeObj = datetime.strptime(qq, '%Y %m %d %H::%M')
+    print(datetimeObj)
+
     text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime']
 
     text_param = {}
