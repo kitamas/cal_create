@@ -152,7 +152,7 @@ def main():
     #text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
 
     qq =event_result['start']['dateTime']
-    datetimeObj = datetime.strptime(qq, '%Y %m %d %H::%M')
+    datetimeObj = datetime.datetime.strptime(qq, '%Y %m %d %H::%M')
     print(datetimeObj)
 
     text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime']
