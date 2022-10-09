@@ -105,23 +105,18 @@ def main():
     # DATE TIME PARAMETERS: 2022.0 10.0 9.0 12.0 0.0 summary:  q location:  q
 
     dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
-    # print('DATE TIME PARAMETERS STRING: ',dt_parameter_string)
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
     datetime_dt_parameter_string = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00
 
-    # d = datetime.datetime.now().date()
-    # today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
-    # 2022-09-25 11:00:00
-    # start = today.isoformat("T", "seconds")
-    # 2022-10-09T11:00:00
-
-    #start_date = datetime.datetime(2017, 10, 30, 00, 00, 00, 0).isoformat() + 'Z'
+    # start_date = datetime.datetime(2017, 10, 30, 00, 00, 00, 0).isoformat() + 'Z'
 
     start = datetime_dt_parameter_string.isoformat("T", "seconds")
     # 2022-10-09T12:00:00
-
+    startZ = datetime_dt_parameter_string.isoformat() + 'Z'
+    print("startZ")
+    print(startZ
     #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
     #end = (start_parameter + datetime.timedelta(hours=1)).isoformat("T", "seconds")
     end = (datetime_dt_parameter_string + datetime.timedelta(hours=1)).isoformat("T", "seconds")
