@@ -57,7 +57,7 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    #text = "webhook flask text response"
+
     #text = main()
     text_param =  main()
     text = text_param['text']
@@ -101,15 +101,14 @@ def main():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    print("DATE TIME PARAMETER:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
-    #DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
+    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
+    # DATE TIME PARAMETERS: 2022.0 9.0 24.0 17.0 0.0
 
-    sep = ","
-    dt_parameter = str(int(year)) + sep + str(int(month)) + sep + str(int(day)) + sep + str(int(hours)) + sep + str(int(minutes))
-    print('DATE TIME PARAMETERS: ',dt_parameter)
+    dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
+    print('DATE TIME PARAMETERS STRING: ',dt_parameter_string)
 
     #dt = datetime(2022, 09, 10, 01, 48, 34, 01)
-    dt_str_date = datetime.datetime.strptime(dt_parameter, '%Y,%m,%d,%H,%M')
+    dt_date = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
     #2022-09-25 00:00:00
 
     creds = authentication()
