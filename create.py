@@ -57,7 +57,7 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-
+    print("WEBHOOK")
     #text = main()
     text_param =  main()
     text = text_param['text']
@@ -87,7 +87,7 @@ def webhook():
 
 
 def main():
-
+    print("MAIN")
     req = request.get_json(force=True)
     print(json.dumps(req, indent=4))
 
@@ -151,12 +151,9 @@ def main():
 
     text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
 
-    #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S+02:00')
-    #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S+02:00')
+    #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
+    #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
 
-    end_event =     datetime.datetime.strptime(event_result['end']['dateTime'], "%Y-%m-%dT%H:%M:%S%z")
-    print("end_event")
-    print(end_event)
     text_param = {}
     text_param['text'] = text
     text_param['event_id'] = event_result['id']
