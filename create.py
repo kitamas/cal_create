@@ -155,8 +155,8 @@ def main():
     #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S+02:00')
 
     end_event =     datetime.datetime.strptime(event_result['end']['dateTime'], "%Y-%m-%dT%H:%M:%S%z")
-    prinT("end_event")
-    prinT("end_event")
+    print("end_event")
+    print("end_event")
     text_param = {}
     text_param['text'] = text
     text_param['event_id'] = event_result['id']
