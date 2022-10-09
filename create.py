@@ -149,12 +149,10 @@ def main():
        }
     ).execute()
 
-    #text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
 
-    start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S+02:00')
-    end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S+02:00')
-    print("AAAAAAAA",start_event,"BBBBB",end_event)
-    text = "Event created. Starts: " + start_event + " Ends: " + end_event
+    #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S+02:00')
+    #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S+02:00')
 
     text_param = {}
     text_param['text'] = text
