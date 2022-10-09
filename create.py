@@ -114,11 +114,10 @@ def main():
 
     start = datetime_dt_parameter_string.isoformat("T", "seconds")
     # 2022-10-09T12:00:00
-    startZ = datetime_dt_parameter_string.isoformat() + 'Z'
-    print("startZ")
-    print(startZ)
-    #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-    #end = (start_parameter + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+
+    # startZ = datetime_dt_parameter_string.isoformat() + 'Z'
+    # 2022-10-09T12:00:00Z
+
     end = (datetime_dt_parameter_string + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     creds = authentication()
@@ -150,7 +149,10 @@ def main():
        }
     ).execute()
 
-    text = "Event created. Starts:" + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    #text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+
+    print(json.dumps(event_result, indent=4))
+    text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime']
 
     text_param = {}
     text_param['text'] = text
