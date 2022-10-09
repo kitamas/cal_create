@@ -153,7 +153,7 @@ def main():
 
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S+02:00')
     end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S+02:00')
-
+    print("AAAAAAAA",start_event,"BBBBB",end_event)
     text = "Event created. Starts: " + start_event + " Ends: " + end_event
 
     text_param = {}
