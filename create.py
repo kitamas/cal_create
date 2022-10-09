@@ -117,9 +117,17 @@ def main():
     # start = today.isoformat("T", "seconds")
     # 2022-10-09T11:00:00
 
-    # start_parameter = datetime.datetime(2022, 9, 25, 12, 30, 0)
+    start_parameter1 = datetime.datetime(2022, 9, 25, 12, 30, 0)
+    print("start_parameter1")
+    print(start_parameter1)
+
     start_parameter = dt_parameter_string
     # 2022,10,9,12,0
+    print("start_parameter")
+    print(start_parameter)
+
+    #start_date = datetime.datetime(2017, 10, 30, 00, 00, 00, 0).isoformat() + 'Z'
+
 
     # start_parameter = datetime.datetime(2022, 9, 25, 12, 30, 0)
     start_parameter2 = datetime.datetime('dt_parameter_string')
