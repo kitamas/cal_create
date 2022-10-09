@@ -108,24 +108,28 @@ def main():
     # print('DATE TIME PARAMETERS STRING: ',dt_parameter_string)
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
-    dt_date = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
+    # dt_date = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00
-
-    creds = authentication()
-    service = build("calendar", "v3", credentials=creds)
 
     # d = datetime.datetime.now().date()
     # today = datetime.datetime(d.year, d.month, d.day, 10)+datetime.timedelta(hours=1)
     # 2022-09-25 11:00:00
     # start = today.isoformat("T", "seconds")
 
-    #start_parameter = datetime.datetime(2022, 9, 25, 12, 30, 0)
+    # start_parameter = datetime.datetime(2022, 9, 25, 12, 30, 0)
     start_parameter = dt_parameter_string
+    print("start_parameter")
+    print(start_parameter)
 
     start = start_parameter.isoformat("T", "seconds")
+    print("start")
+    print(start)
 
     #end = (today + datetime.timedelta(hours=1)).isoformat("T", "seconds")
     end = (start_parameter + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+
+    creds = authentication()
+    service = build("calendar", "v3", credentials=creds)
 
     #event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',sendUpdates='all',
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
