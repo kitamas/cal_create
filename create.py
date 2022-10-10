@@ -111,13 +111,8 @@ def main():
     datetime_dt_parameter_string = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00
 
-    # start_date = datetime.datetime(2017, 10, 30, 00, 00, 00, 0).isoformat() + 'Z'
-
     start = datetime_dt_parameter_string.isoformat("T", "seconds")
     # 2022-10-09T12:00:00
-
-    # startZ = datetime_dt_parameter_string.isoformat() + 'Z'
-    # 2022-10-09T12:00:00Z
 
     end = (datetime_dt_parameter_string + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
@@ -156,9 +151,6 @@ def main():
 
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
-
-    # print(start_event.strftime("%B %A"))
-    # print(start_event.strftime("%H %M"))
 
     text = "Kezdő időpont: " + start_event.strftime("%B %A %H %M") + " Vége: " + end_event.strftime("%B %A %H %M")
 
