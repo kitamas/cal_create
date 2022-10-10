@@ -160,12 +160,8 @@ def main():
     #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%SZ')
     #print(end_event)
 
-    dd = datetime.datetime.fromisoformat('2022-10-10T14:10:00+02:00')
-    ddd = datetime.datetime(2012, 11, 1, 4, 16, 13, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200)))
-    print("DD")
-    print(dd)
-    print("DDD")
-    print(ddd)
+    get_date_obj = parse("2012-11-01T04:16:13-04:00")
+    print("2012-11-01T04:16:13-04:00",get_date_obj)
 
     text_param = {}
     text_param['text'] = text
