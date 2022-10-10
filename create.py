@@ -164,6 +164,9 @@ def main():
 
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     print("wwww",start_event)
+    print(start_event.date())
+    print(start_event.time())
+    print(start_event.strftime("%A"))
 
     #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%SZ')
 
