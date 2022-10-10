@@ -64,12 +64,10 @@ def hour_rounder(t):
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
 
-    texto = check_open()
-    print("TEXTO = RET FROM CHECK OPEN = ",texto)
+    text_check_open = check_open()
 
-    #text = main()
     text_param =  main()
-    text = text_param['text']
+    text = text_param['text'] + text_check_open
     event_id = text_param['event_id']
 
     res = {
@@ -96,9 +94,9 @@ def webhook():
 
 
 def main():
-    print("MAIN")
+
     req = request.get_json(force=True)
-    print(json.dumps(req, indent=4))
+    # print(json.dumps(req, indent=4))
 
     year = req.get('sessionInfo').get('parameters').get('date').get('year')
     month = req.get('sessionInfo').get('parameters').get('date').get('month')
