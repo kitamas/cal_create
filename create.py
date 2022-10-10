@@ -159,9 +159,11 @@ def main():
     #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     #print(end_event)
 
-    picasoBirthDate = datetime.datetime.fromisoformat(event_result['start']['dateTime'])
-    print(picasoBirthDate.date)
-    print(picasoBirthDate.time)
+    picasoBirthDate1 = datetime.datetime.date.fromisoformat(event_result['start']['dateTime'])
+    picasoBirthDate2 = datetime.datetime.time.fromisoformat(event_result['start']['dateTime'])
+    print(" AAAAAAAAA picasoBirthDate1")
+    print(picasoBirthDate1)
+    print(picasoBirthDate2)
 
     text_param = {}
     text_param['text'] = text
