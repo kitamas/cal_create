@@ -156,11 +156,11 @@ def main():
 
     #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     #print(start_event)
-    #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
+    #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%SZ')
     #print(end_event)
 
-    picasoBirthDate1 = datetime.datetime.date.fromisoformat(event_result['start']['dateTime'])
-    picasoBirthDate2 = datetime.datetime.time.fromisoformat(event_result['start']['dateTime'])
+    picasoBirthDate1 = datetime.date.fromisoformat(event_result['start']['dateTime'])
+    picasoBirthDate2 = datetime.time.fromisoformat(event_result['start']['dateTime'])
     print(" AAAAAAAAA picasoBirthDate1")
     print(picasoBirthDate1)
     print(picasoBirthDate2)
