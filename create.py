@@ -65,7 +65,7 @@ def hour_rounder(t):
 def webhook():
 
     text_check_open = check_open()
-
+    print("text_check_open",text_check_open)
     text_param =  main()
     text = text_param['text'] + text_check_open
     event_id = text_param['event_id']
