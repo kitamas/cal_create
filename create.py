@@ -162,8 +162,16 @@ def main():
 
     picasoBirthDate2 = datetime.time.fromisoformat('2022-10-10T15:00:00')
     print(picasoBirthDate2)
+
+    picasoBirthDate2 = date.fromisoformat('2022-10-10T15:00:00')
+    print(picasoBirthDate2)
+
+    picasoBirthDate3 = datetime.date.fromisoformat(event_result['start']['dateTime'])
+    print(picasoBirthDate3)
+
     picasoBirthDate1 = datetime.date.fromisoformat(event_result['start']['dateTime'])
     print(picasoBirthDate1)
+
     picasoBirthDate2 = datetime.time.fromisoformat('2022-10-10T15:00:00')
     print(picasoBirthDate2)
 
