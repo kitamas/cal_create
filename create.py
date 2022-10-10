@@ -160,7 +160,9 @@ def main():
     #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%SZ')
     #print(end_event)
 
-    #picasoBirthDate1 = datetime.date.fromisoformat(event_result['start']['dateTime'])
+    picasoBirthDate2 = datetime.time.fromisoformat('2022-10-10T15:00:00')
+    print(picasoBirthDate2)
+    picasoBirthDate1 = datetime.date.fromisoformat(event_result['start']['dateTime'])
     print(picasoBirthDate1)
     picasoBirthDate2 = datetime.time.fromisoformat('2022-10-10T15:00:00')
     print(picasoBirthDate2)
