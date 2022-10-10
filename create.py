@@ -151,20 +151,16 @@ def main():
     ).execute()
 
     #text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
-    text = "Kezdő időpont: " + event_result['start']['dateTime'] + " Vége: " + event_result['end']['dateTime']
 
     # print(event_result['start']['dateTime']) 2022-10-10T15:00:00+02:00
 
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
-    print("wwww",start_event)
-    print(start_event.date())
-    print(start_event.time())
-    print(start_event.strftime("%B %A"))
-    print(start_event.strftime("%H %M"))
-    print("wwww",start_event)
+    end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
 
-    #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%SZ')
+    # print(start_event.strftime("%B %A"))
+    # print(start_event.strftime("%H %M"))
 
+    text = "Kezdő időpont: " + start_event.strftime(%B %A %H %M") + " Vége: " + end_event.strftime(%B %A %H %M")
 
     text_param = {}
     text_param['text'] = text
