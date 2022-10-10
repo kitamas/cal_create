@@ -158,12 +158,13 @@ def main():
     date_string2 = '2022-10-10T15:00:00+02:00'
     datetime_obj2 = datetime.datetime.strptime(date_string2, '%Y-%m-%dT%H:%M:%S%z')
     print("datetime_obj2")
-    print(datetime_obj2.date)
-    print(datetime_obj2.time)
+    print(datetime_obj2.date())
+    print(datetime_obj2.time())
     print(datetime_obj2.strftime("%A"))
 
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     print("wwww",start_event)
+
     #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%SZ')
 
 
