@@ -154,10 +154,14 @@ def main():
 
     #print(event_result['start']['dateTime']) 2022-10-10T15:00:00+02:00
 
-    start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
-    print(start_event)
-    end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
-    print(end_event)
+    #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
+    #print(start_event)
+    #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
+    #print(end_event)
+
+    picasoBirthDate = datetime.datetime.fromisoformat(event_result['start']['dateTime'])
+    print(picasoBirthDate.date)
+    print(picasoBirthDate.time)
 
     text_param = {}
     text_param['text'] = text
