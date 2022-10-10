@@ -160,7 +160,7 @@ def main():
     # print(start_event.strftime("%B %A"))
     # print(start_event.strftime("%H %M"))
 
-    text = "Kezdő időpont: " + start_event.strftime(%B %A %H %M") + " Vége: " + end_event.strftime(%B %A %H %M")
+    text = "Kezdő időpont: " + start_event.strftime("%B %A %H %M") + " Vége: " + end_event.strftime("%B %A %H %M")
 
     text_param = {}
     text_param['text'] = text
