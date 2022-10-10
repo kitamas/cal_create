@@ -208,8 +208,7 @@ def check_open():
         print("KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
         text_check_open = "True"
 
-    # return checked_open
-    return text
+    return text_check_open
 
 
     app.run()
