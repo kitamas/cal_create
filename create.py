@@ -155,17 +155,15 @@ def main():
 
     # print(event_result['start']['dateTime']) 2022-10-10T15:00:00+02:00
 
-    date_string1 = '2021-09-01 15:27:05.004573 +0530'
-    datetime_obj1 = datetime.datetime.strptime(date_string1, '%Y-%m-%d %H:%M:%S.%f %z')
-    print("datetime_obj1")
-    print(datetime_obj1)
-
     date_string2 = '2022-10-10T15:00:00+02:00'
     datetime_obj2 = datetime.datetime.strptime(date_string2, '%Y-%m-%dT%H:%M:%S%z')
     print("datetime_obj2")
-    print(datetime_obj2)
+    print(datetime_obj2.date)
+    print(datetime_obj2.time)
+    print(datetime_obj2.strftime("%A"))
 
-    #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
+    start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
+    print("wwww",start_event)
     #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%SZ')
 
 
