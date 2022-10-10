@@ -173,7 +173,7 @@ def hour_rounder(t):
     return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
 def check_open():
-    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=3)
+    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     # current_dateTime = datetime.datetime.now()
     # 2022-10-07 16:03:58.003427
 
@@ -198,14 +198,14 @@ def check_open():
 
     if hour_minute < open_start_time[week_day]:
         print("KORÁN", hour_minute, "<", open_start_time[week_day])
-        text_check_open = "KORÁN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
+        text_check_open = " KORÁN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
     if hour_minute >= open_end_time[week_day]:
         print("KÉSŐN", hour_minute, ">=", open_end_time[week_day])
-        text_check_open = "KÉSŐN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
+        text_check_open = " KÉSŐN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
     if hour_minute >= open_start_time[week_day] and hour_minute <= open_end_time[week_day]:
-        print("KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
+        print(" KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
         text_check_open = "True"
 
     return text_check_open
