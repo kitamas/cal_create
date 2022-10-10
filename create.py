@@ -149,7 +149,11 @@ def main():
        }
     ).execute()
 
-    text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    #text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    text = "Kezdő időpont: " + event_result['start']['dateTime'] + " Vége: " + event_result['end']['dateTime']
+
+    print("EVENT START")
+    print(event_result['start']['dateTime'])
 
     #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
