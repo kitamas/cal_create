@@ -57,9 +57,9 @@ def authentication():
     return creds
 
 
-def hour_rounder(t):
+#def hour_rounder(t):
     # Rounds to nearest hour by adding a timedelta hour if minute >= 30
-    return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute//30))
+    #return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute//30))
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
@@ -183,8 +183,8 @@ def check_open():
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
     print("HOUR:", hour_minute)
 
-    open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
-    open_end_time = ["17:00", "17:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
+    open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
+    open_end_time = ["19:00", "19:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
     week_day = current_dateTime.weekday()
