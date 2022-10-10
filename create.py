@@ -21,7 +21,6 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 # QUICKSTART = = = = = = = = = = =
 
-import parse
 
 # Flask app should start in global layout
 app = flask.Flask(__name__)
@@ -154,16 +153,21 @@ def main():
     #text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
     text = "Kezdő időpont: " + event_result['start']['dateTime'] + " Vége: " + event_result['end']['dateTime']
 
-    #print(event_result['start']['dateTime']) 2022-10-10T15:00:00+02:00
+    # print(event_result['start']['dateTime']) 2022-10-10T15:00:00+02:00
 
-    start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
-    print("start_event")
-    print(start_event)
+    date_string1 = '2021-09-01 15:27:05.004573 +0530'
+    datetime_obj1 = datetime.datetime.strptime(date_string1, '%Y-%m-%d %H:%M:%S.%f %z')
+    print("datetime_obj1")
+    print(datetime_obj1)
+
+    date_string2 = '2022-10-10T15:00:00+02:00'
+    datetime_obj2 = datetime.datetime.strptime(date_string2, '%Y-%m-%dT%H:%M:%S+%z')
+    print("datetime_obj2")
+    print(datetime_obj2)
+
+    #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%SZ')
-    #print(end_event)
 
-    get_date_obj = parse("2012-11-01T04:16:13-04:00")
-    print("2012-11-01T04:16:13-04:00",get_date_obj)
 
     text_param = {}
     text_param['text'] = text
