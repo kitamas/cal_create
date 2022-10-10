@@ -161,7 +161,7 @@ def main():
     print(datetime_obj1)
 
     date_string2 = '2022-10-10T15:00:00+02:00'
-    datetime_obj2 = datetime.datetime.strptime(date_string2, '%Y-%m-%dT%H:%M:%S+%z')
+    datetime_obj2 = datetime.datetime.strptime(date_string2, '%Y-%m-%dT%H:%M:%S%z')
     print("datetime_obj2")
     print(datetime_obj2)
 
