@@ -117,7 +117,10 @@ def main():
     datetime_dt_parameter_string = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00
 
-    start = datetime_dt_parameter_string.isoformat("T", "seconds")
+    #start = datetime_dt_parameter_string.isoformat("T", "seconds")
+    start = datetime_dt_parameter_string.isoformat("T")
+    t = type(start)
+    print("TYEPE", t)
     # 2022-10-09T12:00:00
 
     end = (datetime_dt_parameter_string + datetime.timedelta(hours=1)).isoformat("T", "seconds")
@@ -173,6 +176,8 @@ def hour_rounder(t):
     return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
 def check_open():
+
+"""
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     # current_dateTime = datetime.datetime.now()
     # 2022-10-07 16:03:58.003427
@@ -182,6 +187,8 @@ def check_open():
 
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
     print("HOUR:", hour_minute)
+"""
+    print("HOURS:", hours)
 
     open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
     open_end_time = ["19:00", "19:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
