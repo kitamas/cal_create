@@ -177,7 +177,6 @@ def hour_rounder(t):
 
 def check_open():
 
-"""
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     # current_dateTime = datetime.datetime.now()
     # 2022-10-07 16:03:58.003427
@@ -187,7 +186,7 @@ def check_open():
 
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
     print("HOUR:", hour_minute)
-"""
+
     print("HOURS:", hours)
 
     open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
