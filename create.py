@@ -195,7 +195,7 @@ def check_open():
     print("week_day_name:", week_day_name)
 
     locale.setlocale(locale.LC_ALL, "HU_hu.UTF8")
-    locale.setlocale(locale.LC_TIME, "HU_hu.UTF8")
+    #locale.setlocale(locale.LC_TIME, "HU_hu.UTF8")
     print("LOCALE LOCALE",current_dateTime.strftime('%A, %a, %B, %b'))
 
     print("open_start_time:", open_start_time[week_day])
