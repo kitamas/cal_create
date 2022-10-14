@@ -195,9 +195,11 @@ def check_open():
     dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
+    start_be = datetime_dt_parameter_string.isoformat("T")
+    print("START BE",start_be )
 
-
-
+    start_be1 = datetime_dt_parameter_string.isoformat()
+    print("START BE1",start_be1)
 
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     # current_dateTime = datetime.datetime.now()
