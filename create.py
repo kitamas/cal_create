@@ -64,7 +64,7 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-
+    print("WEBHOOOOOOK")
     text_check_open = check_open()
     print("text_check_open",text_check_open)
     text_param =  main()
@@ -95,7 +95,7 @@ def webhook():
 
 
 def main():
-
+    print("MAIIIIIIN")
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
 
@@ -174,6 +174,7 @@ def hour_rounder(t):
     return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
 def check_open():
+    print("CHECK OOOOOOPEN")
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     # current_dateTime = datetime.datetime.now()
     # 2022-10-07 16:03:58.003427
