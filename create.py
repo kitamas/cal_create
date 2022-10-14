@@ -195,6 +195,8 @@ def check_open():
     dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
+    datetime_dt_parameter_string = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
+
     start_be = datetime_dt_parameter_string.isoformat("T")
     print("START BE",start_be )
 
