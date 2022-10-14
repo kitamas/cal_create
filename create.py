@@ -209,7 +209,14 @@ def check_open():
 
 
     start_be = datetime_dt_parameter_string.isoformat() + 'Z'
-    print("START BE",start_be )
+    print("START BE",start_be)
+    # START BE 2022-10-14T18:00:00Z
+
+    week_day = start_be.weekday()
+    print("WEEK DAY",week_day)
+
+    week_day1 = start_be.time()
+    print("WEEK DAY TIME",week_day1)
 
     #start_be_rounded = hour_rounder(start_be)
     #print("START BE ROUNDED",start_be_rounded)
