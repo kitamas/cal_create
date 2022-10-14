@@ -202,10 +202,10 @@ def check_open():
     start_be = datetime_dt_parameter_string.isoformat("T", "seconds")
     print("START BE",start_be )
 
-    start_be_rounded = hour_rounder(start_be)
-    print("START BE ROUNDED",start_be_rounded)
+    #start_be_rounded = hour_rounder(start_be)
+    #print("START BE ROUNDED",start_be_rounded)
 
-    hour_minute1 = start_be_rounded.strftime('%H:%M')
+    hour_minute1 = start_be.strftime('%H:%M')
     print("HOUR 1:", hour_minute1)
 
 
