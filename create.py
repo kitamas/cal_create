@@ -189,20 +189,16 @@ def check_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
-    # DATE TIME PARAMETERS: 2022.0 10.0 9.0 12.0 0.0 summary:  q location:  q
-
     dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
     datetime_dt_parameter_string = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
 
 
-
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     # current_dateTime = datetime.datetime.now()
-    print("current_dateTime",current_dateTime)
     # 2022-10-07 16:03:58.003427
+    # now = datetime.datetime.utcnow().isoformat() + 'Z'
 
     current_dateTime_rounded = hour_rounder(current_dateTime)
     # 2022-10-07 15:00:00
@@ -215,8 +211,8 @@ def check_open():
     start_be = datetime_dt_parameter_string.isoformat() + 'Z'
     print("START BE",start_be )
 
-    start_be_rounded = hour_rounder(start_be)
-    print("START BE ROUNDED",start_be_rounded)
+    #start_be_rounded = hour_rounder(start_be)
+    #print("START BE ROUNDED",start_be_rounded)
 
     hour_minute1 = start_be.strftime('%H:%M')
     print("HOUR 1:", hour_minute1)
