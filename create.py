@@ -175,6 +175,30 @@ def hour_rounder(t):
 
 def check_open():
     print("CHECK OOOOOOPEN")
+
+    req = request.get_json(force=True)
+    # print(json.dumps(req, indent=4))
+
+    year = req.get('sessionInfo').get('parameters').get('date').get('year')
+    month = req.get('sessionInfo').get('parameters').get('date').get('month')
+    day = req.get('sessionInfo').get('parameters').get('date').get('day')
+
+    hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
+    minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
+
+    summary = req.get('sessionInfo').get('parameters').get('summary')
+    location = req.get('sessionInfo').get('parameters').get('location')
+
+    print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
+    # DATE TIME PARAMETERS: 2022.0 10.0 9.0 12.0 0.0 summary:  q location:  q
+
+    dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
+    # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
+
+
+
+
+
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     # current_dateTime = datetime.datetime.now()
     # 2022-10-07 16:03:58.003427
