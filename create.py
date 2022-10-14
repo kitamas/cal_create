@@ -199,17 +199,6 @@ def check_open():
 
 
 
-    start_be = datetime_dt_parameter_string.isoformat() + 'Z'
-    print("START BE",start_be )
-
-    start_be_rounded = hour_rounder(start_be)
-    print("START BE ROUNDED",start_be_rounded)
-
-    hour_minute1 = start_be.strftime('%H:%M')
-    print("HOUR 1:", hour_minute1)
-
-
-
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     # current_dateTime = datetime.datetime.now()
     print("current_dateTime",current_dateTime)
@@ -220,6 +209,17 @@ def check_open():
 
     hour_minute = current_dateTime_rounded.strftime('%H:%M')
     print("HOUR:", hour_minute)
+
+
+
+    start_be = datetime_dt_parameter_string.isoformat() + 'Z'
+    print("START BE",start_be )
+
+    start_be_rounded = hour_rounder(start_be)
+    print("START BE ROUNDED",start_be_rounded)
+
+    hour_minute1 = start_be.strftime('%H:%M')
+    print("HOUR 1:", hour_minute1)
 
 
 
