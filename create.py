@@ -187,16 +187,23 @@ def check_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
+    open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
+    open_end_time = ["19:00", "19:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
+
+    weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
+
     dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
     dt_parameter_obj = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00 - string to datetime object
 
+    dt_p_week_day = dt_parameter_obj.weekday()
+    dt_p_week_day_name = weekDays[week_day]
+    print("dt_p_week_day_name:", dt_p_week_day_name)
 
     if current_dateTime > dt_parameter_obj:
         print("A jelenlegi idő: ",current_dateTime," ",dt_parameter_obj,"már elmúlt. Adjon meg másik időpontot.")
-
 
     dt_parameter_obj_rounded = hour_rounder(dt_parameter_obj)
 
@@ -210,10 +217,7 @@ def check_open():
     # START from parameter =  2022-10-15T17:00:00 <class 'str'>
 
 
-    open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
-    open_end_time = ["19:00", "19:00", "17:00", "17:00", "17:00", "13:00", "13:00"]
 
-    weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
     week_day = current_dateTime.weekday()
     # print("week day: ", week_day)
 
