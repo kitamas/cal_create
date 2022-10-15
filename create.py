@@ -199,8 +199,10 @@ def check_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     print("current_dateTime = ", current_dateTime)
 
+
     # 2022-10-07 16:03:58.003427
-    # now = datetime.datetime.utcnow().isoformat() + 'Z'
+    now = datetime.datetime.utcnow().isoformat() + 'Z'
+    print("NOW = ", now)
 
     current_dateTime_rounded = hour_rounder(current_dateTime)
     # 2022-10-07 15:00:00
@@ -213,9 +215,7 @@ def check_open():
     start = dt_parameter_obj.isoformat("T", "seconds")
     print("START  = ",start)
 
-    start_be = dt_parameter_obj.isoformat() + 'Z'
-    print("START BE = ",start_be)
-
+    # start_be = dt_parameter_obj.isoformat() + 'Z'
     # START BE 2022-10-14T18:00:00Z
 
 
