@@ -57,11 +57,6 @@ def authentication():
     )
     return creds
 
-
-#def hour_rounder(t):
-    # Rounds to nearest hour by adding a timedelta hour if minute >= 30
-    #return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute//30))
-
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
     text_check_open = check_open()
@@ -95,7 +90,6 @@ def webhook():
 
 
 def main():
-    print("MAIIIIIIN")
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
 
@@ -152,7 +146,7 @@ def main():
        }
     ).execute()
 
-    #text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
+    # text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
 
     # print(event_result['start']['dateTime']) 2022-10-10T15:00:00+02:00
 
@@ -198,6 +192,10 @@ def check_open():
 
     dt_parameter_obj = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00 - string to datetime object
+
+
+    print("CURRENT - PARAMETER",current_dateTime,type(current_dateTime),dt_parameter_obj,type(dt_parameter_obj))
+
 
     dt_parameter_obj_rounded = hour_rounder(dt_parameter_obj)
 
