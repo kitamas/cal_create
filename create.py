@@ -196,15 +196,12 @@ def check_open():
 
     # now = datetime.datetime.utcnow().isoformat("T", "seconds")
 
-    #current_dateTime = (datetime.datetime.now() + datetime.timedelta(hours=2)).isoformat("T", "seconds")
-    #  2022-10-15T11:08:20
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
 
     current_dateTime_rounded = hour_rounder(current_dateTime)
-    # 2022-10-07 15:00:00
 
-    hour_minute = current_dateTime_rounded.strftime('%H:%M')
-    print("HOUR:", hour_minute)
+    hour_rounded = current_dateTime_rounded.strftime('%H')
+    print("HOUR ROUNDED:", hour_rounded)
 
     start = dt_parameter_obj.isoformat("T", "seconds")
     print("START from parameter = ",start,type(start))
@@ -227,16 +224,16 @@ def check_open():
     print("open_start_time:", open_start_time[week_day])
     print("open_end_time:", open_end_time[week_day])
 
-    if hour_minute < open_start_time[week_day]:
-        print("KORÁN", hour_minute, "<", open_start_time[week_day])
-        text_check_open = " KORÁN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
+    if hour_rounded < open_start_time[week_day]:
+        print("KORÁN", hour_rounded, "<", open_start_time[week_day])
+        text_check_open = " KORÁN. A ... napon a nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
-    if hour_minute >= open_end_time[week_day]:
-        print("KÉSŐN", hour_minute, ">=", open_end_time[week_day])
-        text_check_open = " KÉSŐN. A mai nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
+    if hour_rounded >= open_end_time[week_day]:
+        print("KÉSŐN", hour_rounded, ">=", open_end_time[week_day])
+        text_check_open = " KÉSŐN. A ... nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
 
-    if hour_minute >= open_start_time[week_day] and hour_minute <= open_end_time[week_day]:
-        print(" KOZOTTE", open_start_time[week_day], "<", hour_minute, "<", open_end_time[week_day])
+    if hour_rounded >= open_start_time[week_day] and hour_rounded <= open_end_time[week_day]:
+        print(" KOZOTTE", open_start_time[week_day], "<", hour_rounded, "<", open_end_time[week_day])
         text_check_open = "True"
 
     return text_check_open
