@@ -106,16 +106,16 @@ def main():
     # print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
     # DATE TIME PARAMETERS: 2022.0 10.0 9.0 12.0 0.0 summary:  q location:  q
 
-    dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
+    dt_p_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
-    dt_parameter_obj = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
+    dt_p_obj = datetime.datetime.strptime(dt_p_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00 - string to datetime object
 
-    start = dt_parameter_obj.isoformat("T", "seconds")
+    start = dt_p_obj.isoformat("T", "seconds")
     # 2022-10-09T12:00:00
 
-    end = (dt_parameter_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
@@ -192,31 +192,27 @@ def check_open():
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
-    dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
+    dt_p_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
-    dt_parameter_obj = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
+    dt_p_obj = datetime.datetime.strptime(dt_p_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00 - string to datetime object
 
-    dt_p_week_day = dt_parameter_obj.weekday()
+    dt_p_week_day = dt_p_obj.weekday()
     dt_p_week_day_name = weekDays[dt_p_week_day]
     print("dt_p_week_day_name:", dt_p_week_day_name)
 
-    if current_dateTime > dt_parameter_obj:
-        print("A jelenlegi idő: ",current_dateTime," ",dt_parameter_obj,"már elmúlt. Adjon meg másik időpontot.")
+    dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
-    dt_parameter_obj_rounded = hour_rounder(dt_parameter_obj)
-
-    hour_rounded = dt_parameter_obj_rounded.strftime('%H')
+    hour_rounded = dt_p_obj_rounded.strftime('%H')
     print("PARAM HOUR ROUNDED:", hour_rounded)
 
+    if current_dateTime > dt_p_obj:
+        print("A jelenlegi idő: ",current_dateTime," ",dt_p_obj,"már elmúlt. Adjon meg másik időpontot.")
 
-
-    start = dt_parameter_obj.isoformat("T", "seconds")
+    start = dt_p_obj.isoformat("T", "seconds")
     print("START from parameter = ",start,type(start))
     # START from parameter =  2022-10-15T17:00:00 <class 'str'>
-
-
 
     week_day = current_dateTime.weekday()
     # print("week day: ", week_day)
@@ -228,19 +224,19 @@ def check_open():
     #locale.setlocale(locale.LC_TIME, "HU_hu.utf8")
     #print("LOCALE LOCALE",current_dateTime.strftime('%A, %a, %B, %b'))
 
-    print("open_start_time:", open_start_time[week_day])
-    print("open_end_time:", open_end_time[week_day])
+    print("open_start_time:", open_start_time[dt_p_week_day])
+    print("open_end_time:", open_end_time[dt_p_week_day])
 
-    if hour_rounded < open_start_time[week_day]:
-        print("KORÁN", hour_rounded, "<", open_start_time[week_day])
-        text_check_open = " KORÁN. A ... napon a nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
+    if hour_rounded < open_start_time[dt_p_week_day]:
+        print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
+        text_check_open = " KORÁN. A " + dt_p_week_day_name + " napon a nyitás " + open_start_time[dt_p_week_day] + " a zárás " + open_end_time[dt_p_week_day]
 
-    if hour_rounded >= open_end_time[week_day]:
-        print("KÉSŐN", hour_rounded, ">=", open_end_time[week_day])
-        text_check_open = " KÉSŐN. A ... nyitás " + open_start_time[week_day] + " a zárás " + open_end_time[week_day]
+    if hour_rounded >= open_end_time[dt_p_week_day]:
+        print("KÉSŐN", hour_rounded, ">=", open_end_time[dt_p_week_day])
+        text_check_open = " KÉSŐN. " + dt_p_week_day_name + " nyitás " + open_start_time[dt_p_week_day] + " zárás " + open_end_time[dt_p_week_day]
 
-    if hour_rounded >= open_start_time[week_day] and hour_rounded <= open_end_time[week_day]:
-        print(" KOZOTTE", open_start_time[week_day], "<", hour_rounded, "<", open_end_time[week_day])
+    if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
+        print(" KOZOTTE", open_start_time[dt_p_week_day], "<", hour_rounded, "<", open_end_time[dt_p_week_day])
         text_check_open = "True"
 
     return text_check_open
