@@ -67,6 +67,7 @@ def webhook():
     print("WEBHOOOOOOK")
     text_check_open = check_open()
     print("text_check_open",text_check_open)
+
     text_param =  main()
     text = text_param['text'] + text_check_open
     event_id = text_param['event_id']
@@ -115,13 +116,13 @@ def main():
     dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
-    datetime_dt_parameter_string = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
-    # 2022-09-25 00:00:00
+    dt_parameter_obj = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
+    # 2022-09-25 00:00:00 - string to datetime object
 
-    start = datetime_dt_parameter_string.isoformat("T", "seconds")
+    start = dt_parameter_obj.isoformat("T", "seconds")
     # 2022-10-09T12:00:00
 
-    end = (datetime_dt_parameter_string + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = (dt_parameter_string + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
