@@ -196,9 +196,9 @@ def check_open():
 
     # now = datetime.datetime.utcnow().isoformat("T", "seconds")
 
-    current_dateTime = (datetime.datetime.now() + datetime.timedelta(hours=2)).isoformat("T", "seconds")
+    #current_dateTime = (datetime.datetime.now() + datetime.timedelta(hours=2)).isoformat("T", "seconds")
     #  2022-10-15T11:08:20
-    print("current_dateTime = ", current_dateTime, type(current_dateTime))
+    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
 
     current_dateTime_rounded = hour_rounder(current_dateTime)
     # 2022-10-07 15:00:00
