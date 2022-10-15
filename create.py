@@ -199,7 +199,7 @@ def check_open():
     # 2022-09-25 00:00:00 - string to datetime object
 
     dt_p_week_day = dt_parameter_obj.weekday()
-    dt_p_week_day_name = weekDays[week_day]
+    dt_p_week_day_name = weekDays[dt_p_week_day]
     print("dt_p_week_day_name:", dt_p_week_day_name)
 
     if current_dateTime > dt_parameter_obj:
