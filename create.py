@@ -204,7 +204,7 @@ def check_open():
     now = datetime.datetime.utcnow().isoformat() + 'Z'
     print("NOW = ", now)
 
-    now1 = datetime.datetime.utcnow()isoformat("T", "seconds")
+    now1 = datetime.datetime.utcnow().isoformat("T", "seconds")
     print("NOW1 = ", now1)
 
     now2 = datetime.datetime.utcnow().isoformat("T")
