@@ -195,7 +195,7 @@ def check_open():
 
 
     if current_dateTime > dt_parameter_obj:
-        print("A jelenlegi idő: ",current_dateTime," ",dt_parameter_obj,"már elmúlt. Adjon meg másik időpontot."
+        print("A jelenlegi idő: ",current_dateTime," ",dt_parameter_obj,"már elmúlt. Adjon meg másik időpontot.")
 
 
     dt_parameter_obj_rounded = hour_rounder(dt_parameter_obj)
