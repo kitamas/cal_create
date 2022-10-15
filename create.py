@@ -194,7 +194,8 @@ def check_open():
     # 2022-09-25 00:00:00 - string to datetime object
 
 
-    print("CURRENT - PARAMETER",current_dateTime,type(current_dateTime),dt_parameter_obj,type(dt_parameter_obj))
+    if current_dateTime > dt_parameter_obj:
+        print("A jelenlegi idő: ",current_dateTime," ",dt_parameter_obj,"már elmúlt. Adjon meg másik időpontot."
 
 
     dt_parameter_obj_rounded = hour_rounder(dt_parameter_obj)
