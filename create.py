@@ -193,12 +193,12 @@ def check_open():
     dt_parameter_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
 
-    datetime_dt_parameter_string = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
-
+    dt_parameter_obj = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
+    # 2022-09-25 00:00:00 - string to datetime object
 
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     print("current_dateTime = ", current_dateTime)
-    print(type(current_dateTime))
+
     # 2022-10-07 16:03:58.003427
     # now = datetime.datetime.utcnow().isoformat() + 'Z'
 
@@ -210,9 +210,12 @@ def check_open():
 
 
 
-    start_be = datetime_dt_parameter_string.isoformat() + 'Z'
+    start = dt_parameter_obj.isoformat("T", "seconds")
+    print("START  = ",start)
+
+    start_be = dt_parameter_obj.isoformat() + 'Z'
     print("START BE = ",start_be)
-    print(type(start_be))
+
     # START BE 2022-10-14T18:00:00Z
 
 
