@@ -122,7 +122,7 @@ def main():
     start = dt_parameter_obj.isoformat("T", "seconds")
     # 2022-10-09T12:00:00
 
-    end = (dt_parameter_string + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = (dt_parameter_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
