@@ -64,7 +64,6 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    print("WEBHOOOOOOK")
     text_check_open = check_open()
     print("text_check_open",text_check_open)
 
@@ -169,7 +168,6 @@ def main():
     #return text
     return text_param
 
-
 def hour_rounder(t):
     # Rounds to nearest hour by adding a timedelta hour if minute >= 30
     return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
@@ -205,6 +203,7 @@ def check_open():
 
     start = dt_parameter_obj.isoformat("T", "seconds")
     print("START from parameter = ",start,type(start))
+    # START from parameter =  2022-10-15T17:00:00 <class 'str'>
 
 
     open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
