@@ -173,6 +173,13 @@ def hour_rounder(t):
     return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
 def check_open():
+    # now = datetime.datetime.utcnow().isoformat("T", "seconds")
+    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
+    current_dateTime_rounded = hour_rounder(current_dateTime)
+
+    current_hour_rounded = current_dateTime_rounded.strftime('%H')
+    print("CURRENT HOUR ROUNDED:", current_hour_rounded)
+
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
 
@@ -192,14 +199,12 @@ def check_open():
     dt_parameter_obj = datetime.datetime.strptime(dt_parameter_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00 - string to datetime object
 
-    # now = datetime.datetime.utcnow().isoformat("T", "seconds")
+    dt_parameter_obj_rounded = hour_rounder(dt_parameter_obj)
 
-    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
+    hour_rounded = dt_parameter_obj_rounded.strftime('%H')
+    print("PARAM HOUR ROUNDED:", hour_rounded)
 
-    current_dateTime_rounded = hour_rounder(current_dateTime)
 
-    hour_rounded = current_dateTime_rounded.strftime('%H')
-    print("HOUR ROUNDED:", hour_rounded)
 
     start = dt_parameter_obj.isoformat("T", "seconds")
     print("START from parameter = ",start,type(start))
