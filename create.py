@@ -175,7 +175,7 @@ def main(starto,endo,summary,location):
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
 
-    text = "Kezdő időpont: " + start_event.strftime("%B %A %H %M") + " Vége: " + end_event.strftime("%B %A %H %M")
+    text = "Kezdő időpont: " + start_event.strftime("%B %A %H:%M") + " Vége: " + end_event.strftime("%B %A %H:%M")
 
     text_param = {}
     text_param['text'] = text
