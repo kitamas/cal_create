@@ -59,8 +59,12 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    text_check_open = check_open()
-    print("text_check_open",text_check_open)
+    # text_check_open = check_open()
+    # print("text_check_open",text_check_open)
+
+    checked_start_text_o = check_open()
+    print("text_check_open",checked_start_text_o[0])
+    print("start =",checked_start_text_o[1])
 
     text_param =  main()
     text = text_param['text'] + text_check_open
@@ -241,7 +245,9 @@ def check_open():
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
         text_check_open = "True"
 
-    return text_check_open
+    #return text_check_open
+    checked_start_text = [start,text_check_open] 
+    return checked_start_text
 
 
     app.run()
