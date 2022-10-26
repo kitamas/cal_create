@@ -265,7 +265,7 @@ def check_open():
 
     if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
-        check_open_text = "KOZOTTE"
+        check_open_text = " KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day]
         check_open_boole = True
 
     #return text_check_open
