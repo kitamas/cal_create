@@ -63,10 +63,12 @@ def webhook():
     # print("text_check_open",text_check_open)
 
     checked_start_text_o = check_open()
-    print("webhook start start ",checked_start_text_o[0])
+    print("webhook start start = starto ",checked_start_text_o[0])
     print("webhook text  =",checked_start_text_o[1])
 
-    text_param =  main()
+    starto = checked_start_text_o[0]
+
+    text_param =  main(starto)
     text = text_param['text'] + checked_start_text_o[1]
     event_id = text_param['event_id']
 
@@ -93,7 +95,7 @@ def webhook():
     return res
 
 
-def main():
+def main(starto):
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
 
@@ -116,7 +118,8 @@ def main():
     dt_p_obj = datetime.datetime.strptime(dt_p_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00 - string to datetime object
 
-    start = dt_p_obj.isoformat("T", "seconds")
+    # start = dt_p_obj.isoformat("T", "seconds")
+    start = starto
     # 2022-10-09T12:00:00
 
     end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
