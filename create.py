@@ -59,8 +59,8 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    # text_check_open = check_open()
-    # print("text_check_open",text_check_open)
+    # check_open_text = check_open()
+    # print("check_open_text",check_open_text)
 
     checked_start_text_o = check_open()
     print("webhook start start = starto ",checked_start_text_o[0])
@@ -68,6 +68,8 @@ def webhook():
 
     starto = checked_start_text_o[0]
     print("WEBHOOK starto = ",starto)
+
+    print("boolean = ",checked_start_text_o[2])
 
     text_param =  main(starto)
 
@@ -98,6 +100,7 @@ def webhook():
 
 
 def main(starto):
+"""
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
 
@@ -121,7 +124,7 @@ def main(starto):
     # 2022-09-25 00:00:00 - string to datetime object
 
     # start = dt_p_obj.isoformat("T", "seconds")
-
+"""
     print("MAIN starto = ",starto)
 
     start = starto
@@ -243,18 +246,21 @@ def check_open():
 
     if hour_rounded < open_start_time[dt_p_week_day]:
         print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
-        text_check_open = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
+        check_open_text = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
+        check_open_boole = False
 
     if hour_rounded >= open_end_time[dt_p_week_day]:
         print("KÉSŐN", hour_rounded, ">=", open_end_time[dt_p_week_day])
-        text_check_open = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
+        check_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
+        check_open_boole = False
 
     if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
-        text_check_open = "True"
+        check_open_text = "KOZOTTE"
+        check_open_boole = True
 
     #return text_check_open
-    checked_start_text = [start,text_check_open] 
+    checked_start_text = [start,check_open_text,check_open_boole] 
     return checked_start_text
 
 
