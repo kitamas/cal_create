@@ -79,7 +79,7 @@ def webhook():
 
     text_param =  main(starto,endo,summary,location)
 
-    text = text_param['text'] + checked_start_text_o[4] + "B= " + checked_start_text_o[5]
+    text = text_param['text'] + checked_start_text_o[4] + "B= " + str(checked_start_text_o[5])
     event_id = text_param['event_id']
 
     res = {
