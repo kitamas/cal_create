@@ -164,14 +164,16 @@ def main():
 
 def hour_rounder(t):
     # Rounds to nearest hour by adding a timedelta hour if minute >= 30
-    return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
+    # return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
+
+    # Rounds to next hour by adding a timedelta hour + 1
+    return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour + 1))
 
 def check_open():
-    # now = datetime.datetime.utcnow().isoformat("T", "seconds")
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     current_dateTime_rounded = hour_rounder(current_dateTime)
 
-    current_hour_rounded = current_dateTime_rounded.strftime('%H')
+    current_hour_rounded = current_dateTime_rounded.strftime('%H:%M')
     print("CURRENT HOUR ROUNDED:", current_hour_rounded)
 
     req = request.get_json(force=True)
@@ -187,7 +189,7 @@ def check_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    open_start_time = ["12:00", "12:00", "08:00", "08:00", "08:00", "08:00", "12:00"]
+    open_start_time = ["12:00", "12:00", "12:00", "08:00", "08:00", "08:00", "12:00"]
     open_end_time = ["19:00", "19:00", "17:00", "17:00", "17:00", "13:00", "15:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
@@ -229,11 +231,11 @@ def check_open():
 
     if hour_rounded < open_start_time[dt_p_week_day]:
         print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
-        text_check_open = " KORÁN. A " + dt_p_week_day_name + " a nyitás " + open_start_time[dt_p_week_day] + " zárás " + open_end_time[dt_p_week_day]
+        text_check_open = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
 
     if hour_rounded >= open_end_time[dt_p_week_day]:
         print("KÉSŐN", hour_rounded, ">=", open_end_time[dt_p_week_day])
-        text_check_open = " KÉSŐN. " + dt_p_week_day_name + " a nyitás " + open_start_time[dt_p_week_day] + " zárás " + open_end_time[dt_p_week_day]
+        text_check_open = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
 
     if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
