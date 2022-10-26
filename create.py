@@ -212,7 +212,7 @@ def check_open():
     location = req.get('sessionInfo').get('parameters').get('location')
 
     open_start_time = ["12:00", "12:00", "12:00", "08:00", "08:00", "08:00", "12:00"]
-    open_end_time = ["19:00", "19:00", "19:00", "17:00", "17:00", "13:00", "15:00"]
+    open_end_time = ["19:00", "19:00", "19:00", "19:00", "17:00", "13:00", "15:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
