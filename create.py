@@ -234,6 +234,12 @@ def check_open():
     hour_rounded = dt_p_obj_rounded.strftime('%H')
     print("PARAM HOUR ROUNDED:", hour_rounded)
 
+    start = dt_p_obj.isoformat("T", "seconds")
+    print("START from parameter = ",start,type(start))
+    # START from parameter =  2022-10-15T17:00:00 <class 'str'>
+
+    end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+
     if current_dateTime > dt_p_obj:
         print("A jelenlegi idő: ",current_dateTime," ",dt_p_obj,"már elmúlt. Adjon meg másik időpontot.")
         #check_open_text = "A jelenlegi idő: " + current_dateTime + " " + dt_p_obj + "már elmúlt. Adjon meg másik időpontot."
@@ -241,12 +247,6 @@ def check_open():
 
         checked_start = [start,end,summary,location,check_open_text,check_open_boole] 
         return checked_start
-
-    start = dt_p_obj.isoformat("T", "seconds")
-    print("START from parameter = ",start,type(start))
-    # START from parameter =  2022-10-15T17:00:00 <class 'str'>
-
-    end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     #locale.setlocale(locale.LC_ALL, "HU_hu.utf8")
     #locale.setlocale(locale.LC_TIME, "HU_hu.utf8")
