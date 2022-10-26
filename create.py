@@ -67,8 +67,10 @@ def webhook():
     print("webhook text  =",checked_start_text_o[1])
 
     starto = checked_start_text_o[0]
+    print("WEBHOOK starto = ",starto)
 
     text_param =  main(starto)
+
     text = text_param['text'] + checked_start_text_o[1]
     event_id = text_param['event_id']
 
@@ -119,6 +121,9 @@ def main(starto):
     # 2022-09-25 00:00:00 - string to datetime object
 
     # start = dt_p_obj.isoformat("T", "seconds")
+
+    print("MAIN starto = ",starto)
+
     start = starto
     # 2022-10-09T12:00:00
 
