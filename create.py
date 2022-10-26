@@ -64,14 +64,14 @@ def webhook():
 
     checked_start_text_o = check_open()
     print("webhook start start = starto ",checked_start_text_o[0])
-    print("webhook text  =",checked_start_text_o[1])
+    print("webhook end end  =",checked_start_text_o[1])
+    print("webhook text  =",checked_start_text_o[2])
+    print("boolean = ",checked_start_text_o[3])
 
     starto = checked_start_text_o[0]
-    print("WEBHOOK starto = ",starto)
+    endo = checked_start_text_o[1]
 
-    print("boolean = ",checked_start_text_o[2])
-
-    text_param =  main(starto)
+    text_param =  main(starto,endo)
 
     text = text_param['text'] + checked_start_text_o[1]
     event_id = text_param['event_id']
@@ -99,7 +99,7 @@ def webhook():
     return res
 
 
-def main(starto):
+def main(starto,endo):
     """
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
@@ -130,7 +130,8 @@ def main(starto):
     start = starto
     # 2022-10-09T12:00:00
 
-    end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    #end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end = endo
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
@@ -231,6 +232,8 @@ def check_open():
     print("START from parameter = ",start,type(start))
     # START from parameter =  2022-10-15T17:00:00 <class 'str'>
 
+    end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+
     week_day = current_dateTime.weekday()
     # print("week day: ", week_day)
 
@@ -260,8 +263,8 @@ def check_open():
         check_open_boole = True
 
     #return text_check_open
-    checked_start_text = [start,check_open_text,check_open_boole] 
-    return checked_start_text
+    checked_start = [start,end,check_open_text,check_open_boole] 
+    return checked_start
 
 
     app.run()
