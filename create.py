@@ -64,7 +64,7 @@ def webhook():
 
     checked_start_text_o = check_open()
     print("text_check_open",checked_start_text_o[0])
-    print("start =",checked_start_text_o[1])
+    print("start start start start =",checked_start_text_o[1])
 
     text_param =  main()
     text = text_param['text'] + checked_start_text_o[1]
