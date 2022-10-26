@@ -63,13 +63,17 @@ def webhook():
     # print("check_open_text",check_open_text)
 
     checked_start_text_o = check_open()
+
+    starto = checked_start_text_o[0]
+    endo = checked_start_text_o[1]
+    boolean = checked_start_text_o[3]
+    location = checked_start_text_o[4]
+    summary = checked_start_text_o[5]
+
     print("webhook start start = starto ",checked_start_text_o[0])
     print("webhook end end  =",checked_start_text_o[1])
     print("webhook text  =",checked_start_text_o[2])
     print("boolean = ",checked_start_text_o[3])
-
-    starto = checked_start_text_o[0]
-    endo = checked_start_text_o[1]
 
     text_param =  main(starto,endo)
 
@@ -99,7 +103,7 @@ def webhook():
     return res
 
 
-def main(starto,endo):
+def main(starto,endo,summary,location):
     """
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
@@ -263,7 +267,7 @@ def check_open():
         check_open_boole = True
 
     #return text_check_open
-    checked_start = [start,end,check_open_text,check_open_boole] 
+    checked_start = [start,end,check_open_text,check_open_boole,summary,location] 
     return checked_start
 
 
