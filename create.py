@@ -212,7 +212,7 @@ def check_open():
     location = req.get('sessionInfo').get('parameters').get('location')
 
     open_start_time = ["12:00", "12:00", "12:00", "08:00", "08:00", "08:00", "12:00"]
-    open_end_time = ["19:00", "19:00", "17:00", "17:00", "17:00", "13:00", "15:00"]
+    open_end_time = ["19:00", "19:00", "19:00", "17:00", "17:00", "13:00", "15:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -265,7 +265,7 @@ def check_open():
 
     if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
-        check_open_text = str(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
+        check_open_text = " KOZOTTE" 
         check_open_boole = True
 
     #return text_check_open
