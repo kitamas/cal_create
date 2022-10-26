@@ -239,6 +239,9 @@ def check_open():
         #check_open_text = "A jelenlegi idő: " + current_dateTime + " " + dt_p_obj + "már elmúlt. Adjon meg másik időpontot."
         check_open_text = "A megadott idő már elmúlt. Adjon meg másik időpontot."
 
+        checked_start = [start,end,summary,location,check_open_text,check_open_boole] 
+        return checked_start
+
     start = dt_p_obj.isoformat("T", "seconds")
     print("START from parameter = ",start,type(start))
     # START from parameter =  2022-10-15T17:00:00 <class 'str'>
