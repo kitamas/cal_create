@@ -66,18 +66,20 @@ def webhook():
 
     starto = checked_start_text_o[0]
     endo = checked_start_text_o[1]
-    boolean = checked_start_text_o[3]
-    location = checked_start_text_o[4]
-    summary = checked_start_text_o[5]
+    summary = checked_start_text_o[2]
+    location = checked_start_text_o[3]
+    boolean = checked_start_text_o[5]
+
 
     print("webhook start start = starto ",checked_start_text_o[0])
     print("webhook end end  =",checked_start_text_o[1])
-    print("webhook text  =",checked_start_text_o[2])
-    print("boolean = ",checked_start_text_o[3])
+    print("summary  =",checked_start_text_o[2])
+    print("location = ",checked_start_text_o[3])
+    print("boolean = ",checked_start_text_o[5])
 
-    text_param =  main(starto,endo)
+    text_param =  main(starto,endo,summary,location)
 
-    text = text_param['text'] + checked_start_text_o[1]
+    text = text_param['text'] + checked_start_text_o[4]
     event_id = text_param['event_id']
 
     res = {
@@ -267,7 +269,7 @@ def check_open():
         check_open_boole = True
 
     #return text_check_open
-    checked_start = [start,end,check_open_text,check_open_boole,summary,location] 
+    checked_start = [start,end,summary,location,check_open_text,check_open_boole] 
     return checked_start
 
 
