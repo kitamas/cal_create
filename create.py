@@ -189,7 +189,10 @@ def hour_rounder(t):
     # return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
     # Rounds to next hour by adding a timedelta hour + 1
-    return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour + 1))
+    if t.minute != 0:
+        return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour + 1))
+    else:
+        return (t.replace(second=0, microsecond=0, minute=0))
 
 def check_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
@@ -241,12 +244,6 @@ def check_open():
     # START from parameter =  2022-10-15T17:00:00 <class 'str'>
 
     end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-
-    week_day = current_dateTime.weekday()
-    # print("week day: ", week_day)
-
-    week_day_name = weekDays[week_day]
-    print("week_day_name:", week_day_name)
 
     #locale.setlocale(locale.LC_ALL, "HU_hu.utf8")
     #locale.setlocale(locale.LC_TIME, "HU_hu.utf8")
