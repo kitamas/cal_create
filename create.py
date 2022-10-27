@@ -214,7 +214,7 @@ def check_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    open_start_time = ["12:00", "12:00", "12:00", "14:00", "08:00", "08:00", "12:00"]
+    open_start_time = ["12:00", "12:00", "12:00", "17:00", "08:00", "08:00", "12:00"]
     open_end_time = ["19:00", "19:00", "19:00", "18:00", "17:00", "13:00", "15:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
@@ -243,10 +243,8 @@ def check_open():
     duration = 1 # <class 'int'>
 
     if current_dateTime > dt_p_obj:
-        print("A jelenlegi idő: ",current_dateTime," ",dt_p_obj,"már elmúlt. Adjon meg másik időpontot.")
-        #check_open_text = "A jelenlegi idő: " + current_dateTime + " " + dt_p_obj + "már elmúlt. Adjon meg másik időpontot."
-        #check_open_text = "A megadott idő már elmúlt. Adjon meg másik időpontot."
-        check_open_text = " A " + dt_p_obj.strftime('%H:%M') + "idő már elmúlt." + "A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  "Adjon meg másik időpontot."
+        print("A ",dt_p_obj,"idő már elmúlt. A jelenlegi idő:,current_dateTime,"Adjon meg másik időpontot.")
+        check_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  " Adjon meg másik időpontot."
         check_open_boole = False
 
         checked_start = [start,end,summary,location,check_open_text,check_open_boole] 
