@@ -245,7 +245,8 @@ def check_open():
     if current_dateTime > dt_p_obj:
         print("A jelenlegi idő: ",current_dateTime," ",dt_p_obj,"már elmúlt. Adjon meg másik időpontot.")
         #check_open_text = "A jelenlegi idő: " + current_dateTime + " " + dt_p_obj + "már elmúlt. Adjon meg másik időpontot."
-        check_open_text = "A megadott idő már elmúlt. Adjon meg másik időpontot."
+        #check_open_text = "A megadott idő már elmúlt. Adjon meg másik időpontot."
+        check_open_text = " A " + dt_p_obj.strftime('%H:%M') + "idő már elmúlt." + "A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  "Adjon meg másik időpontot."
         check_open_boole = False
 
         checked_start = [start,end,summary,location,check_open_text,check_open_boole] 
