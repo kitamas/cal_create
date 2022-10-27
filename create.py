@@ -214,8 +214,8 @@ def check_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    open_start_time = ["12:00", "12:00", "12:00", "08:00", "08:00", "08:00", "12:00"]
-    open_end_time = ["19:00", "19:00", "19:00", "19:00", "17:00", "13:00", "15:00"]
+    open_start_time = ["12:00", "12:00", "12:00", "14:00", "08:00", "08:00", "12:00"]
+    open_end_time = ["19:00", "19:00", "19:00", "18:00", "17:00", "13:00", "15:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -231,7 +231,7 @@ def check_open():
 
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
-    hour_rounded = dt_p_obj_rounded.strftime('%H')
+    hour_rounded = dt_p_obj_rounded.strftime('%H')  # <class 'str'>
     print("PARAM HOUR ROUNDED:", hour_rounded)
 
     start = dt_p_obj.isoformat("T", "seconds")
@@ -240,7 +240,7 @@ def check_open():
 
     end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
-    duration = 1
+    duration = 1 # <class 'int'>
 
     if current_dateTime > dt_p_obj:
         print("A jelenlegi idő: ",current_dateTime," ",dt_p_obj,"már elmúlt. Adjon meg másik időpontot.")
