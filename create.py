@@ -240,6 +240,8 @@ def check_open():
 
     end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
+    duration = 1
+
     if current_dateTime > dt_p_obj:
         print("A jelenlegi idő: ",current_dateTime," ",dt_p_obj,"már elmúlt. Adjon meg másik időpontot.")
         #check_open_text = "A jelenlegi idő: " + current_dateTime + " " + dt_p_obj + "már elmúlt. Adjon meg másik időpontot."
@@ -262,7 +264,7 @@ def check_open():
         check_open_boole = False
 
     if hour_rounded >= open_end_time[dt_p_week_day]:
-        print("KÉSŐN", hour_rounded, ">=", open_end_time[dt_p_week_day])
+        print("KÉSŐN", hour_rounded - duration, ">=", open_end_time[dt_p_week_day])
         check_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         check_open_boole = False
 
