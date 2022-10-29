@@ -233,7 +233,7 @@ def check_open():
 
     hour_rounded = dt_p_obj_rounded
     # hour_rounded = dt_p_obj_rounded.strftime('%H')  # <class 'str'>  = object -> string
-    print("PARAM HOUR ROUNDED:", hour_rounded,type(hour_rounded))
+    print("PARAM HOUR ROUNDED:", hour_rounded.hour,type(hour_rounded))
 
     start = dt_p_obj.isoformat("T", "seconds")
     print("START from parameter = ",start,type(start))
