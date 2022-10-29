@@ -198,7 +198,9 @@ def check_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     current_dateTime_rounded = hour_rounder(current_dateTime)
 
-    current_hour_rounded = current_dateTime_rounded.strftime('%H:%M')
+    #current_hour_rounded = current_dateTime_rounded.strftime('%H:%M')
+    current_hour_rounded = current_dateTime_rounded.strftime('%H')
+    current_hour_rounded = int(current_hour_rounded)
     print("CURRENT HOUR ROUNDED:", current_hour_rounded,type(current_hour_rounded))
 
     req = request.get_json(force=True)
@@ -232,6 +234,7 @@ def check_open():
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
     hour_rounded = dt_p_obj_rounded.strftime('%H')  # <class 'str'>
+    hour_rounded = int(hour_rounded)
     print("PARAM HOUR ROUNDED:", hour_rounded)
 
     start = dt_p_obj.isoformat("T", "seconds")
@@ -271,7 +274,7 @@ def check_open():
     if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
         print("hour rounded = ",hour_rounded, type(hour_rounded))
         print("duration = ",duration, type(duration))
-        print("hour rounded + duration ",hour_rounded,str(duration))
+        print("hour rounded + duration = ",hour_rounded + duration)
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded + duration, "<=", open_end_time[dt_p_week_day])
         check_open_text = " KOZOTTE" + open_start_time[dt_p_week_day] + "<=" + hour_rounded + "<=" + open_end_time[dt_p_week_day]
