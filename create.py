@@ -199,7 +199,7 @@ def check_open():
     current_dateTime_rounded = hour_rounder(current_dateTime)
 
     current_hour_rounded = current_dateTime_rounded.strftime('%H:%M')
-    print("CURRENT HOUR ROUNDED:", current_hour_rounded)
+    print("CURRENT HOUR ROUNDED:", current_hour_rounded,type(current_hour_rounded))
 
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
