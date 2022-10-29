@@ -260,20 +260,18 @@ def check_open():
     if hour_rounded < open_start_time[dt_p_week_day]:
         print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
         check_open_text = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
-        #check_open_text = " KORÁN. " 
         check_open_boole = False
 
     if hour_rounded >= open_end_time[dt_p_week_day]:
         #print("KÉSŐN", hour_rounded - duration, ">=", open_end_time[dt_p_week_day])
         print("KÉSŐN", hour_rounded, ">=", open_end_time[dt_p_week_day])
         check_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
-        #check_open_text = " KÉSŐN. " 
         check_open_boole = False
 
     if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
         print("hour rounded = ",hour_rounded, type(hour_rounded))
         print("duration = ",duration, type(duration))
-        print("hour rounded + duration ",hour_rounded + duration)
+        print("hour rounded + duration ",str(hour_rounded + duration))
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded + duration, "<=", open_end_time[dt_p_week_day])
         check_open_text = " KOZOTTE" + open_start_time[dt_p_week_day] + "<=" + hour_rounded + "<=" + open_end_time[dt_p_week_day]
