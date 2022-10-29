@@ -231,9 +231,9 @@ def check_open():
 
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
-    hour_rounded = dt_p_obj_rounded.strftime('%H')  # <class 'str'>  = object -> string
-    # hour_rounded = int(hour_rounded)
-    print("PARAM HOUR ROUNDED:", hour_rounded)
+    hour_rounded = dt_p_obj_rounded
+    # hour_rounded = dt_p_obj_rounded.strftime('%H')  # <class 'str'>  = object -> string
+    print("PARAM HOUR ROUNDED:", hour_rounded,type(hour_rounded))
 
     start = dt_p_obj.isoformat("T", "seconds")
     print("START from parameter = ",start,type(start))
@@ -241,9 +241,8 @@ def check_open():
 
     end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
-    duration = 1 # <class 'int'>
-
-    print(" A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  " Adjon meg másik időpontot.")
+    # duration = 1 # <class 'int'>
+    duration = datetime.timedelta(hours=1)
 
     if current_dateTime > dt_p_obj:
         print("A ",dt_p_obj,"idő már elmúlt. A jelenlegi idő:",current_dateTime,"Adjon meg másik időpontot.")
@@ -266,8 +265,8 @@ def check_open():
         check_open_boole = False
 
     if hour_rounded >= open_end_time[dt_p_week_day]:
-        #print("KÉSŐN", hour_rounded - duration, ">=", open_end_time[dt_p_week_day])
-        print("KÉSŐN", hour_rounded, ">=", open_end_time[dt_p_week_day])
+        print("KÉSŐN", hour_rounded - duration, ">=", open_end_time[dt_p_week_day])
+        # print("KÉSŐN", hour_rounded, ">=", open_end_time[dt_p_week_day])
         check_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         check_open_boole = False
 
