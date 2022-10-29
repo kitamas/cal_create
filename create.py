@@ -196,12 +196,10 @@ def hour_rounder(t):
 
 def check_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
-    current_dateTime_rounded = hour_rounder(current_dateTime)
+    #current_dateTime_rounded = hour_rounder(current_dateTime)
 
-    #current_hour_rounded = current_dateTime_rounded.strftime('%H:%M')
-    current_hour_rounded = current_dateTime_rounded.strftime('%H')
-    current_hour_rounded = int(current_hour_rounded)
-    print("CURRENT HOUR ROUNDED:", current_hour_rounded,type(current_hour_rounded))
+    #current_hour_rounded = current_dateTime_rounded.strftime('%H:%M')   = object -> string
+    #print("CURRENT HOUR ROUNDED:", current_hour_rounded,type(current_hour_rounded))
 
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
@@ -233,8 +231,8 @@ def check_open():
 
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
-    hour_rounded = dt_p_obj_rounded.strftime('%H')  # <class 'str'>
-    hour_rounded = int(hour_rounded)
+    hour_rounded = dt_p_obj_rounded.strftime('%H')  # <class 'str'>  = object -> string
+    # hour_rounded = int(hour_rounded)
     print("PARAM HOUR ROUNDED:", hour_rounded)
 
     start = dt_p_obj.isoformat("T", "seconds")
