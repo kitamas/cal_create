@@ -225,8 +225,7 @@ def check_wd_open():
 
     # OPEN START TIME = 10:00 <class 'str'>
 
-    print("hour_rounded.strftime = ",hour_rounded.strftime("%H"),type(hour_rounded.strftime))
-    print("int hour_rounded.strftime = ",int(hour_rounded.strftime("%H")))
+    print("int hour_rounded.strftime = ",int(hour_rounded.strftime("%H")),"int open_start_time[dt_p_week_day] = ",open_start_time[dt_p_week_day])
 
 
     if hour_rounded < open_start_time[dt_p_week_day]:
