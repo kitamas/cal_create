@@ -226,8 +226,8 @@ def check_wd_open():
     vvv = open_start_time[dt_p_week_day]
     print("OPEN START TIME =",vvv,type(vvv))
 
-    print("hour_rounded.strftime = ",hour_rounded.strftime("%H))
-    print("int hour_rounded.strftime = ",int(hour_rounded.strftime("%H)))
+    print("hour_rounded.strftime = ",hour_rounded.strftime("%H"))
+    print("int hour_rounded.strftime = ",int(hour_rounded.strftime("%H")))
     print("IIIIIIIIINT, IIIIINT",int(hour_rounded.strftime("%H)), int(open_start_time[dt_p_week_day]))
 
 
