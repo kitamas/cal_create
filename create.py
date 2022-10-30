@@ -195,8 +195,7 @@ def check_wd_open():
 
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
-    hour_rounded = dt_p_obj_rounded
-    # hour_rounded = dt_p_obj_rounded.strftime('%H')  # <class 'str'>  = object -> string
+    hour_rounded = dt_p_obj_rounded.hour
     print("PARAM HOUR ROUNDED:", hour_rounded.hour,type(hour_rounded))
 
     start_p = dt_p_obj.isoformat("T", "seconds")
@@ -223,6 +222,7 @@ def check_wd_open():
     print("open_end_time:", open_end_time[dt_p_week_day])
 
     print("AAAAAAAAAAAAAAAAAA hour_rounded = ", hour_rounded, type(hour_rounded), "open start time = ",open_start_time[dt_p_week_day],type(open_start_time[dt_p_week_day]))
+    print("BBBBBB hour_rounded = ", hour_rounded, type(hour_rounded), "open start time = ",datetime.strptime(open_start_time[dt_p_week_day],%H),type(datetime.strptime(open_start_time[dt_p_week_day],%H)))
 
     if hour_rounded < open_start_time[dt_p_week_day]:
         print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
