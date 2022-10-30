@@ -225,7 +225,7 @@ def check_wd_open():
 
     vvv = open_start_time[dt_p_week_day]
     print("VVVVVV 1111111111=",vvv,type(vvv))
-    vv = time.time.strptime(open_start_time[dt_p_week_day],%H:%M)
+    vv = datetime.time.strptime(open_start_time[dt_p_week_day],%H:%M)
     print("VVVVVV =",vv,type(vv))
 
     if hour_rounded < open_start_time[dt_p_week_day]:
