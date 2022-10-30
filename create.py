@@ -223,7 +223,7 @@ def check_wd_open():
     print("open_start_time:", open_start_time[dt_p_week_day])
     print("open_end_time:", open_end_time[dt_p_week_day])
 
-    print("IIIIIIIIINT",int(hour_rounded), int(open_start_time[dt_p_week_day]))
+    print("IIIIIIIIINT",int(hour_rounded.strftime("%H:%M")), int(open_start_time[dt_p_week_day]))
     vvv = open_start_time[dt_p_week_day]
     print("VVVVVV 1111111111=",vvv,type(vvv))
     #vv = datetime.time.strptime(open_start_time[dt_p_week_day],%H:%M)
