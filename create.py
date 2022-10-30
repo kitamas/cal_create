@@ -228,11 +228,11 @@ def check_wd_open():
 
     print("hour_rounded.strftime = ",hour_rounded.strftime("%H"))
     print("int hour_rounded.strftime = ",int(hour_rounded.strftime("%H")))
-    print("IIIIIIIIINT, IIIIINT",int(hour_rounded.strftime("%H)), int(open_start_time[dt_p_week_day]))
+    print("IIIIIIIIINT, IIIIINT",int(hour_rounded.strftime("%H")), int(open_start_time[dt_p_week_day]))
 
 
-    #vv = datetime.time.strptime(open_start_time[dt_p_week_day],%H:%M)
-    #print("VVVVVV =",vv,type(vv))
+    vv = datetime.time.strptime(open_start_time[dt_p_week_day],"%H:%M")
+    print("VV VV VV =",vv,type(vv))
 
     if hour_rounded < open_start_time[dt_p_week_day]:
         print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
