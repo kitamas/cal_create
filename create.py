@@ -163,7 +163,7 @@ def hour_rounder(t):
         return (t.replace(second=0, microsecond=0, minute=0))
 
 def check_wd_open():
-    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
+    current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
 
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
@@ -223,6 +223,7 @@ def check_wd_open():
     print("open_end_time:", open_end_time[dt_p_week_day])
 
     if hour_rounded < open_start_time[dt_p_week_day]:
+        print("hour_rounded = ", hour_rounded, type(hour_rounded), "open start time = ",open_start_time[dt_p_week_day],type(open_start_time[dt_p_week_day]))
         print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
         check_wd_open_text = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
