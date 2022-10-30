@@ -200,7 +200,7 @@ def check_wd_open():
     print("PARAM HOUR ROUNDED:", hour_rounded.hour,type(hour_rounded))
 
     start_p = dt_p_obj.isoformat("T", "seconds")
-    print("START from parameter = ",start,type(start))
+    print("START from parameter = ",start_p,type(start_p))
     # START from parameter =  2022-10-15T17:00:00 <class 'str'>
 
     end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
