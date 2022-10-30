@@ -195,7 +195,7 @@ def check_wd_open():
 
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
-    hour_rounded = dt_p_obj_rounded.hour
+    hour_rounded = dt_p_obj_rounded
     print("PARAM HOUR ROUNDED:", hour_rounded.hour,type(hour_rounded))
 
     start_p = dt_p_obj.isoformat("T", "seconds")
