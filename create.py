@@ -59,20 +59,20 @@ def webhook():
 
     checked_wd_open = check_wd_open()
 
-    start_wd_o =  checked_wd_open[0]
-    end_wd_o =  checked_wd_open[1]
+    start_p =  checked_wd_open[0]
+    end_p =  checked_wd_open[1]
     summary =  checked_wd_open[2]
     location =  checked_wd_open[3]
-    boolean_wd_o =  checked_wd_open[5]
+    boolean_wd_open =  checked_wd_open[5]
 
 
-    print("start_wd_o = ", checked_wd_open[0])
-    print("end_wd_o  =", checked_wd_open[1])
+    print("start_p = ", checked_wd_open[0])
+    print("end_p  =", checked_wd_open[1])
     print("summary  =", checked_wd_open[2])
     print("location = ", checked_wd_open[3])
-    print("boolean_wd_o = ", checked_wd_open[5])
+    print("boolean_wd_open = ", checked_wd_open[5])
 
-    text_param =  main(start_wd_o,end_wd_o,summary,location)
+    text_param =  main(start_p,end_p,summary,location)
 
     text = text_param['text'] +  checked_wd_open[4] + "B= " + str( checked_wd_open[5])
     event_id = text_param['event_id']
@@ -100,13 +100,13 @@ def webhook():
     return res
 
 
-def main(start_wd_o,end_wd_o,summary,location):
+def main(start_p,end_p,summary,location):
 
-    start = start_wd_o
+    start = start_p
     # 2022-10-09T12:00:00
 
     #end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-    end = end_wd_o
+    end = end_p
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
@@ -150,7 +150,6 @@ def main(start_wd_o,end_wd_o,summary,location):
     text_param['text'] = text
     text_param['event_id'] = event_result['id']
   
-    #return text
     return text_param
 
 def hour_rounder(t):
@@ -165,10 +164,6 @@ def hour_rounder(t):
 
 def check_wd_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
-    #current_dateTime_rounded = hour_rounder(current_dateTime)
-
-    #current_hour_rounded = current_dateTime_rounded.strftime('%H:%M')   = object -> string
-    #print("CURRENT HOUR ROUNDED:", current_hour_rounded,type(current_hour_rounded))
 
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
@@ -204,21 +199,21 @@ def check_wd_open():
     # hour_rounded = dt_p_obj_rounded.strftime('%H')  # <class 'str'>  = object -> string
     print("PARAM HOUR ROUNDED:", hour_rounded.hour,type(hour_rounded))
 
-    start = dt_p_obj.isoformat("T", "seconds")
+    start_p = dt_p_obj.isoformat("T", "seconds")
     print("START from parameter = ",start,type(start))
     # START from parameter =  2022-10-15T17:00:00 <class 'str'>
 
-    end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     duration = datetime.timedelta(hours=1)
 
     if current_dateTime > dt_p_obj:
         print("A ",dt_p_obj,"idő már elmúlt. A jelenlegi idő:",current_dateTime,"Adjon meg másik időpontot.")
-        check_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  " Adjon meg másik időpontot."
-        boolean_wd_o = False
+        check_wd_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  " Adjon meg másik időpontot."
+        boolean_wd_open = False
 
-        checked_start = [start,end,summary,location,check_open_text,boolean_wd_o] 
-        return checked_start
+        checked_wd_open = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open] 
+        return checked_wd_open
 
     #locale.setlocale(locale.LC_ALL, "HU_hu.utf8")
     #locale.setlocale(locale.LC_TIME, "HU_hu.utf8")
@@ -229,14 +224,14 @@ def check_wd_open():
 
     if hour_rounded < open_start_time[dt_p_week_day]:
         print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
-        check_open_text = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
-        boolean_wd_o = False
+        check_wd_open_text = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
+        boolean_wd_open = False
 
     if hour_rounded >= open_end_time[dt_p_week_day]:
         print("KÉSŐN", hour_rounded - duration, ">=", open_end_time[dt_p_week_day])
         # print("KÉSŐN", hour_rounded, ">=", open_end_time[dt_p_week_day])
-        check_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
-        boolean_wd_o = False
+        check_wd_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
+        boolean_wd_open = False
 
     if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
         print("hour rounded = ",hour_rounded, type(hour_rounded))
@@ -244,12 +239,10 @@ def check_wd_open():
         print("hour rounded + duration = ",hour_rounded + duration)
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded + duration, "<=", open_end_time[dt_p_week_day])
-        check_open_text = " KOZOTTE" + open_start_time[dt_p_week_day] + "<=" + hour_rounded + "<=" + open_end_time[dt_p_week_day]
-        boolean_wd_o = True
+        check_wd_open_text = " KOZOTTE" + open_start_time[dt_p_week_day] + "<=" + hour_rounded + "<=" + open_end_time[dt_p_week_day]
+        boolean_wd_open = True
 
-    #return text_check_open
-    checked_start = [start,end,summary,location,check_open_text,boolean_wd_o] 
-    return checked_start
-
+    checked_wd_open = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open] 
+    return checked_wd_open
 
     app.run()
