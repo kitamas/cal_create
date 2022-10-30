@@ -3,12 +3,10 @@ import flask
 import json
 import os
 from flask import send_from_directory, request
-# FLASK = = = = = = = = = = = 
 
 # CRED = = = = = = = = = = =
 import googleapiclient.discovery
 from google.oauth2 import service_account as google_oauth2_service_account
-# CRED = = = = = = = = = = =
 
 # QUICKSTART = = = = = = = = = = =
 import datetime
@@ -19,7 +17,6 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-# QUICKSTART = = = = = = = = = = =
 
 import locale
 
@@ -59,27 +56,25 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    # check_open_text = check_open()
-    # print("check_open_text",check_open_text)
 
-    checked_start_text_o = check_open()
+    checked_wd_open = check_wd_open()
 
-    starto = checked_start_text_o[0]
-    endo = checked_start_text_o[1]
-    summary = checked_start_text_o[2]
-    location = checked_start_text_o[3]
-    boolean = checked_start_text_o[5]
+    start_wd_o =  checked_wd_open[0]
+    end_wd_o =  checked_wd_open[1]
+    summary =  checked_wd_open[2]
+    location =  checked_wd_open[3]
+    boolean_wd_o =  checked_wd_open[5]
 
 
-    print("webhook start start = starto ",checked_start_text_o[0])
-    print("webhook end end  =",checked_start_text_o[1])
-    print("summary  =",checked_start_text_o[2])
-    print("location = ",checked_start_text_o[3])
-    print("boolean = ",checked_start_text_o[5])
+    print("start_wd_o = ", checked_wd_open[0])
+    print("end_wd_o  =", checked_wd_open[1])
+    print("summary  =", checked_wd_open[2])
+    print("location = ", checked_wd_open[3])
+    print("boolean_wd_o = ", checked_wd_open[5])
 
-    text_param =  main(starto,endo,summary,location)
+    text_param =  main(start_wd_o,end_wd_o,summary,location)
 
-    text = text_param['text'] + checked_start_text_o[4] + "B= " + str(checked_start_text_o[5])
+    text = text_param['text'] +  checked_wd_open[4] + "B= " + str( checked_wd_open[5])
     event_id = text_param['event_id']
 
     res = {
@@ -105,39 +100,13 @@ def webhook():
     return res
 
 
-def main(starto,endo,summary,location):
-    """
-    req = request.get_json(force=True)
-    # print(json.dumps(req, indent=4))
+def main(start_wd_o,end_wd_o,summary,location):
 
-    year = req.get('sessionInfo').get('parameters').get('date').get('year')
-    month = req.get('sessionInfo').get('parameters').get('date').get('month')
-    day = req.get('sessionInfo').get('parameters').get('date').get('day')
-
-    hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
-    minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
-
-    summary = req.get('sessionInfo').get('parameters').get('summary')
-    location = req.get('sessionInfo').get('parameters').get('location')
-
-    # print("DATE TIME PARAMETERS:", year, month, day, hours, minutes, "summary: ", summary, "location: ",  location)
-    # DATE TIME PARAMETERS: 2022.0 10.0 9.0 12.0 0.0 summary:  q location:  q
-
-    dt_p_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
-    # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
-
-    dt_p_obj = datetime.datetime.strptime(dt_p_string, '%Y,%m,%d,%H,%M')
-    # 2022-09-25 00:00:00 - string to datetime object
-
-    # start = dt_p_obj.isoformat("T", "seconds")
-    """
-    print("MAIN starto = ",starto)
-
-    start = starto
+    start = start_wd_o
     # 2022-10-09T12:00:00
 
     #end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-    end = endo
+    end = end_wd_o
 
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
@@ -194,7 +163,7 @@ def hour_rounder(t):
     else:
         return (t.replace(second=0, microsecond=0, minute=0))
 
-def check_open():
+def check_wd_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=2)
     #current_dateTime_rounded = hour_rounder(current_dateTime)
 
@@ -214,7 +183,7 @@ def check_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    open_start_time = ["12:00", "12:00", "12:00", "17:00", "08:00", "08:00", "12:00"]
+    open_start_time = ["12:00", "12:00", "12:00", "17:00", "08:00", "08:00", "10:00"]
     open_end_time = ["19:00", "19:00", "19:00", "18:00", "17:00", "13:00", "15:00"]
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
@@ -241,15 +210,14 @@ def check_open():
 
     end = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
-    # duration = 1 # <class 'int'>
     duration = datetime.timedelta(hours=1)
 
     if current_dateTime > dt_p_obj:
         print("A ",dt_p_obj,"idő már elmúlt. A jelenlegi idő:",current_dateTime,"Adjon meg másik időpontot.")
         check_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  " Adjon meg másik időpontot."
-        check_open_boole = False
+        boolean_wd_o = False
 
-        checked_start = [start,end,summary,location,check_open_text,check_open_boole] 
+        checked_start = [start,end,summary,location,check_open_text,boolean_wd_o] 
         return checked_start
 
     #locale.setlocale(locale.LC_ALL, "HU_hu.utf8")
@@ -262,13 +230,13 @@ def check_open():
     if hour_rounded < open_start_time[dt_p_week_day]:
         print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
         check_open_text = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
-        check_open_boole = False
+        boolean_wd_o = False
 
     if hour_rounded >= open_end_time[dt_p_week_day]:
         print("KÉSŐN", hour_rounded - duration, ">=", open_end_time[dt_p_week_day])
         # print("KÉSŐN", hour_rounded, ">=", open_end_time[dt_p_week_day])
         check_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
-        check_open_boole = False
+        boolean_wd_o = False
 
     if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
         print("hour rounded = ",hour_rounded, type(hour_rounded))
@@ -277,11 +245,10 @@ def check_open():
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded + duration, "<=", open_end_time[dt_p_week_day])
         check_open_text = " KOZOTTE" + open_start_time[dt_p_week_day] + "<=" + hour_rounded + "<=" + open_end_time[dt_p_week_day]
-        #check_open_text = " KOZOTTE" 
-        check_open_boole = True
+        boolean_wd_o = True
 
     #return text_check_open
-    checked_start = [start,end,summary,location,check_open_text,check_open_boole] 
+    checked_start = [start,end,summary,location,check_open_text,boolean_wd_o] 
     return checked_start
 
 
