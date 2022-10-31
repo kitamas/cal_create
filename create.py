@@ -181,7 +181,7 @@ def check_wd_open():
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
     print("hours = ",hours)
-    if current_dateTime.time < datetime.datetime.time(12) and current_dateTime > dt_p_obj:
+    if current_dateTime.hour < 16 and current_dateTime > dt_p_obj:
         hours12 = hours - 12
     print("hours 12 =", hours12)
 
