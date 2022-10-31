@@ -180,11 +180,6 @@ def check_wd_open():
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
-    print("hours = ",hours)
-    if current_dateTime.hour < 16 and current_dateTime > dt_p_obj:
-        hours12 = hours - 12
-    print("hours 12 =", hours12)
-
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
@@ -208,6 +203,17 @@ def check_wd_open():
     hour_rounded = dt_p_obj_rounded
     print("DT PARAM OBJ HOUR ROUNDED:", dt_p_obj_rounded,type(dt_p_obj_rounded))
     # 2022-10-31 21:00:00 <class 'datetime.datetime'>
+
+
+
+    print("hours = ",hours)
+    if current_dateTime.hour < 16 and current_dateTime > dt_p_obj:
+        hours12 = hours - 12
+    print("hours 12 =", hours12)
+
+
+
+
 
     start_p = dt_p_obj.isoformat("T", "seconds")
     print("START from parameter = ",start_p,type(start_p))
