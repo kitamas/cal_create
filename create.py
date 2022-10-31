@@ -236,22 +236,17 @@ def check_wd_open():
     print("PTEND = ", ptend)
 
 
-    #if hour_rounded < open_start_time[dt_p_week_day]:
-    if hour_rounded < datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"):
-        print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
-        print("KORÁN", hour_rounded, "<", datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"))
+    if hour_rounded < ptstart:
+        print("KORÁN", hour_rounded, "<", ptstart)
         check_wd_open_text = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
 
-    #if hour_rounded >= open_end_time[dt_p_week_day]:
-    if hour_rounded >= datetime.datetime.strptime(open_end_time[dt_p_week_day],"%H:%M"):
-        print("KÉSŐN", hour_rounded - duration, ">=", open_end_time[dt_p_week_day])
-        # print("KÉSŐN", hour_rounded, ">=", open_end_time[dt_p_week_day])
+    if hour_rounded >= ptend:
+        print("KÉSŐN", hour_rounded - duration, ">=", ptend)
         check_wd_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
 
-    #if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
-    if hour_rounded >= datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M") and hour_rounded <= datetime.datetime.strptime(open_end_time[dt_p_week_day],"%H:%M"):
+    if hour_rounded >= ptstart and hour_rounded <= ptend:
         print("hour rounded = ",hour_rounded, type(hour_rounded))
         print("duration = ",duration, type(duration))
         print("hour rounded + duration = ",hour_rounded + duration)
