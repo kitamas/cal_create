@@ -180,6 +180,11 @@ def check_wd_open():
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
+    print("hours = ",hours)
+    if current_dateTime.time < 12 and current_dateTime > dt_p_obj:
+        hours12 = hours - 12
+    print("hours 12 =", hours12)
+
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
@@ -248,10 +253,7 @@ def check_wd_open():
         boolean_wd_open = False
 
     if dt_p_obj_rounded >= start_pdate_otime and dt_p_obj_rounded + duration <= end_pdate_otime:
-        print("hour rounded = ",dt_p_obj_rounded, type(dt_p_obj_rounded))
-        print("duration = ",duration, type(duration))
         print("hour rounded + duration = ",dt_p_obj_rounded + duration)
-        print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded, "<=", open_end_time[dt_p_week_day])
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
         check_wd_open_text = " KOZOTTE " + open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
         boolean_wd_open = True
