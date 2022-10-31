@@ -186,7 +186,7 @@ def check_wd_open():
     open_start_time = ["14:00", "12:00", "12:00", "17:00", "08:00", "08:00", "10:00"]
     open_end_time = ["19:00", "19:00", "19:00", "18:00", "17:00", "13:00", "15:00"]
 
-    weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
+    week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
     dt_p_string = str(int(year)) + "," + str(int(month)) + "," + str(int(day)) + "," + str(int(hours)) + "," + str(int(minutes))
     # DATE TIME PARAMETERS STRING:  2022,10,9,12,0
@@ -195,7 +195,7 @@ def check_wd_open():
     # 2022-09-25 00:00:00 - string to datetime object
 
     dt_p_week_day = dt_p_obj.weekday()
-    dt_p_week_day_name = weekDays[dt_p_week_day]
+    dt_p_week_day_name = week_days[dt_p_week_day]
     print("dt_p_week_day_name:", dt_p_week_day_name)
 
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
