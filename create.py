@@ -210,7 +210,7 @@ def check_wd_open():
     if current_dateTime.hour < 16 and current_dateTime > dt_p_obj:
         hours12 = hours - 12
     else:
-        hors12 = 23
+        hours12 = 23
     print("hours 12 =", hours12)
 
 
