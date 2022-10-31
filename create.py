@@ -227,7 +227,7 @@ def check_wd_open():
 
 
 
-    print("STRP open_start_time[dt_p_week_day] 00000 = ",dt_p_obj.replace(second=0, microsecond=0, minute=0, hour=24))
+    print("STRP open_start_time[dt_p_week_day] 00000 = ",dt_p_obj.replace(second=0, microsecond=0, minute=0, hour=22))
 
 
 
