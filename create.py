@@ -201,7 +201,7 @@ def check_wd_open():
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
     hour_rounded = dt_p_obj_rounded
-    print("PARAM HOUR ROUNDED:", hour_rounded,type(hour_rounded))
+    print("DT PARAM OBJ HOUR ROUNDED:", dt_p_obj_rounded,type(dt_p_obj_rounded))
     # 2022-10-31 21:00:00 <class 'datetime.datetime'>
 
     start_p = dt_p_obj.isoformat("T", "seconds")
@@ -229,30 +229,31 @@ def check_wd_open():
 
     print("STRP open_start_time[dt_p_week_day] = ",dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2])))
 
-    ptstart = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
-    ptend = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
+    start_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
+    # parameter date, open start time
+    end_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
 
-    print("PTSTART =", ptstart)
-    print("PTEND = ", ptend)
+    print("start_pdate_otime =", start_pdate_otime)
+    print("end_pdate_otime = ", end_pdate_otime)
 
 
-    if hour_rounded < ptstart:
-        print("KORÁN", hour_rounded, "<", ptstart)
+    if dt_p_obj_rounded < start_pdate_otime:
+        print("KORÁN", dt_p_obj_rounded, "<", start_pdate_otime)
         check_wd_open_text = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
 
-    if hour_rounded >= ptend:
-        print("KÉSŐN", hour_rounded - duration, ">=", ptend)
+    if dt_p_obj_rounded >= end_pdate_otime:
+        print("KÉSŐN", dt_p_obj_rounded - duration, ">=", end_pdate_otime)
         check_wd_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
 
-    if hour_rounded >= ptstart and hour_rounded <= ptend:
-        print("hour rounded = ",hour_rounded, type(hour_rounded))
+    if dt_p_obj_rounded >= start_pdate_otime and dt_p_obj_rounded <= end_pdate_otime:
+        print("hour rounded = ",dt_p_obj_rounded, type(dt_p_obj_rounded))
         print("duration = ",duration, type(duration))
-        print("hour rounded + duration = ",hour_rounded + duration)
-        print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded, "<=", open_end_time[dt_p_week_day])
-        print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", hour_rounded + duration, "<=", open_end_time[dt_p_week_day])
-        check_wd_open_text = " KOZOTTE" + open_start_time[dt_p_week_day] + "<=" + hour_rounded + "<=" + open_end_time[dt_p_week_day]
+        print("hour rounded + duration = ",dt_p_obj_rounded + duration)
+        print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded, "<=", open_end_time[dt_p_week_day])
+        print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
+        check_wd_open_text = " KOZOTTE" + open_start_time[dt_p_week_day] + "<=" + dt_p_obj_rounded + "<=" + open_end_time[dt_p_week_day]
         boolean_wd_open = True
 
     checked_wd_open = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open] 
