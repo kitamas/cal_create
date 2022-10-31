@@ -224,11 +224,17 @@ def check_wd_open():
     print("open_end_time:", open_end_time[dt_p_week_day])
 
     # open_start_time[dt_p_week_day] = 10:00 <class 'str'>
-
     # print("HOUR open_start_time[dt_p_week_day][0:2]",open_start_time[dt_p_week_day][0:2])
     # print("MINUTE open_start_time[dt_p_week_day][3:5]",open_start_time[dt_p_week_day][3:5])
 
     print("STRP open_start_time[dt_p_week_day] = ",dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2])))
+
+    ptstart = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
+    ptend = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
+
+    print("PTSTART =", ptstart)
+    print("PTEND = ", ptend)
+
 
     #if hour_rounded < open_start_time[dt_p_week_day]:
     if hour_rounded < datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"):
