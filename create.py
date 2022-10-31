@@ -227,6 +227,9 @@ def check_wd_open():
     print("STRP open_start_time[dt_p_week_day] = ",datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"))
     # STRP open_start_time[dt_p_week_day] =  1900-01-01 10:00:00
 
+    d = datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M")
+    print("STRP open_start_time[dt_p_week_day] 2222222 = ",d.time(),type(d.time()))
+    print("PARAM HOUR ROUNDED:", hour_rounded.hour,type(hour_rounded))
     # hour_rounded.hour =  21
 
     #if hour_rounded < open_start_time[dt_p_week_day]:
