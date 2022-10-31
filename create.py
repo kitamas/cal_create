@@ -243,7 +243,8 @@ def check_wd_open():
         check_wd_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
 
-    if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
+    #if hour_rounded >= open_start_time[dt_p_week_day] and hour_rounded <= open_end_time[dt_p_week_day]:
+    if hour_rounded >= datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M") and hour_rounded <= datetime.datetime.strptime(open_end_time[dt_p_week_day],"%H:%M"):
         print("hour rounded = ",hour_rounded, type(hour_rounded))
         print("duration = ",duration, type(duration))
         print("hour rounded + duration = ",hour_rounded + duration)
