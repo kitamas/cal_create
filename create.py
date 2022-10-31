@@ -170,8 +170,7 @@ def hour_rounder(t):
 def convert_string_to_time(str):
     return datetime.time(hour=int(str[0:2]), minute=int(str[2:4]))
 
-qq = convert_string_to_time(open_start_time[0])
-print("QQQQQQQQQ",qq,type(qq))
+
 
 def check_wd_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
@@ -191,6 +190,10 @@ def check_wd_open():
 
     open_start_time = ["14:00", "12:00", "12:00", "17:00", "08:00", "08:00", "10:00"]
     open_end_time = ["19:00", "19:00", "19:00", "18:00", "17:00", "13:00", "15:00"]
+
+
+    qq = convert_string_to_time(open_start_time[0])
+    print("QQQQQQQQQ",qq,type(qq))
 
     weekDays = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
