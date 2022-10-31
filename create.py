@@ -167,6 +167,12 @@ def hour_rounder(t):
     else:
         return (t.replace(second=0, microsecond=0, minute=0))
 
+def convert_string_to_time(str):
+    return datetime.time(hour=int(str[0:2]), minute=int(str[2:4]))
+
+qq = convert_string_to_time(open_start_time[0])
+print("QQQQQQQQQ",qq,type(qq))
+
 def check_wd_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
 
