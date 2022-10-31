@@ -202,7 +202,7 @@ def check_wd_open():
 
     hour_rounded = dt_p_obj_rounded
     print("PARAM HOUR ROUNDED:", hour_rounded,type(hour_rounded))
-    print("PARAM HOUR ROUNDED HOUR:", hour_rounded.hour,type(hour_rounded))
+    # 2022-10-31 21:00:00 <class 'datetime.datetime'>
 
     start_p = dt_p_obj.isoformat("T", "seconds")
     print("START from parameter = ",start_p,type(start_p))
@@ -225,13 +225,18 @@ def check_wd_open():
 
     # open_start_time[dt_p_week_day] = 10:00 <class 'str'>
 
-    print("STRP open_start_time[dt_p_week_day] = ",datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"))
+
+
+    print("STRP open_start_time[dt_p_week_day] 00000 = ",dt_p_obj.replace(second=0, microsecond=0, minute=0, hour=24))
+
+
+
+    print("STRP open_start_time[dt_p_week_day] 111 = ",datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"))
     # STRP open_start_time[dt_p_week_day] =  1900-01-01 10:00:00
 
     d = datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M")
     print("STRP open_start_time[dt_p_week_day] 2222222 = ",d.time(),type(d.time()))
-    print("PARAM HOUR ROUNDED:", hour_rounded.hour,type(hour_rounded))
-    # hour_rounded.hour =  21
+
 
     #if hour_rounded < open_start_time[dt_p_week_day]:
     if hour_rounded < datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"):
