@@ -21,6 +21,9 @@ from googleapiclient.errors import HttpError
 import time
 
 import locale
+ # locale.setlocale(locale.LC_ALL, "HU_hu.utf8")
+ # locale.setlocale(locale.LC_TIME, "HU_hu.utf8")
+ # print("LOCALE LOCALE",current_dateTime.strftime('%A, %a, %B, %b'))
 
 # Flask app should start in global layout
 app = flask.Flask(__name__)
@@ -216,22 +219,20 @@ def check_wd_open():
         checked_wd_open = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open] 
         return checked_wd_open
 
-    #locale.setlocale(locale.LC_ALL, "HU_hu.utf8")
-    #locale.setlocale(locale.LC_TIME, "HU_hu.utf8")
-    #print("LOCALE LOCALE",current_dateTime.strftime('%A, %a, %B, %b'))
-
     print("open_start_time:", open_start_time[dt_p_week_day])
     print("open_end_time:", open_end_time[dt_p_week_day])
 
-    # OPEN START TIME = 10:00 <class 'str'>
+    # open_start_time[dt_p_week_day] = 10:00 <class 'str'>
 
-    print("AAAAAAAAA hour_rounded.hour = ",hour_rounded.hour)
-    print("BBBBBBBBB open_start_time[dt_p_week_day] = ",open_start_time[dt_p_week_day],type(open_start_time[dt_p_week_day]))
-    print("CCCCCCCCC STRP open_start_time[dt_p_week_day] = ",datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"))
+    print("STRP open_start_time[dt_p_week_day] = ",datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"))
+    # STRP open_start_time[dt_p_week_day] =  1900-01-01 10:00:00
 
+    # hour_rounded.hour =  21
 
-    if hour_rounded < open_start_time[dt_p_week_day]:
+    #if hour_rounded < open_start_time[dt_p_week_day]:
+    if hour_rounded < datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"):
         print("KORÁN", hour_rounded, "<", open_start_time[dt_p_week_day])
+        print("KORÁN", hour_rounded, "<", datetime.datetime.strptime(open_start_time[dt_p_week_day],"%H:%M"))
         check_wd_open_text = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
 
