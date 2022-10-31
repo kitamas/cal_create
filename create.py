@@ -269,4 +269,150 @@ def check_wd_open():
     checked_wd_open = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open] 
     return checked_wd_open
 
+
+def get_events():
+    try:
+        service = build('calendar', 'v3', credentials=authentication())
+
+        # Call the Calendar API
+        now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+        # now = 2022-10-09T05:53:52.400939Z
+
+        page_token = None
+
+        # https://developers.google.com/calendar/api/v3/reference/calendarList/list
+        # If you want to list the calendars that have been shared with a service account, you should first insert the corresponding calendars individually via CalendarList: insert.
+        # https://developers.google.com/calendar/api/v3/reference/calendarList/insert
+        # calendar_list_entry = {'id': 'r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com'}
+        # created_calendar_list_entry = service.calendarList().insert(body=calendar_list_entry).execute()
+        # calendar_ids = ['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com','r0evkror5p88vkhf3q842jk8fg@group.calendar.google.com']
+
+        calendar_ids = []
+
+        while True:
+            calendar_list = service.calendarList().list(pageToken=page_token).execute()
+            for calendar_list_entry in calendar_list['items']:
+                if '@group.calendar.google.com' in calendar_list_entry['id']:
+                    calendar_ids.append(calendar_list_entry['id'])
+            page_token = calendar_list.get('nextPageToken')
+            if not page_token:
+                break
+
+        # start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
+        end_date = datetime.datetime(2022, 10, 30, 23, 59, 59, 0).isoformat() + 'Z'
+
+        for calendar_id in calendar_ids:
+            events_result = service.events().list(
+                calendarId=calendar_id,
+                #timeMin=start_date,
+                timeMin=now,
+                timeMax=end_date,
+                singleEvents=True,
+                orderBy='startTime').execute()
+            events = events_result.get('items', [])
+            # tags from the calendar, for filtering
+            # if "description" exists in the calendar: event['description']
+            # if "status":"confirmed",
+
+            if calendar_id == '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com':
+                events_cal1 = "CAL1: " 
+                for event in events:
+                    time_cal1_ISO = event['start'].get('dateTime', event['start'].get('date'))
+                    # 2022-10-15T10:00:00+02:00
+                    time_cal1_obj = datetime.datetime.fromisoformat(time_cal1_ISO)
+
+                    date = time_cal1_obj.strftime("%Y-%m-%d %B %A")
+                    time = time_cal1_obj.strftime("%H:%M")
+
+                    weekday = time_cal1_obj.weekday()
+
+                    events_cal1 += event['summary'] + " | " + date + " " + time + " | "
+
+            events_cal2 = "CAL2: " 
+            for event in events:
+                """
+                time_cal2_Z = event['start'].get('dateTime', event['start'].get('date'))
+                # 2022-10-15T10:00:00Z
+                # time_cal2 = datetime.datetime.strptime(time_cal2_Z,'%Y-%m-%dT%H:%M:%S%z')
+                events_cal2 +=  event['summary'] + " | " + time_cal2_Z + " | "
+                """
+                time_cal2_ISO = event['start'].get('dateTime', event['start'].get('date'))
+
+                time_cal2_obj = datetime.datetime.fromisoformat(time_cal2_ISO)
+
+                date = time_cal2_obj.strftime("%Y-%m-%d %B %A")
+                time = time_cal2_obj.strftime("%H:%M")
+
+                events_cal2 += event['summary'] + " | " + date + " " + time + " | "
+
+        if not events:
+            print('No upcoming events found.')
+            return
+
+        # NOW =  2022-10-17T06:20:26.706507Z END DATE =  2022-12-31T23:59:59Z
+        # START TIME =  2022-10-17 08:20:27.944570 END TIME =  2022-12-31 23:59:59
+
+        startTime = datetime.datetime.now() + datetime.timedelta(hours = 2)
+        print("startTime = = =",startTime)
+        endTime = datetime.datetime(2022, 10, 30, 23, 59, 59, 0)
+
+        duration = datetime.timedelta(hours = 1)
+
+        f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
+        if f_obj == "None":
+            f_time = "NINCS"
+        else:
+            f_time = f_obj.strftime("%Y-%m-%d %H:%M")
+
+        firsto = "FIRST OPEN: "        
+        print(firsto,f_time)
+
+        return events_cal1 + events_cal2 + firsto + f_time
+
+    except HttpError as error:
+        print('An error occurred: %s' % error)
+
+
+def findFirstOpenSlot(events,startTime,endTime,duration):
+
+    def parseDate(rawDate):
+        # RAWDATE =  2022-10-17T09:00:00Z
+        # Transform the datetime given by the API to a python datetime object.
+        # return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
+
+        # return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
+        return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+02:00')
+
+    eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
+
+    eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
+    # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]
+    # eventEnds[0] = 2022-10-24 18:00:00
+    gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
+
+    print("start = eventStarts = ",eventStarts,"end = eventEnds = ", eventEnds,"gaps = ",gaps)
+
+    print("FIRST OPEN START = ",eventStarts[0],"FIRST OPEN END =",eventEnds[0])
+    # FIRST OPEN START =  2022-10-24 17:00:00 FIRST OPEN END = 2022-10-24 18:00:00
+
+    #  start = eventStarts, end = eventEnds, gaps =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
+
+    # if ROUNDED startTime + duration < eventStarts[0]:
+    if startTime + duration < eventStarts[0]:
+        # A slot is open at the start of the desired window.
+        return startTime
+
+    for i, gap in enumerate(gaps):
+        if gap >= duration:
+        #This means that a gap is bigger or = than the desired slot duration, and we can "squeeze" a meeting. Just after that meeting ends.
+        #if gap > duration:
+        #This means that a gap is bigger than the desired slot duration, and we can "squeeze" a meeting.
+
+            return eventEnds[i]
+
+    #If no suitable gaps are found, return none.
+    return "None"
+
+
+
     app.run()
