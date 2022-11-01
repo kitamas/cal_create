@@ -270,12 +270,14 @@ def check_wd_open():
     return checked_wd_open
 
 
-def get_events():
+def get_events(start_p,end_p):
+    start_date = start_p
+    end_date = end_p
     try:
         service = build('calendar', 'v3', credentials=authentication())
 
         # Call the Calendar API
-        now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+        # now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         # now = 2022-10-09T05:53:52.400939Z
 
         page_token = None
@@ -299,13 +301,13 @@ def get_events():
                 break
 
         # start_date = datetime.datetime(2022, 10, 14, 0, 0, 0, 0).isoformat() + 'Z'
-        end_date = datetime.datetime(2022, 10, 30, 23, 59, 59, 0).isoformat() + 'Z'
+        # end_date = datetime.datetime(2022, 10, 30, 23, 59, 59, 0).isoformat() + 'Z'
 
         for calendar_id in calendar_ids:
             events_result = service.events().list(
                 calendarId=calendar_id,
                 #timeMin=start_date,
-                timeMin=now,
+                #timeMin=now,
                 timeMax=end_date,
                 singleEvents=True,
                 orderBy='startTime').execute()
