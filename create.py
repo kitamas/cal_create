@@ -77,7 +77,7 @@ def webhook():
     print("location = ", check_wd_open_ret[3])
     print("boolean_wd_open = ", check_wd_open_ret[5])
 
-    get_events_ret = get_events(start_p)
+    get_events_ret = get_events(start_p,end_p)
     print("GET EVENTS RET  = ",get_events_ret)
 
     main_ret =  main(start_p,end_p,summary,location)    
