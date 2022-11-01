@@ -273,7 +273,7 @@ def check_wd_open():
     return check_wd_open_ret
 
 
-def get_events(start_p,end_p):
+def get_events(start_p):
     try:
         service = build('calendar', 'v3', credentials=authentication())
 
