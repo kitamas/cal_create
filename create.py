@@ -286,7 +286,7 @@ def get_events(start_p,end_p):
         print('Getting the upcoming 10 events')
         #events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,
-                                              maxResults=2, singleEvents=True,
+                                              maxResults=1, singleEvents=True,
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
 
