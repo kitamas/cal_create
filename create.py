@@ -285,6 +285,7 @@ def get_events(start_p):
         print('NOW =',now,type(now))
 
         print('START_P = ',start_p,type(start_p))
+        print('START_PZ = ',start_p.isoformat() + 'Z')
 
         print('Getting the upcoming 10 events')
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
