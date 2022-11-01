@@ -273,7 +273,7 @@ def check_wd_open():
     return check_wd_open_ret
 
 
-def get_events(start_p):
+def get_events(start_p,end_p):
     try:
         service = build('calendar', 'v3', credentials=authentication())
 
@@ -281,13 +281,16 @@ def get_events(start_p):
         # now = 2022-10-09T05:53:52.400939Z
 
         start_p = start_p + 'Z'
+        end_p = end_p + 'Z'
 
         print('Getting the upcoming 10 events')
         #events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
-        events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,
-                                              maxResults=10, singleEvents=True,
+        events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
+                                              maxResults=1, singleEvents=True,
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
+
+        #maxResults=10,
 
         if not events:
             print('No upcoming events found.')
