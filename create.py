@@ -78,7 +78,7 @@ def webhook():
     print("boolean_wd_open = ", check_wd_open_ret[5])
 
     get_events_ret = get_events(start_p)
-    print("get_events_ret = ",get_events_ret)
+    print("GET EVENTS RET  = ",get_events_ret)
 
     main_ret =  main(start_p,end_p,summary,location)    
 
@@ -306,6 +306,7 @@ def get_events(start_p):
             start_event += event['summary'] + " "  + start + " | "
             #return event['summary']
 
+        print("START EVENT =",start_event)
         return start_event
 
     except HttpError as error:
