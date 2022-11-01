@@ -82,7 +82,7 @@ def webhook():
 
     main_ret =  main(start_p,end_p,summary,location)    
 
-    text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5]) + "" + get_events_ret
+    text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5]) + " " + get_events_ret
     event_id = main_ret['event_id']
 
     res = {
