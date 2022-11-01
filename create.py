@@ -62,25 +62,28 @@ def authentication():
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
 
-    checked_wd_open = check_wd_open()
+    check_wd_open_ret = check_wd_open()
 
-    start_p =  checked_wd_open[0]
-    end_p =  checked_wd_open[1]
-    summary =  checked_wd_open[2]
-    location =  checked_wd_open[3]
-    boolean_wd_open =  checked_wd_open[5]
+    start_p =  check_wd_open_ret[0]
+    end_p =  check_wd_open_ret[1]
+    summary =  check_wd_open_ret[2]
+    location =  check_wd_open_ret[3]
+    boolean_wd_open =  check_wd_open_ret[5]
 
 
-    print("start_p = ", checked_wd_open[0])
-    print("end_p  =", checked_wd_open[1])
-    print("summary  =", checked_wd_open[2])
-    print("location = ", checked_wd_open[3])
-    print("boolean_wd_open = ", checked_wd_open[5])
+    print("start_p = ", check_wd_open_ret[0])
+    print("end_p  =", check_wd_open_ret[1])
+    print("summary  =", check_wd_open_ret[2])
+    print("location = ", check_wd_open_ret[3])
+    print("boolean_wd_open = ", check_wd_open_ret[5])
 
-    text_param =  main(start_p,end_p,summary,location)
+    get_events_ret = get_events(start_p,end_p)
+    print("get_events_ret = ",get_events_ret = )
 
-    text = text_param['text'] +  checked_wd_open[4] + " B cwdo= " + str( checked_wd_open[5])
-    event_id = text_param['event_id']
+    main_ret =  main(start_p,end_p,summary,location)    
+
+    text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5])
+    event_id = main_ret['event_id']
 
     res = {
         "fulfillment_response": {
@@ -151,11 +154,11 @@ def main(start_p,end_p,summary,location):
 
     text = "Kezdő időpont: " + start_event.strftime("%B %A %H:%M") + " Vége: " + end_event.strftime("%B %A %H:%M")
 
-    text_param = {}
-    text_param['text'] = text
-    text_param['event_id'] = event_result['id']
+    main_ret = {}
+    main_ret['text'] = text
+    main_ret['event_id'] = event_result['id']
   
-    return text_param
+    return main_ret
 
 def hour_rounder(t):
     # Rounds to nearest hour by adding a timedelta hour if minute >= 30
@@ -230,8 +233,8 @@ def check_wd_open():
         check_wd_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  " Adjon meg másik időpontot."
         boolean_wd_open = False
 
-        checked_wd_open = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open] 
-        return checked_wd_open
+        check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open] 
+        return check_wd_open_ret
 
     print("open_start_time:", open_start_time[dt_p_week_day])
     print("open_end_time:", open_end_time[dt_p_week_day])
@@ -266,8 +269,8 @@ def check_wd_open():
         check_wd_open_text = " KOZOTTE " + open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
         boolean_wd_open = True
 
-    checked_wd_open = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open] 
-    return checked_wd_open
+    check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open] 
+    return check_wd_open_ret
 
 
 def get_events(start_p,end_p):
@@ -369,7 +372,8 @@ def get_events(start_p,end_p):
         firsto = "FIRST OPEN: "        
         print(firsto,f_time)
 
-        return events_cal1 + events_cal2 + firsto + f_time
+        get_events_ret = events_cal1 + events_cal2 + firsto + f_time 
+        return get_events_ret
 
     except HttpError as error:
         print('An error occurred: %s' % error)
