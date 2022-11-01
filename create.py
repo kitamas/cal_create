@@ -82,7 +82,7 @@ def webhook():
 
     main_ret =  main(start_p,end_p,summary,location)    
 
-    text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5]) + get_events_ret
+    text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5]) + "" + get_events_ret
     event_id = main_ret['event_id']
 
     res = {
@@ -284,8 +284,9 @@ def get_events(start_p,end_p):
         end_p = end_p + 'Z'
         print("START P Z, END PZ =",start_p,end_p)
         print('Getting the upcoming 10 events')
+
         #events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
-        events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,
+        events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
                                               maxResults=1, singleEvents=True,
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
