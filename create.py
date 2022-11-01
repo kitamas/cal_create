@@ -277,19 +277,14 @@ def get_events(start_p):
     try:
         service = build('calendar', 'v3', credentials=authentication())
 
-        # Call the Calendar API
-        now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+        # now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         # now = 2022-10-09T05:53:52.400939Z
 
-
-        print('NOW =',now,type(now))
-
-        print('START_P = ',start_p,type(start_p))
-        print('START_PZ = ',start_p + 'Z')
         start_p = start_p + 'Z'
+
         print('Getting the upcoming 10 events')
-        events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
-        #events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,
+        #events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
+        events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,
                                               maxResults=10, singleEvents=True,
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
