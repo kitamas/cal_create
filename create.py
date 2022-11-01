@@ -282,7 +282,7 @@ def get_events(start_p,end_p):
 
         start_p = start_p + 'Z'
         end_p = end_p + 'Z'
-
+        print("START P Z, END PZ =",start_p,end_p)
         print('Getting the upcoming 10 events')
         #events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
