@@ -198,7 +198,7 @@ def check_wd_open():
     location = req.get('sessionInfo').get('parameters').get('location')
 
     open_start_time = ["08:00", "10:00", "10:00", "10:00", "08:00", "08:00", "10:00"]
-    open_end_time = ["17:00", "17:00", "18:00", "17:00", "17:00", "13:00", "13:00"]
+    open_end_time = ["17:00", "17:00", "19:00", "17:00", "17:00", "13:00", "13:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -218,33 +218,28 @@ def check_wd_open():
     print("DT PARAM OBJ HOUR ROUNDED:", dt_p_obj_rounded,type(dt_p_obj_rounded))
     # 2022-10-31 21:00:00 <class 'datetime.datetime'>
 
+    start_p = dt_p_obj_rounded.isoformat("T", "seconds")
+    print("START from parameter ROUNDED= ",start_p,type(start_p))
+
+    gmt_1 = datetime.timedelta(hours=1)
+
+    start_p2 = dt_p_obj_rounded - gmt_1
+    print("START from parameter ROUNDED - gmt_1 = ",start_p2,type(start_pr))
+
+    end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+
+    duration = datetime.timedelta(hours=1)
 
 
+    """
     print("hours = ",hours)
     if current_dateTime.hour < 16 and current_dateTime > dt_p_obj:
         hours12 = hours - 12
     else:
         hours12 = 23
     print("hours 12 =", hours12)
+    """
 
-
-
-
-    gmt_1 = datetime.timedelta(hours=1)
-
-    start_p = dt_p_obj.isoformat("T", "seconds")
-    print("START from parameter = ",start_p,type(start_p))
-    # START from parameter =  2022-10-15T17:00:00 <class 'str'>
-
-    start_pr = dt_p_obj_rounded.isoformat("T", "seconds")
-    print("START from parameter ROUNDED= ",start_pr,type(start_pr))
-
-    start_p2 = dt_p_obj_rounded - gmt_1
-    print("START from parameter ROUNDED P2= ",start_p2,type(start_pr))
-
-    end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
-
-    duration = datetime.timedelta(hours=1)
 
     if current_dateTime > dt_p_obj:
         print("A ",dt_p_obj,"idő már elmúlt. A jelenlegi idő:",current_dateTime,"Adjon meg másik időpontot.")
