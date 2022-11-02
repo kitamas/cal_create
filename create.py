@@ -149,7 +149,7 @@ def main(start_p,end_p,summary,location):
 
     # text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
 
-    print(event_result['start']['dateTime']) 2022-10-10T15:00:00+02:00
+    print(event_result['start']['dateTime']) # 2022-10-10T15:00:00+02:00
 
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
