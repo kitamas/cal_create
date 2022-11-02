@@ -281,9 +281,13 @@ def get_events(start_p,end_p):
         # now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         # now = 2022-10-09T05:53:52.400939Z
 
-        start_p = start_p + 'Z'
-        end_p = end_p + 'Z'
+        #start_p = start_p + 'Z'
+        start_p = start_p + '+02:00'
+        #end_p = end_p + 'Z'
+        end_p = end_p + '+02:00'
         print("START P Z, END PZ =",start_p,end_p)
+        # 2022-11-01T10:00:00Z 2022-11-01T11:00:00Z
+
         print('Getting the upcoming 10 events')
 
         #events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
