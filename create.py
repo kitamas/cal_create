@@ -152,7 +152,7 @@ def main(start_p,end_p,summary,location):
 
     # "start": {"dateTime": start, "timeZone": "Europe/Budapest"},
     # "end": {"dateTime": end, "timeZone": "Europe/Budapest"},
-    # print(event_result['start']['dateTime'])
+    print("EVENT RESULT START DATETIME = ",event_result['start']['dateTime'])
     # 2022-10-10T15:00:00+02:00
     # !!!!! timeZone": "Europe/Budapest" !!!!! HOZZA AD start + 1
 
