@@ -297,7 +297,7 @@ def get_events(start_p,end_p):
         start_p = start_p + '+00:00'
         #end_p = end_p + 'Z'
         end_p = end_p + '+00:00'
-        print("START P Z, END PZ =",start_p,end_p)
+        print("GET EVENTS. START P 00:00=,start_p, " END P 00:00 = ",end_p)
         # 2022-11-01T10:00:00Z 2022-11-01T11:00:00Z
 
         print('Getting the upcoming 10 events')
