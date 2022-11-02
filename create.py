@@ -127,8 +127,8 @@ def main(start_p,end_p,summary,location):
            "summary": summary,
            "location": location,
            "description": "This is the description (parkolo/targyalo, stb)",
-           "start": {"dateTime": start, "timeZone": "-01:00"},
-           "end": {"dateTime": end, "timeZone": "-01:00"},
+           "start": {"dateTime": start,"timeZone": "Europe/Budapest"},
+           "end": {"dateTime": end,"timeZone": "Europe/Budapest"},
            "recurrence": {
                 "RRULE": "FREQ=DAILY;COUNT=2"
             },
@@ -149,7 +149,8 @@ def main(start_p,end_p,summary,location):
 
     # text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
 
-
+    #        "start": {"dateTime": start, "timeZone": "-01:00"},
+    #        "end": {"dateTime": end, "timeZone": "-01:00"},
     # "start": {"dateTime": start, "timeZone": "Europe/Budapest"},
     # "end": {"dateTime": end, "timeZone": "Europe/Budapest"},
     print("EVENT RESULT START DATETIME = ",event_result['start']['dateTime'])
