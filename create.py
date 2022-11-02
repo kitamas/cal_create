@@ -151,8 +151,11 @@ def main(start_p,end_p,summary,location):
 
     # print(event_result['start']['dateTime']) 2022-10-10T15:00:00+02:00
 
-    start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
-    end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
+    #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
+    #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
+
+    start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M')
+    end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M')
 
     text = "Kezdő időpont: " + start_event.strftime("%B %A %H:%M") + " Vége: " + end_event.strftime("%B %A %H:%M")
 
@@ -297,8 +300,6 @@ def get_events(start_p,end_p):
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
 
-        #maxResults=10,
-
         if not events:
             print('No upcoming events found.')
             return
@@ -312,7 +313,6 @@ def get_events(start_p,end_p):
             start_event += event['summary'] + " "  + start + " | "
             #return event['summary']
 
-        print("START EVENT =",start_event)
         return start_event
 
     except HttpError as error:
