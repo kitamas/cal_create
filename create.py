@@ -127,8 +127,8 @@ def main(start_p,end_p,summary,location):
            "summary": summary,
            "location": location,
            "description": "This is the description (parkolo/targyalo, stb)",
-           "start": {"dateTime": start, "timeZone": "+00:00"},
-           "end": {"dateTime": end, "timeZone": "+00:00"},
+           "start": {"dateTime": start, "timeZone": "-01:00"},
+           "end": {"dateTime": end, "timeZone": "-01:00"},
            "recurrence": {
                 "RRULE": "FREQ=DAILY;COUNT=2"
             },
