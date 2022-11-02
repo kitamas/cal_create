@@ -224,7 +224,7 @@ def check_wd_open():
     gmt_1 = datetime.timedelta(hours=1)
 
     start_p2 = dt_p_obj_rounded - gmt_1
-    print("START from parameter ROUNDED - gmt_1 = ",start_p2,type(start_pr))
+    print("START from parameter ROUNDED - gmt_1 = ",start_p2,type(start_p2))
 
     end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
