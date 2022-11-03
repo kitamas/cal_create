@@ -290,15 +290,13 @@ def get_events(start_p,end_p):
     try:
         service = build('calendar', 'v3', credentials=authentication())
 
-        # now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
-        # now = 2022-10-09T05:53:52.400939Z
-
         #start_p = start_p + 'Z'
         start_p = start_p + '+00:00'
         # start_p = "2022-11-03T11:59:00+00:00"
-
-        end_p = end_p + 'Z'
-        # end_p = end_p + '+00:00'
+        print("start_p GET EVENTS start_p + '+00:00' =",start_p)
+        # calendar: szemeszet 12:00,gumi 13:00 
+        # end_p = end_p + 'Z'
+        end_p = end_p + '+00:00'
 
         print('Getting the upcoming 10 events')
 
