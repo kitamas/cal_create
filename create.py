@@ -82,9 +82,14 @@ def webhook():
 
     print("GET EVENTS RET  = ",get_events_ret)
 
+    if get_events_ret == 'No upcoming events found'
+        boolean_get_events = True
+    else:
+        boolean_get_events = False
+
     main_ret =  main(start_p,end_p,summary,location)    
 
-    text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5]) + "|" + get_events_ret
+    text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5]) + "|" + get_events_ret + " B get ev= " + str(boolean_get_events)
     #text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5])
     event_id = main_ret['event_id']
 
@@ -311,7 +316,7 @@ def get_events(start_p_min1,end_p):
 
         if not events:
             print('No upcoming events found.')
-            start_event = 'No upcoming events found.'
+            start_event = 'No upcoming events found'
             #return
             return start_event
 
