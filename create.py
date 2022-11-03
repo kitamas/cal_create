@@ -296,19 +296,19 @@ def get_events(start_p,end_p):
         #start_p = start_p + 'Z'
         #start_p = start_p + '+00:00'
 
-        start_p = "2022-11-03T10:35:00+00:00"
+        start_p = "2022-11-03T10:59:00+00:00"
         end_p = "2022-11-03T12:35:00+00:00"
 
         #end_p = end_p + 'Z'
         # end_p = end_p + '+00:00'
-        print("GET EVENTS. START P 00:00 = ",start_p, " END P 00:00 = ",end_p)
+        print("AAAAAAAAAAAAAAA GET EVENTS. START P 00:00 = ",start_p, " END P 00:00 = ",end_p)
         # 2022-11-01T10:00:00Z 2022-11-01T11:00:00Z
 
         print('Getting the upcoming 10 events')
 
         #events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
-                                              maxResults=1, singleEvents=True,
+                                              maxResults=3, singleEvents=True,
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
 
