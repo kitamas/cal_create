@@ -73,8 +73,6 @@ def webhook():
 
     print("start_p = ", check_wd_open_ret[0])
     print("end_p  =", check_wd_open_ret[1])
-    print("summary  =", check_wd_open_ret[2])
-    print("location = ", check_wd_open_ret[3])
     print("boolean_wd_open = ", check_wd_open_ret[5])
 
     get_events_ret = "semmi"
@@ -121,7 +119,9 @@ def main(start_p,end_p,summary,location):
     creds = authentication()
     service = build("calendar", "v3", credentials=creds)
 
-    #event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',sendUpdates='all',
+    # sendUpdates='all' -> sending email
+    # event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',sendUpdates='all',
+
     event_result = service.events().insert(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com',
        body={
            "summary": summary,
@@ -149,13 +149,7 @@ def main(start_p,end_p,summary,location):
 
     # text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
 
-    #        "start": {"dateTime": start, "timeZone": "-01:00"},
-    #        "end": {"dateTime": end, "timeZone": "-01:00"},
-    # "start": {"dateTime": start, "timeZone": "Europe/Budapest"},
-    # "end": {"dateTime": end, "timeZone": "Europe/Budapest"},
-    print("EVENT RESULT START DATETIME = ",event_result['start']['dateTime'])
-    # 2022-10-10T15:00:00+02:00
-    # !!!!! timeZone": "Europe/Budapest" !!!!! HOZZA AD start + 1
+    # !!!!! timeZone": "Europe/Budapest" !!!!! start hour + 1
 
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
@@ -221,10 +215,10 @@ def check_wd_open():
     start_p = dt_p_obj_rounded.isoformat("T", "seconds")
     print("START from parameter ROUNDED= ",start_p,type(start_p))
 
-    gmt_1 = datetime.timedelta(hours=1)
+    minute_1 = datetime.timedelta(minutes=1)
 
-    start_p2 = dt_p_obj_rounded - gmt_1
-    print("START from parameter ROUNDED - gmt_1 = ",start_p2,type(start_p2))
+    start_p2 = dt_p_obj_rounded - minute_1
+    print("START from parameter ROUNDED - minute_1 = ",start_p2,type(start_p2))
 
     end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
@@ -290,22 +284,16 @@ def get_events(start_p,end_p):
     try:
         service = build('calendar', 'v3', credentials=authentication())
 
-        #start_p = start_p + 'Z'
-        # start_p = start_p + '+00:00'
-        start_p = "2022-11-03T11:59:00+00:00"
-        print("start_p GET EVENTS start_p + '+00:00' =",start_p)
+        start_p = start_p + '+00:00'
 
-        # calendar: szemeszet 12:00,gumi 13:00 
+        # calendar: szemeszet 12:00, gumi 13:00 
+        # start_p 11:59: szemeszet 12:00, gumi 13:00
+        # start_p 12:00: gumi 13:00  
 
-        # start_p GET EVENTS start_p + '+00:00' = 2022-11-03T12:00:00+00:00
-        # GET EVENTS RET  =  Gumicsere 2022-11-03T13:00:00+01:00 |
-
-        # end_p = end_p + 'Z'
         end_p = end_p + '+00:00'
 
         print('Getting the upcoming 10 events')
 
-        #events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=now,
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
                                               maxResults=3, singleEvents=True,
                                               orderBy='startTime').execute()
@@ -315,7 +303,7 @@ def get_events(start_p,end_p):
             print('No upcoming events found.')
             return
 
-        # Prints the start and name of the next 10 events
+
         start_event = "" 
         for event in events:
             start = event['start'].get('dateTime', event['start'].get('date'))
