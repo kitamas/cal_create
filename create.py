@@ -82,7 +82,7 @@ def webhook():
 
     print("GET EVENTS RET  = ",get_events_ret)
 
-    if get_events_ret == 'No upcoming events found'
+    if get_events_ret == 'No upcoming events found':
         boolean_get_events = True
     else:
         boolean_get_events = False
