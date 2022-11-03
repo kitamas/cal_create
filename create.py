@@ -296,7 +296,7 @@ def get_events(start_p,end_p):
         #start_p = start_p + 'Z'
         #start_p = start_p + '+00:00'
 
-        start_p = "2022-11-03T10:59:00+00:00"
+        start_p = "2022-11-03T11:00:00+00:00"
         end_p = "2022-11-03T12:35:00+00:00"
 
         #end_p = end_p + 'Z'
