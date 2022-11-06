@@ -71,11 +71,13 @@ def webhook():
     boolean_wd_open =  check_wd_open_ret[5]
     start_p_min1 =  check_wd_open_ret[6]
     hours_am =  check_wd_open_ret[7]
+    dt_p_obj_rounded_min1  =  check_wd_open_ret[8]
 
     print("start_p = ", check_wd_open_ret[0])
     print("start_p_min1 = ", check_wd_open_ret[6])
     print("end_p  =", check_wd_open_ret[1])
     print("boolean_wd_open = ", check_wd_open_ret[5])
+    print("dt_p_obj_rounded_min1 = ", dt_p_obj_rounded_min1)
 
     #get_events_ret = get_events(start_p,end_p)
     get_events_ret = get_events(start_p_min1,end_p)
@@ -219,7 +221,7 @@ def check_wd_open():
 
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
-    hour_rounded = dt_p_obj_rounded
+    # hour_rounded = dt_p_obj_rounded
     print("DT PARAM OBJ HOUR ROUNDED:", dt_p_obj_rounded,type(dt_p_obj_rounded))
     # 2022-10-31 21:00:00 <class 'datetime.datetime'>
 
@@ -284,7 +286,7 @@ def check_wd_open():
         check_wd_open_text = " KOZOTTE " + open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
         boolean_wd_open = True
 
-    check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,start_p_min1,hours_am] 
+    check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,start_p_min1,hours_am,dt_p_obj_rounded_min1] 
     return check_wd_open_ret
 
 
