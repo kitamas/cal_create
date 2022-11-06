@@ -226,7 +226,8 @@ def check_wd_open():
     start_p = dt_p_obj_rounded.isoformat("T", "seconds")
     print("START from parameter ROUNDED= ",start_p,type(start_p))
 
-    end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    #end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    end_p = (dt_p_obj + duration).isoformat("T", "seconds")
 
     duration = datetime.timedelta(hours=1)
 
@@ -296,9 +297,10 @@ def get_events(dt_p_obj_rounded,duration):
         start_p = start_p_min1 + '+00:00'
  
         print("GET EVENTS START P = ",start_p)
-        end_p = end_p + '+00:00'
 
-        print('Getting the upcoming 10 events')
+        end_p1 = (dt_p_obj + duration-min1).isoformat("T", "seconds")
+        end_p = end_p1 + '+00:00'
+        print("GET EVENTS END P = ",end_p)
 
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
                                               maxResults=1, singleEvents=True,
