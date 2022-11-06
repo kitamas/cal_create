@@ -290,7 +290,7 @@ def get_events(dt_p_obj_rounded,duration):
         # start_p 12:00: gumi 13:00  
         # HOUR:00 - min1 = (HOUR-1):59   
 
-        min1 = datetime.timedelta(minutes=1)
+        min1 = datetime.timedelta(minutes=11)
 
         start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
 
