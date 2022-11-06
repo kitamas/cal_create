@@ -89,7 +89,7 @@ def webhook():
 
     main_ret =  main(start_p,end_p,summary,location)    
 
-    text = main_ret['text'] +  check_wd_open_ret[4] + " B_cwdo= " + str( check_wd_open_ret[5]) + "|" + get_events_ret + " B_get_ev= " + str(boolean_get_events) + "hours_am:" + hours_am
+    text = main_ret['text'] +  check_wd_open_ret[4] + " B_cwdo= " + str( check_wd_open_ret[5]) + "|" + get_events_ret + " B_get_ev= " + str(boolean_get_events) + "hours_am:" + str(hours_am)
     #text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5])
     event_id = main_ret['event_id']
 
@@ -335,7 +335,7 @@ def am_pm_conv(current_dateTime,dt_p_obj,hours):
     print("dt_p_obj = ",dt_p_obj)
 
     if current_dateTime.hour < 12 and dt_p_obj > current_dateTime :
-        hours_am = int(hours - 12)
+        hours_am = hours - 12
         print("hours converted = ", hours_am)
     return hours_am
 
