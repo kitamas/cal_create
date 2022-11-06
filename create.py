@@ -337,6 +337,8 @@ def am_pm_conv(current_dateTime,dt_p_obj,hours):
     if current_dateTime.hour > 0 and current_dateTime.hour < 12  and dt_p_obj > current_dateTime :
         hours_am = hours - 12
         print("hours converted = ", hours_am)
+    else:
+        hours_am = hours
     return hours_am
 
 
