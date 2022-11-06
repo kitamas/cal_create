@@ -226,6 +226,7 @@ def check_wd_open():
     # calendar: szemeszet 12:00, gumi 13:00 
     # start_p 11:59: szemeszet 12:00, gumi 13:00
     # start_p 12:00: gumi 13:00  
+    # HOUR:00 - min1 = (HOUR-1):59   
 
     min1 = datetime.timedelta(minutes=1)
 
@@ -236,17 +237,6 @@ def check_wd_open():
     end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     duration = datetime.timedelta(hours=1)
-
-
-    """
-    print("hours = ",hours)
-    if current_dateTime.hour < 16 and current_dateTime > dt_p_obj:
-        hours12 = hours - 12
-    else:
-        hours12 = 23
-    print("hours 12 =", hours12)
-    """
-
 
     if current_dateTime > dt_p_obj:
         print("A ",dt_p_obj,"idő már elmúlt. A jelenlegi idő:",current_dateTime,"Adjon meg másik időpontot.")
@@ -267,6 +257,7 @@ def check_wd_open():
 
     start_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
     # parameter date, open start time
+
     end_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
 
     print("start_pdate_otime =", start_pdate_otime)
@@ -332,6 +323,19 @@ def get_events(start_p_min1,end_p):
 
     except HttpError as error:
         print('An error occurred: %s' % error)
+
+def AM_PM_conv:
+
+    """
+    print("hours = ",hours)
+    print("current_dateTime.hour = ",current_dateTime.hour)
+    print("dt_p_obj = ",dt_p_obj)
+
+    if current_dateTime.hour < 12 and current_dateTime > dt_p_obj and hours > 12:
+        hours = hours - 12
+        print("hours converted =", hours)
+    return hours
+    """
 
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
