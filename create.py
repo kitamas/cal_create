@@ -324,19 +324,19 @@ def get_events(start_p_min1,end_p):
 
     except HttpError as error:
         print('An error occurred: %s' % error)
-"""
+
 def am_pm_conv(hours):
     print("hours = ",hours)
     print("current_dateTime.hour = ",current_dateTime.hour)
     print("dt_p_obj = ",dt_p_obj)
-
+"""
     if current_dateTime.hour < 12 and current_dateTime > dt_p_obj and hours > 12:
         hours = hours - 12
         print("hours converted =", hours)
     return hours
-
-am_pm_conv()
 """
+am_pm_conv()
+
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
