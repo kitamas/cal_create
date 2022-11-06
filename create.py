@@ -194,6 +194,8 @@ def check_wd_open():
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
 
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
+    am_pm_conv(hours)
+
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
     summary = req.get('sessionInfo').get('parameters').get('summary')
@@ -335,7 +337,7 @@ def am_pm_conv(hours):
         print("hours converted =", hours)
     return hours
 
-am_pm_conv(hours)
+
 
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
