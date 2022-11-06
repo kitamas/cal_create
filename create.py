@@ -194,8 +194,6 @@ def check_wd_open():
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
 
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
-    am_pm_conv(hours)
-
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
     summary = req.get('sessionInfo').get('parameters').get('summary')
@@ -211,6 +209,9 @@ def check_wd_open():
 
     dt_p_obj = datetime.datetime.strptime(dt_p_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00 - string to datetime object
+
+
+    am_pm_conv(current_dateTime,dt_p_obj,hours)
 
     dt_p_week_day = dt_p_obj.weekday()
     dt_p_week_day_name = week_days[dt_p_week_day]
@@ -327,7 +328,8 @@ def get_events(start_p_min1,end_p):
     except HttpError as error:
         print('An error occurred: %s' % error)
 
-def am_pm_conv(hours):
+
+def am_pm_conv(current_dateTime,dt_p_obj,hours):
     print("hours = ",hours)
     print("current_dateTime.hour = ",current_dateTime.hour)
     print("dt_p_obj = ",dt_p_obj)
@@ -336,8 +338,6 @@ def am_pm_conv(hours):
         hours = hours - 12
         print("hours converted =", hours)
     return hours
-
-
 
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
