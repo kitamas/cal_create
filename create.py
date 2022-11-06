@@ -292,15 +292,13 @@ def get_events(dt_p_obj_rounded,duration):
 
         min1 = datetime.timedelta(minutes=1)
 
-        dt_p_obj_rounded_min1 = dt_p_obj_rounded - min1
-
-        start_p_min1 = dt_p_obj_rounded_min1.isoformat("T", "seconds")
+        start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
 
         start_p = start_p_min1 + '+00:00'
  
         print("GET EVENTS START P = ",start_p)
 
-        end_p1 = (dt_p_obj + duration-min1).isoformat("T", "seconds")
+        end_p1 = (dt_p_obj_rounded + duration - min1).isoformat("T", "seconds")
         end_p = end_p1 + '+00:00'
         print("GET EVENTS END P = ",end_p)
 
