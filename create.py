@@ -77,6 +77,7 @@ def webhook():
     print("end_p  =", check_wd_open_ret[1])
     print("boolean_wd_open = ", check_wd_open_ret[5])
     print("dt_p_obj_rounded = ", dt_p_obj_rounded)
+    print("duration = ", check_wd_open_ret[7])
 
     #get_events_ret = get_events(start_p,end_p)
     get_events_ret = get_events(dt_p_obj_rounded,duration)
