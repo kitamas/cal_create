@@ -256,9 +256,10 @@ def check_wd_open():
     print("STRP open_start_time[dt_p_week_day] = ",dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2])))
 
     start_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
-    # parameter date, open start time
+    # day: parameter date, open start time, obj
 
     end_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
+    # day: parameter date, end start time, obj
 
     print("start_pdate_otime =", start_pdate_otime)
     print("end_pdate_otime = ", end_pdate_otime)
@@ -270,7 +271,7 @@ def check_wd_open():
         boolean_wd_open = False
 
     if dt_p_obj_rounded >= end_pdate_otime:
-        print("KÉSŐN", dt_p_obj_rounded - duration, ">=", end_pdate_otime)
+        print("KÉSŐN", dt_p_obj_rounded, ">=", end_pdate_otime)
         check_wd_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
 
@@ -325,8 +326,6 @@ def get_events(start_p_min1,end_p):
         print('An error occurred: %s' % error)
 
 def am_pm_conv():
-
-    """
     print("hours = ",hours)
     print("current_dateTime.hour = ",current_dateTime.hour)
     print("dt_p_obj = ",dt_p_obj)
@@ -335,8 +334,6 @@ def am_pm_conv():
         hours = hours - 12
         print("hours converted =", hours)
     return hours
-    """
-
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
