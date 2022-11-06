@@ -335,6 +335,8 @@ def am_pm_conv():
         print("hours converted =", hours)
     return hours
 
+am_pm_conv()
+
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
     def parseDate(rawDate):
