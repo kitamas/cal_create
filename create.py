@@ -324,7 +324,7 @@ def get_events(start_p_min1,end_p):
 
     except HttpError as error:
         print('An error occurred: %s' % error)
-
+"""
 def am_pm_conv(hours):
     print("hours = ",hours)
     print("current_dateTime.hour = ",current_dateTime.hour)
@@ -336,6 +336,7 @@ def am_pm_conv(hours):
     return hours
 
 am_pm_conv()
+"""
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
