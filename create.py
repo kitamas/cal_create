@@ -70,7 +70,7 @@ def webhook():
     location =  check_wd_open_ret[3]
     boolean_wd_open =  check_wd_open_ret[5]
     start_p_min1 =  check_wd_open_ret[6]
-
+    hours_am =  check_wd_open_ret[7]
 
     print("start_p = ", check_wd_open_ret[0])
     print("start_p_min1 = ", check_wd_open_ret[6])
@@ -89,7 +89,7 @@ def webhook():
 
     main_ret =  main(start_p,end_p,summary,location)    
 
-    text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5]) + "|" + get_events_ret + " B get ev= " + str(boolean_get_events)
+    text = main_ret['text'] +  check_wd_open_ret[4] + " B_cwdo= " + str( check_wd_open_ret[5]) + "|" + get_events_ret + " B_get_ev= " + str(boolean_get_events) + "hours_am:" + hours_am
     #text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5])
     event_id = main_ret['event_id']
 
@@ -211,7 +211,7 @@ def check_wd_open():
     # 2022-09-25 00:00:00 - string to datetime object
 
 
-    am_pm_conv(current_dateTime,dt_p_obj,hours)
+    hours_am = am_pm_conv(current_dateTime,dt_p_obj,hours)
 
     dt_p_week_day = dt_p_obj.weekday()
     dt_p_week_day_name = week_days[dt_p_week_day]
@@ -246,7 +246,7 @@ def check_wd_open():
         check_wd_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  " Adjon meg másik időpontot."
         boolean_wd_open = False
 
-        check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,start_p_min1] 
+        check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,start_p_min1,hours_am] 
         return check_wd_open_ret
 
     print("open_start_time:", open_start_time[dt_p_week_day])
@@ -335,9 +335,9 @@ def am_pm_conv(current_dateTime,dt_p_obj,hours):
     print("dt_p_obj = ",dt_p_obj)
 
     if current_dateTime.hour < 12 and dt_p_obj > current_dateTime :
-        hours = hours - 12
-        print("hours converted = ", hours)
-    return hours
+        hours_am = hours - 12
+        print("hours converted = ", hours_am)
+    return hours_am
 
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
