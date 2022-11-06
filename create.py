@@ -324,7 +324,7 @@ def get_events(start_p_min1,end_p):
     except HttpError as error:
         print('An error occurred: %s' % error)
 
-def AM_PM_conv:
+def am_pm_conv:
 
     """
     print("hours = ",hours)
