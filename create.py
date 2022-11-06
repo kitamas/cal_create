@@ -69,18 +69,17 @@ def webhook():
     summary =  check_wd_open_ret[2]
     location =  check_wd_open_ret[3]
     boolean_wd_open =  check_wd_open_ret[5]
-    start_p_min1 =  check_wd_open_ret[6]
-    hours_am =  check_wd_open_ret[7]
-    dt_p_obj_rounded_min1  =  check_wd_open_ret[8]
+    dt_p_obj_rounded  =  check_wd_open_ret[6]
+    duration =  check_wd_open_ret[7]
+    hours_am =  check_wd_open_ret[8]
 
     print("start_p = ", check_wd_open_ret[0])
-    print("start_p_min1 = ", check_wd_open_ret[6])
     print("end_p  =", check_wd_open_ret[1])
     print("boolean_wd_open = ", check_wd_open_ret[5])
-    print("dt_p_obj_rounded_min1 = ", dt_p_obj_rounded_min1)
+    print("dt_p_obj_rounded = ", dt_p_obj_rounded)
 
     #get_events_ret = get_events(start_p,end_p)
-    get_events_ret = get_events(start_p_min1,end_p)
+    get_events_ret = get_events(dt_p_obj_rounded,duration)
 
     print("GET EVENTS RET  = ",get_events_ret)
 
@@ -212,7 +211,6 @@ def check_wd_open():
     dt_p_obj = datetime.datetime.strptime(dt_p_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00 - string to datetime object
 
-
     hours_am = am_pm_conv(current_dateTime,dt_p_obj,hours)
 
     dt_p_week_day = dt_p_obj.weekday()
@@ -228,17 +226,6 @@ def check_wd_open():
     start_p = dt_p_obj_rounded.isoformat("T", "seconds")
     print("START from parameter ROUNDED= ",start_p,type(start_p))
 
-    # calendar: szemeszet 12:00, gumi 13:00 
-    # start_p 11:59: szemeszet 12:00, gumi 13:00
-    # start_p 12:00: gumi 13:00  
-    # HOUR:00 - min1 = (HOUR-1):59   
-
-    min1 = datetime.timedelta(minutes=1)
-
-    dt_p_obj_rounded_min1 = dt_p_obj_rounded - min1
-
-    start_p_min1 = dt_p_obj_rounded_min1.isoformat("T", "seconds")
-
     end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
 
     duration = datetime.timedelta(hours=1)
@@ -248,7 +235,7 @@ def check_wd_open():
         check_wd_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  " Adjon meg másik időpontot."
         boolean_wd_open = False
 
-        check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,start_p_min1,hours_am,dt_p_obj_rounded_min1] 
+        check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,duration,hours_am]  
         return check_wd_open_ret
 
     print("open_start_time:", open_start_time[dt_p_week_day])
@@ -286,22 +273,29 @@ def check_wd_open():
         check_wd_open_text = " KOZOTTE " + open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
         boolean_wd_open = True
 
-    check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,start_p_min1,hours_am,dt_p_obj_rounded_min1] 
+    check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,duration,hours_am] 
     return check_wd_open_ret
 
 
 #def get_events(start_p,end_p):
-def get_events(start_p_min1,end_p):
+def get_events(dt_p_obj_rounded,duration):
 
     try:
         service = build('calendar', 'v3', credentials=authentication())
-
-        start_p = start_p_min1 + '+00:00'
-
         # calendar: szemeszet 12:00, gumi 13:00 
         # start_p 11:59: szemeszet 12:00, gumi 13:00
         # start_p 12:00: gumi 13:00  
+        # HOUR:00 - min1 = (HOUR-1):59   
 
+        min1 = datetime.timedelta(minutes=1)
+
+        dt_p_obj_rounded_min1 = dt_p_obj_rounded - min1
+
+        start_p_min1 = dt_p_obj_rounded_min1.isoformat("T", "seconds")
+
+        start_p = start_p_min1 + '+00:00'
+ 
+        print("GET EVENTS START P = ",start_p)
         end_p = end_p + '+00:00'
 
         print('Getting the upcoming 10 events')
