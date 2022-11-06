@@ -227,10 +227,11 @@ def check_wd_open():
     start_p = dt_p_obj_rounded.isoformat("T", "seconds")
     print("START from parameter ROUNDED= ",start_p,type(start_p))
 
+    duration = datetime.timedelta(hours=1)
+
     #end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
     end_p = (dt_p_obj + duration).isoformat("T", "seconds")
 
-    duration = datetime.timedelta(hours=1)
 
     if current_dateTime > dt_p_obj:
         print("A ",dt_p_obj,"idő már elmúlt. A jelenlegi idő:",current_dateTime,"Adjon meg másik időpontot.")
