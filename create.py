@@ -248,7 +248,7 @@ def check_wd_open():
         check_wd_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') +  " Adjon meg másik időpontot."
         boolean_wd_open = False
 
-        check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,start_p_min1,hours_am] 
+        check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,start_p_min1,hours_am,dt_p_obj_rounded_min1] 
         return check_wd_open_ret
 
     print("open_start_time:", open_start_time[dt_p_week_day])
