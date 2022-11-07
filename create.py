@@ -205,7 +205,7 @@ def check_wd_open():
     location = req.get('sessionInfo').get('parameters').get('location')
 
     open_start_time = ["08:00", "10:00", "10:00", "10:00", "08:00", "08:00", "10:00"]
-    open_end_time = ["17:00", "17:00", "19:00", "17:00", "17:00", "13:00", "13:00"]
+    open_end_time = ["19:00", "17:00", "19:00", "17:00", "17:00", "13:00", "13:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -310,7 +310,6 @@ def get_events(dt_p_obj_rounded,duration):
 
         print("GET EVENTS RESULT = ")
         print(json.dumps(events, indent=4))
-        print("TYPE EVENTS = ", type(events))
 
         if not events:
             print('free')
@@ -319,7 +318,8 @@ def get_events(dt_p_obj_rounded,duration):
             return start_event
 
         start_event = "" 
-        for event in events:
+        #for event in events:
+        for event in events[0]:
             start1 = event['start'].get('dateTime', event['start'].get('date'))
             start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
             start = start2.strftime("%B %A %H:%M")
