@@ -320,10 +320,9 @@ def get_events(dt_p_obj_rounded,duration):
         start_event = "" 
         for event in events:
             start = event['start'].get('dateTime', event['start'].get('date'))
-            #print(start, event['summary'])
-            #start_event += start_event + " | " + event['summary'] + " | " + start
             start_event += event['summary'] + " "  + start + " | "
-            #return event['summary']
+            print("AAAAAAA START",start,type(start))
+            #start_event.strftime("%B %A %H:%M")
 
         print("RETURN START EVENT =",start_event)
         return start_event
