@@ -311,8 +311,8 @@ def get_events(dt_p_obj_rounded,duration):
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
 
-        print("GET EVENTS RESULT")
-        print(json.dumps(events, indent=4))
+        #print("GET EVENTS RESULT")
+        #print(json.dumps(events, indent=4))
 
         if not events:
             print('free')
@@ -378,8 +378,8 @@ def free_busy(dt_p_obj_rounded,duration):
 
         event_result = service.freebusy().query(body=body).execute()
 
-        print("FREEBUSY EVENT RESULT")
-        print(json.dumps(event_result, indent=4))
+        #print("FREEBUSY EVENT RESULT")
+        #print(json.dumps(event_result, indent=4))
 
         free_busy_text = str(event_result['calendars']['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com']['busy'])
 
