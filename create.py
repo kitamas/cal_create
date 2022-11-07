@@ -395,6 +395,15 @@ def am_pm_conv(current_dateTime,dt_p_obj,hours):
         hours_am = hours
     return hours_am
 
+
+startTime = start_p
+endTime = end_p
+
+print("11111111111",events)
+print("22222222222",startTime)
+print("33333333333",endTime)
+print("44444444444",duration)
+
 f = findFirstOpenSlot(events,startTime,endTime,duration)
 print("FFFFFFFFFFFFFFF",f)
 def findFirstOpenSlot(events,startTime,endTime,duration):
