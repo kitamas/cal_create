@@ -91,7 +91,7 @@ def webhook():
 
     main_ret =  main(start_p,end_p,summary,location)    
 
-    text = main_ret['text'] +  check_wd_open_ret[4] + " B_1wd= " + str( check_wd_open_ret[5]) + "|" + get_events_ret + " B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
+    text = main_ret['text'] +  check_wd_open_ret[4] + " B_1wd= " + str( check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
     #text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5])
     event_id = main_ret['event_id']
 
