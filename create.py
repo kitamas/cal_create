@@ -338,8 +338,8 @@ def get_events(dt_p_obj_rounded,duration):
         print("only the first element of the list =",start_event)
         return start_event
 
-        """
-        """
+        #         """
+
         startTime = start_p
         endTime = end_p
 
@@ -350,8 +350,8 @@ def get_events(dt_p_obj_rounded,duration):
 
         f = findFirstOpenSlot(events,startTime,endTime,duration)
         print("FFFFFFFFFFFFFFF",f)
-        """
-        """
+        #         """
+
 
     except HttpError as error:
         print('An error occurred: %s' % error)
