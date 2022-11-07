@@ -344,11 +344,6 @@ def get_events(dt_p_obj_rounded,duration):
         startTime = start_p
         endTime = end_p
 
-        print("11111111111",events)
-        print("22222222222",startTime)
-        print("33333333333",endTime)
-        print("44444444444",duration)
-
         f = findFirstOpenSlot(events,startTime,endTime,duration)
         print("FFFFFFFFFFFFFFF",f)
         #  aaaaaaaaaaaaaaaaaaaaaaaaa
@@ -425,7 +420,9 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         # return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
 
         # return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
-        return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+02:00')
+        # return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+02:00')
+        # GMT + 1
+        return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+01:00')
 
     eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
 
