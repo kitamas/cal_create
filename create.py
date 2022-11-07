@@ -251,7 +251,7 @@ def check_wd_open():
     # print("HOUR open_start_time[dt_p_week_day][0:2]",open_start_time[dt_p_week_day][0:2])
     # print("MINUTE open_start_time[dt_p_week_day][3:5]",open_start_time[dt_p_week_day][3:5])
 
-    print("STRP open_start_time[dt_p_week_day] = ",dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2])))
+    # print("STRP open_start_time[dt_p_week_day] = ",dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2])))
 
     start_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
     # day: parameter date, open start time, obj
@@ -330,8 +330,8 @@ def get_events(dt_p_obj_rounded,duration):
         start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
         start = start2.strftime("%B %A %H:%M")
         print("AAAAAAAA",start1,start2,start)
-        print("AAAAAAAA",events[0]['summary'])
-        start_event += events[0]['summary'] + " "  + start + " | "
+        print("BBBB",events[0]['summary'])
+        #start_event += events[0]['summary'] + " "  + start + " | "
 
         return start_event
 
