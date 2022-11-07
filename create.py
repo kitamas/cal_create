@@ -325,6 +325,7 @@ def get_events(dt_p_obj_rounded,duration):
             start_event += event['summary'] + " "  + start + " | "
             #return event['summary']
 
+        print("RETURN START EVENT =",start_event)
         return start_event
 
     except HttpError as error:
