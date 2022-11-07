@@ -378,7 +378,7 @@ def free_busy(dt_p_obj_rounded,duration):
         print("EVENT RESULT")
         print(json.dumps(event_result, indent=4))
 
-        text = str(event_result['calendars']['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com']['busy'])
+        free_busy_text = str(event_result['calendars']['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com']['busy'])
 
         return free_busy_text
 
