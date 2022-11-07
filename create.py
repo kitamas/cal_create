@@ -81,7 +81,7 @@ def webhook():
 
     free_busy_text = free_busy(dt_p_obj_rounded,duration)
 
-    print("free_busy_text = ",free_busy_text)
+    print("FREE BUSY TEXT = ",free_busy_text)
 
     #get_events_ret = get_events(start_p,end_p)
     get_events_ret = get_events(dt_p_obj_rounded,duration)
