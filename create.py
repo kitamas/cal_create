@@ -94,8 +94,9 @@ def webhook():
 
     main_ret =  main(start_p,end_p,summary,location)    
 
-    text = main_ret['text'] + check_wd_open_ret[4] + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
-    #text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str(check_wd_open_ret[5])
+    #text = main_ret['text'] + check_wd_open_ret[4] + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
+    text = main_ret['text'] + check_wd_open_ret[4] + " | " + get_events_ret
+
     event_id = main_ret['event_id']
 
     res = {
@@ -276,7 +277,8 @@ def check_wd_open():
     if dt_p_obj_rounded >= start_pdate_otime and dt_p_obj_rounded + duration <= end_pdate_otime:
         print("hour rounded + duration = ",dt_p_obj_rounded + duration)
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
-        check_wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
+        #check_wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
+        check_wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime(%H:%M") + " <= " + open_end_time[dt_p_week_day]
         boolean_wd_open = True
 
     check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,duration,hours_am] 
@@ -333,24 +335,11 @@ def get_events(dt_p_obj_rounded,duration):
         start = start2.strftime("%B %A %H:%M")
 
         start_event = events[0]['summary'] + " "  + start + " | "
-
+        print("only the first element of the list =",start_event)
         return start_event
 
     except HttpError as error:
         print('An error occurred: %s' % error)
-
-
-def am_pm_conv(current_dateTime,dt_p_obj,hours):
-    print("hours = ",hours)
-    print("current_dateTime.hour = ",current_dateTime.hour)
-    print("dt_p_obj = ",dt_p_obj)
-
-    if current_dateTime.hour < 12  and dt_p_obj > current_dateTime :
-        hours_am = hours - 12
-    else:
-        hours_am = hours
-    return hours_am
-
 
 
 def free_busy(dt_p_obj_rounded,duration):
@@ -393,6 +382,18 @@ def free_busy(dt_p_obj_rounded,duration):
 
     except HttpError as error:
         print('An error occurred: %s' % error)
+
+
+def am_pm_conv(current_dateTime,dt_p_obj,hours):
+    print("hours = ",hours)
+    print("current_dateTime.hour = ",current_dateTime.hour)
+    print("dt_p_obj = ",dt_p_obj)
+
+    if current_dateTime.hour < 12  and dt_p_obj > current_dateTime :
+        hours_am = hours - 12
+    else:
+        hours_am = hours
+    return hours_am
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
