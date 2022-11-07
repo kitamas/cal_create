@@ -310,12 +310,6 @@ def get_events(dt_p_obj_rounded,duration):
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
 
-
-        startTime = start_p
-        endTime = end_p
-        findFirstOpenSlot = findFirstOpenSlot(events,startTime,endTime,duration)
-        print("findFirstOpenSlot =",findFirstOpenSlot)
-
         # print(json.dumps(events, indent=4))
 
         if not events:
@@ -400,6 +394,8 @@ def am_pm_conv(current_dateTime,dt_p_obj,hours):
     else:
         hours_am = hours
     return hours_am
+
+findFirstOpenSlot(events,startTime,endTime,duration)
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
