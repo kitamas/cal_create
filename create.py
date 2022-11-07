@@ -308,9 +308,7 @@ def get_events(dt_p_obj_rounded,duration):
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
 
-        print("GET EVENTS RESULT = ")
-        print(json.dumps(events, indent=4))
-        print("EVENTS NULLA",events[0])
+        # print(json.dumps(events, indent=4))
 
         if not events:
             print('free')
@@ -318,6 +316,7 @@ def get_events(dt_p_obj_rounded,duration):
             #return
             return start_event
 
+        """
         start_event = "" 
         for event in events:
             start1 = event['start'].get('dateTime', event['start'].get('date'))
@@ -325,8 +324,14 @@ def get_events(dt_p_obj_rounded,duration):
             start = start2.strftime("%B %A %H:%M")
 
             start_event += event['summary'] + " "  + start + " | "
+        """
 
-        print("RETURN START EVENT =",start_event)
+        start1 = events[0]['start'].get('dateTime', events[0]['start'].get('date'))
+        start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
+        start = start2.strftime("%B %A %H:%M")
+
+        start_event += events[0]['summary'] + " "  + start + " | "
+
         return start_event
 
     except HttpError as error:
