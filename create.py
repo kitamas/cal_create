@@ -302,7 +302,7 @@ def get_events(dt_p_obj_rounded,duration):
  
         print("GET EVENTS START P = ",start_p)
 
-        end_p1 = (dt_p_obj_rounded + duration + duration - min1).isoformat("T", "seconds")
+        end_p1 = (dt_p_obj_rounded + duration - min1).isoformat("T", "seconds")
         end_p = end_p1 + '+00:00'
         print("GET EVENTS END P = ",end_p)
 
@@ -364,7 +364,7 @@ def free_busy(dt_p_obj_rounded,duration):
  
         print("FREE BUSY START P = ",start_p)
 
-        end_p1 = (dt_p_obj_rounded + duration + duration + duration).isoformat("T", "seconds")
+        end_p1 = (dt_p_obj_rounded + duration).isoformat("T", "seconds")
         end_p = end_p1 + '+00:00'
         print("FREE BUSY END P = ",end_p)
 
