@@ -310,6 +310,7 @@ def get_events(dt_p_obj_rounded,duration):
 
         print("GET EVENTS RESULT = ")
         print(json.dumps(events, indent=4))
+        print("EVENTS NULLA",events[0])
 
         if not events:
             print('free')
@@ -318,8 +319,7 @@ def get_events(dt_p_obj_rounded,duration):
             return start_event
 
         start_event = "" 
-        #for event in events:
-        for event in events[0]:
+        for event in events:
             start1 = event['start'].get('dateTime', event['start'].get('date'))
             start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
             start = start2.strftime("%B %A %H:%M")
