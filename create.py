@@ -79,6 +79,10 @@ def webhook():
     print("dt_p_obj_rounded = ", dt_p_obj_rounded)
     print("duration = ", check_wd_open_ret[7])
 
+    free_busy_text = free_busy(dt_p_obj_rounded,duration)
+
+    print("free_busy_text = ",free_busy_text)
+
     #get_events_ret = get_events(start_p,end_p)
     get_events_ret = get_events(dt_p_obj_rounded,duration)
 
@@ -91,8 +95,8 @@ def webhook():
 
     main_ret =  main(start_p,end_p,summary,location)    
 
-    text = main_ret['text'] +  check_wd_open_ret[4] + " B_1wd= " + str( check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
-    #text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str( check_wd_open_ret[5])
+    text = main_ret['text'] +  check_wd_open_ret[4] + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
+    #text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str(check_wd_open_ret[5])
     event_id = main_ret['event_id']
 
     res = {
@@ -273,7 +277,7 @@ def check_wd_open():
     if dt_p_obj_rounded >= start_pdate_otime and dt_p_obj_rounded + duration <= end_pdate_otime:
         print("hour rounded + duration = ",dt_p_obj_rounded + duration)
         print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
-        check_wd_open_text = " KOZOTTE " + open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
+        check_wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
         boolean_wd_open = True
 
     check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,duration,hours_am] 
@@ -290,7 +294,7 @@ def get_events(dt_p_obj_rounded,duration):
         # start_p 12:00: gumi 13:00  
         # HOUR:00 - min1 = (HOUR-1):59   
 
-        min1 = datetime.timedelta(minutes=11)
+        min1 = datetime.timedelta(minutes=1)
 
         start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
 
@@ -380,5 +384,43 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     return "None"
 
 
+def free_busy(dt_p_obj_rounded,duration):
+
+    try:
+        service = build('calendar', 'v3', credentials=authentication())
+        # calendar: szemeszet 12:00, gumi 13:00 
+        # start_p 11:59: szemeszet 12:00, gumi 13:00
+        # start_p 12:00: gumi 13:00  
+        # HOUR:00 - min1 = (HOUR-1):59   
+
+        min1 = datetime.timedelta(minutes=1)
+
+        start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
+
+        start_p = start_p_min1 + '+00:00'
+ 
+        print("FREE BUSY START P = ",start_p)
+
+        end_p1 = (dt_p_obj_rounded + duration - min1).isoformat("T", "seconds")
+        end_p = end_p1 + '+00:00'
+        print("FREE BUSY END P = ",end_p)
+
+
+        body = {
+                "timeMin": start,
+                "timeMax": end,
+                "timeZone": 'Europe/Budapest',
+                "items": [{"id": '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com'}]
+               }
+
+        event_result = service.freebusy().query(body=body).execute()
+
+        print("EVENT RESULT")
+        print(json.dumps(event_result, indent=4))
+
+        text = str(event_result['calendars']['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com']['busy'])
+
+        return free_busy_text
+        
 
     app.run()
