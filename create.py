@@ -75,9 +75,8 @@ def webhook():
 
     print("start_p = ", check_wd_open_ret[0])
     print("end_p  =", check_wd_open_ret[1])
-    print("boolean_wd_open = ", check_wd_open_ret[5])
-    print("dt_p_obj_rounded = ", dt_p_obj_rounded)
-    print("duration = ", check_wd_open_ret[7])
+    #print("boolean_wd_open = ", check_wd_open_ret[5])
+    #print("dt_p_obj_rounded = ", dt_p_obj_rounded)
 
     free_busy_text = free_busy(dt_p_obj_rounded,duration)
 
@@ -225,11 +224,11 @@ def check_wd_open():
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
     # hour_rounded = dt_p_obj_rounded
-    print("DT PARAM OBJ HOUR ROUNDED:", dt_p_obj_rounded,type(dt_p_obj_rounded))
+    # print("DT PARAM OBJ HOUR ROUNDED:", dt_p_obj_rounded,type(dt_p_obj_rounded))
     # 2022-10-31 21:00:00 <class 'datetime.datetime'>
 
     start_p = dt_p_obj_rounded.isoformat("T", "seconds")
-    print("START from parameter ROUNDED= ",start_p,type(start_p))
+    # print("START from parameter ROUNDED= ",start_p,type(start_p))
 
     duration = datetime.timedelta(hours=1)
 
@@ -260,8 +259,8 @@ def check_wd_open():
     end_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
     # day: parameter date, end start time, obj
 
-    print("start_pdate_otime =", start_pdate_otime)
-    print("end_pdate_otime = ", end_pdate_otime)
+    # print("start_pdate_otime =", start_pdate_otime)
+    # print("end_pdate_otime = ", end_pdate_otime)
 
 
     if dt_p_obj_rounded < start_pdate_otime:
