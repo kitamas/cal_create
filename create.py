@@ -422,5 +422,4 @@ def free_busy(dt_p_obj_rounded,duration):
 
         return free_busy_text
         
-
-    app.run()
+        app.run()
