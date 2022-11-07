@@ -94,7 +94,7 @@ def webhook():
 
     main_ret =  main(start_p,end_p,summary,location)    
 
-    text = main_ret['text'] +  check_wd_open_ret[4] + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
+    text = main_ret['text'] + check_wd_open_ret[4] + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
     #text = main_ret['text'] +  check_wd_open_ret[4] + " B cwdo= " + str(check_wd_open_ret[5])
     event_id = main_ret['event_id']
 
@@ -170,7 +170,7 @@ def main(start_p,end_p,summary,location):
     #start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M')
     #end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M')
 
-    text = "Kezdő időpont: " + start_event.strftime("%B %A %H:%M") + " Vége: " + end_event.strftime("%B %A %H:%M")
+    text = "Kezdő időpont: " + start_event.strftime("%B %A %H:%M") + " Vége: " + end_event.strftime("%B %A %H:%M") + " "
 
     main_ret = {}
     main_ret['text'] = text
@@ -319,13 +319,11 @@ def get_events(dt_p_obj_rounded,duration):
 
         start_event = "" 
         for event in events:
-            start = event['start'].get('dateTime', event['start'].get('date'))
+            start1 = event['start'].get('dateTime', event['start'].get('date'))
+            start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
+            start = start2.strftime("%B %A %H:%M")
+
             start_event += event['summary'] + " "  + start + " | "
-            print("AAAAAAA START",start,type(start))
-            dd = datetime.datetime.strptime(start,'%Y-%m-%dT%H:%M:%S%z')
-            ddd = dd.strftime("%B %A %H:%M")
-            print("DD DD DD",dd)
-            print("DDD DDD DDD",ddd)
 
         print("RETURN START EVENT =",start_event)
         return start_event
