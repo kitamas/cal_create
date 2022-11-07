@@ -367,8 +367,8 @@ def free_busy(dt_p_obj_rounded,duration):
 
 
         body = {
-                "timeMin": start,
-                "timeMax": end,
+                "timeMin": start_p,
+                "timeMax": end_p,
                 "timeZone": 'Europe/Budapest',
                 "items": [{"id": '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com'}]
                }
