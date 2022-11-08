@@ -95,12 +95,11 @@ def webhook():
     if boolean_wd_open and boolean_get_events:
         main_ret =  main(start_p,end_p,summary,location)    
 
-    main_ret = []
-
     #text = main_ret['text'] + check_wd_open_ret[4] + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
-    text = main_ret['text'] + check_wd_open_ret[4] + " | " + get_events_ret
+    text = check_wd_open_ret[4] + " | " + get_events_ret
 
-    event_id = main_ret['event_id']
+    #event_id = main_ret['event_id']
+    event_id = 'event_id'
 
     res = {
         "fulfillment_response": {
