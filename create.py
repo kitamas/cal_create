@@ -301,8 +301,8 @@ def get_events(dt_p_obj_rounded,duration):
         start_p = start_p_min1 + '+00:00'
         print("GET EVENTS START P = ",start_p)
 
-        #end_p1 = (dt_p_obj_rounded + duration).isoformat("T", "seconds")
-        end_p1 = (dt_p_obj_rounded).isoformat("T", "seconds")
+        #end_p1 = (dt_p_obj_rounded + min1).isoformat("T", "seconds")
+        end_p1 = (dt_p_obj_rounded + duration - min1).isoformat("T", "seconds")
         end_p = end_p1 + '+00:00'
         print("GET EVENTS END P = ",end_p)
 
