@@ -323,6 +323,25 @@ def get_events(dt_p_obj_rounded,duration):
             #return
             return start_event
 
+        # = = = = = = = = = = = = = = = = = = = = = = 
+        startTime = datetime.datetime.now() + datetime.timedelta(hours = 2)
+        print("startTime = = =",startTime)
+        endTime = datetime.datetime(2022, 10, 30, 23, 59, 59, 0)
+
+        duration = datetime.timedelta(hours = 1)
+
+        f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
+        if f_obj == "None":
+            f_time = "NINCS"
+        else:
+            f_time = f_obj.strftime("%Y-%m-%d %H:%M")
+
+        firsto = "FIRST OPEN: "        
+        print(firsto,f_time)
+
+        # return events_cal1 + events_cal2 + firsto + f_time
+        # = = = = = = = = = = = = = = = = = = = = = = 
+
         """
         start_event = "" 
         for event in events:
@@ -341,19 +360,6 @@ def get_events(dt_p_obj_rounded,duration):
 
         start_event = events[0]['summary'] + " "  + start + " | "
         print("only the first element of the list =",start_event)
-
-
-
-        #  aaaaaaaaaaaaaaaaaaaaaaaaa
-
-        startTime = start_p
-        endTime = end_p
-
-        f = findFirstOpenSlot(events,startTime,endTime,duration)
-        print("FFFFFFFFFFFFFFF",f)
-        #  aaaaaaaaaaaaaaaaaaaaaaaaa
-
-
 
         return start_event
 
