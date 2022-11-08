@@ -350,7 +350,7 @@ def get_events(dt_p_obj_rounded,duration):
         endTime = end_p
 
         f = findFirstOpenSlot(events,startTime,endTime,duration)
-        #print("FFFFFFFFFFFFFFF",f)
+        print("FFFFFFFFFFFFFFF",f)
         #  aaaaaaaaaaaaaaaaaaaaaaaaa
 
 
