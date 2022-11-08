@@ -75,12 +75,12 @@ def webhook():
 
     print("start_p = ", check_wd_open_ret[0])
     print("end_p  =", check_wd_open_ret[1])
-    #print("boolean_wd_open = ", check_wd_open_ret[5])
-    #print("dt_p_obj_rounded = ", dt_p_obj_rounded)
+    # print("boolean_wd_open = ", check_wd_open_ret[5])
+    # print("dt_p_obj_rounded = ", dt_p_obj_rounded)
 
     free_busy_text = free_busy(dt_p_obj_rounded,duration)
 
-    print("FREE BUSY TEXT = ",free_busy_text)
+    # print("FREE BUSY TEXT = ",free_busy_text)
 
     #get_events_ret = get_events(start_p,end_p)
     get_events_ret = get_events(dt_p_obj_rounded,duration)
@@ -96,6 +96,7 @@ def webhook():
         main_ret =  main(start_p,end_p,summary,location)    
 
     #text = main_ret['text'] + check_wd_open_ret[4] + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
+    main_ret['text'] = "AA"
     text = main_ret['text'] + check_wd_open_ret[4] + " | " + get_events_ret
 
     event_id = main_ret['event_id']
