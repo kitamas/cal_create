@@ -296,7 +296,7 @@ def get_events(dt_p_obj_rounded,duration):
         # HOUR:00 - min1 = (HOUR-1):59   
 
         min1 = datetime.timedelta(minutes=1)
-        min50 = datetime.timedelta(minutes=15)
+        min50 = datetime.timedelta(minutes=50)
 
         start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
         start_p = start_p_min1 + '+00:00'
