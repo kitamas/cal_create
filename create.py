@@ -462,3 +462,38 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     return "None"
     
     app.run()
+
+"""
+def free_busy(dt_p_obj_rounded,duration):
+
+    try:
+        service = build('calendar', 'v3', credentials=authentication())
+
+        min1 = datetime.timedelta(minutes=1)
+
+        start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
+        start_p = start_p_min1 + '+00:00'
+        print("FREE BUSY START P = ",start_p)
+
+        end_p1 = (dt_p_obj_rounded).isoformat("T", "seconds")
+        end_p = end_p1 + '+00:00'
+        print("FREE BUSY END P = ",end_p)
+
+        body = {
+                "timeMin": start_p,
+                "timeMax": end_p,
+                "timeZone": 'Europe/Budapest',
+                "items": [{"id": '61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com'}]
+               }
+
+        event_result = service.freebusy().query(body=body).execute()
+
+        # print(json.dumps(event_result, indent=4))
+
+        free_busy_text = str(event_result['calendars']['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com']['busy'])
+
+        return free_busy_text
+
+    except HttpError as error:
+        print('An error occurred: %s' % error)
+"""
