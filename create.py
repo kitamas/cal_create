@@ -311,7 +311,7 @@ def get_events(dt_p_obj_rounded,duration):
         print("GET EVENTS END P = ",end_p)
 
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
-                                              maxResults=3, singleEvents=True,
+                                              maxResults=1, singleEvents=True,
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
 
