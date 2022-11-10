@@ -79,12 +79,9 @@ def webhook():
     # print("dt_p_obj_rounded = ", dt_p_obj_rounded)
 
     free_busy_text = free_busy(dt_p_obj_rounded,duration)
+    print("FREE BUSY TEXT = ",free_busy_text)
 
-    # print("FREE BUSY TEXT = ",free_busy_text)
-
-    #get_events_ret = get_events(start_p,end_p)
     get_events_ret = get_events(dt_p_obj_rounded,duration)
-
     print("GET EVENTS RET  = ",get_events_ret)
 
     if get_events_ret == 'free':
@@ -98,7 +95,7 @@ def webhook():
     #text = main_ret['text'] + check_wd_open_ret[4] + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
     text = " | " + check_wd_open_ret[4] + " | " + get_events_ret
 
-    #event_id = main_ret['event_id']
+    # event_id = main_ret['event_id']
     event_id = 'event_id'
 
     res = {
@@ -164,7 +161,6 @@ def main(start_p,end_p,summary,location):
     ).execute()
 
     # text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
-
     # !!!!! timeZone": "Europe/Budapest" !!!!! start hour + 1
 
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
@@ -181,15 +177,18 @@ def main(start_p,end_p,summary,location):
   
     return main_ret
 
+
 def hour_rounder(t):
     # Rounds to nearest hour by adding a timedelta hour if minute >= 30
     # return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
     # Rounds to next hour by adding a timedelta hour + 1
+
     if t.minute != 0:
         return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour + 1))
     else:
         return (t.replace(second=0, microsecond=0, minute=0))
+
 
 def check_wd_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
@@ -247,8 +246,8 @@ def check_wd_open():
         check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,duration,hours_am]  
         return check_wd_open_ret
 
-    print("open_start_time:", open_start_time[dt_p_week_day])
-    print("open_end_time:", open_end_time[dt_p_week_day])
+    # print("open_start_time:", open_start_time[dt_p_week_day])
+    # print("open_end_time:", open_end_time[dt_p_week_day])
 
     # open_start_time[dt_p_week_day] = 10:00 <class 'str'>
     # print("HOUR open_start_time[dt_p_week_day][0:2]",open_start_time[dt_p_week_day][0:2])
@@ -292,6 +291,7 @@ def get_events(dt_p_obj_rounded,duration):
 
     try:
         service = build('calendar', 'v3', credentials=authentication())
+
         # calendar: szemeszet 12:00, gumi 13:00 
         # start_p 11:59: szemeszet 12:00, gumi 13:00
         # start_p 12:00: gumi 13:00  
@@ -304,9 +304,10 @@ def get_events(dt_p_obj_rounded,duration):
         print("GET EVENTS START P = ",start_p)
 
         end_p1 = (dt_p_obj_rounded).isoformat("T", "seconds")
-        #end_p1 = (dt_p_obj_rounded + min1).isoformat("T", "seconds")
-        #end_p1 = (dt_p_obj_rounded + duration - min1).isoformat("T", "seconds")
-        # lists ALL !!!
+        # lists the next hour event !!!
+        # end_p1 = (dt_p_obj_rounded + min1).isoformat("T", "seconds")
+        # end_p1 = (dt_p_obj_rounded + duration - min1).isoformat("T", "seconds")
+        # lists the next hour event !!!
 
         end_p = end_p1 + '+00:00'
         print("GET EVENTS END P = ",end_p)
@@ -321,7 +322,7 @@ def get_events(dt_p_obj_rounded,duration):
         if not events:
             print('free')
             start_event = 'free'
-            #return
+
             return start_event
 
         # = = = = = = = = = = = = = = = = = = = = = = 
@@ -373,23 +374,16 @@ def free_busy(dt_p_obj_rounded,duration):
 
     try:
         service = build('calendar', 'v3', credentials=authentication())
-        # calendar: szemeszet 12:00, gumi 13:00 
-        # start_p 11:59: szemeszet 12:00, gumi 13:00
-        # start_p 12:00: gumi 13:00  
-        # HOUR:00 - min1 = (HOUR-1):59   
 
         min1 = datetime.timedelta(minutes=1)
 
         start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
-
         start_p = start_p_min1 + '+00:00'
- 
-        #print("FREE BUSY START P = ",start_p)
+        print("FREE BUSY START P = ",start_p)
 
-        end_p1 = (dt_p_obj_rounded + duration).isoformat("T", "seconds")
+        end_p1 = (dt_p_obj_rounded).isoformat("T", "seconds")
         end_p = end_p1 + '+00:00'
-        #print("FREE BUSY END P = ",end_p)
-
+        print("FREE BUSY END P = ",end_p)
 
         body = {
                 "timeMin": start_p,
@@ -400,8 +394,8 @@ def free_busy(dt_p_obj_rounded,duration):
 
         event_result = service.freebusy().query(body=body).execute()
 
-        #print("FREEBUSY EVENT RESULT")
-        #print(json.dumps(event_result, indent=4))
+        print("FREEBUSY EVENT RESULT")
+        print(json.dumps(event_result, indent=4))
 
         free_busy_text = str(event_result['calendars']['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com']['busy'])
 
