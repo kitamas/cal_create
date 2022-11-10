@@ -233,8 +233,7 @@ def check_wd_open():
     start_p = dt_p_obj_rounded.isoformat("T", "seconds")
     # print("START from parameter ROUNDED= ",start_p,type(start_p))
 
-    #duration = datetime.timedelta(hours=1)
-    duration = datetime.timedelta(minutes=45)
+    duration = datetime.timedelta(hours=1)
 
     #end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
     end_p = (dt_p_obj + duration).isoformat("T", "seconds")
@@ -304,7 +303,8 @@ def get_events(dt_p_obj_rounded,duration):
         start_p = start_p_min1 + '+00:00'
         print("GET EVENTS START P = ",start_p)
 
-        end_p1 = (dt_p_obj_rounded + min1).isoformat("T", "seconds")
+        end_p1 = (dt_p_obj_rounded).isoformat("T", "seconds")
+        #end_p1 = (dt_p_obj_rounded + min1).isoformat("T", "seconds")
         #end_p1 = (dt_p_obj_rounded + duration - min1).isoformat("T", "seconds")
         # lists ALL !!!
 
