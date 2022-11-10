@@ -78,8 +78,9 @@ def webhook():
     # print("boolean_wd_open = ", check_wd_open_ret[5])
     # print("dt_p_obj_rounded = ", dt_p_obj_rounded)
 
+    """
     free_busy_text = free_busy(dt_p_obj_rounded,duration)
-    print("FREE BUSY TEXT = ",free_busy_text)
+    """
 
     get_events_ret = get_events(dt_p_obj_rounded,duration)
     print("GET EVENTS RET  = ",get_events_ret)
@@ -370,6 +371,19 @@ def get_events(dt_p_obj_rounded,duration):
         print('An error occurred: %s' % error)
 
 
+def am_pm_conv(current_dateTime,dt_p_obj,hours):
+    print("hours = ",hours)
+    print("current_dateTime.hour = ",current_dateTime.hour)
+    print("dt_p_obj = ",dt_p_obj)
+
+    if current_dateTime.hour < 12  and dt_p_obj > current_dateTime :
+        hours_am = hours - 12
+    else:
+        hours_am = hours
+    return hours_am
+
+
+"""
 def free_busy(dt_p_obj_rounded,duration):
 
     try:
@@ -394,8 +408,7 @@ def free_busy(dt_p_obj_rounded,duration):
 
         event_result = service.freebusy().query(body=body).execute()
 
-        print("FREEBUSY EVENT RESULT")
-        print(json.dumps(event_result, indent=4))
+        # print(json.dumps(event_result, indent=4))
 
         free_busy_text = str(event_result['calendars']['61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com']['busy'])
 
@@ -403,19 +416,7 @@ def free_busy(dt_p_obj_rounded,duration):
 
     except HttpError as error:
         print('An error occurred: %s' % error)
-
-
-def am_pm_conv(current_dateTime,dt_p_obj,hours):
-    print("hours = ",hours)
-    print("current_dateTime.hour = ",current_dateTime.hour)
-    print("dt_p_obj = ",dt_p_obj)
-
-    if current_dateTime.hour < 12  and dt_p_obj > current_dateTime :
-        hours_am = hours - 12
-    else:
-        hours_am = hours
-    return hours_am
-
+"""
 
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
