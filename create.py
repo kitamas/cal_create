@@ -327,9 +327,11 @@ def get_events(dt_p_obj_rounded,duration):
             return start_event
 
         # = = = = = = = = = = = = = = = = = = = = = = 
-        startTime = datetime.datetime.now() + datetime.timedelta(hours = 2)
+        # startTime = datetime.datetime.now() + datetime.timedelta(hours = 2)
+        startTime = dt_p_obj_rounded
         print("startTime = = =",startTime)
-        endTime = datetime.datetime(2022, 10, 30, 23, 59, 59, 0)
+
+        endTime = datetime.datetime(2022, 11, 10, 23, 59, 59, 0)
 
         duration = datetime.timedelta(hours = 1)
 
