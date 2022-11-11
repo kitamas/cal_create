@@ -329,12 +329,18 @@ def get_events(dt_p_obj_rounded,duration):
         # = = = = = = = = = = = = = = = = = = = = = = 
         # startTime = datetime.datetime.now() + datetime.timedelta(hours = 2)
         startTime = dt_p_obj_rounded
+
+        startTime = startTime - min1
+
         print("startTime = = = = = ",startTime)
 
         endTime = datetime.datetime(2022, 11, 11, 23, 59, 59, 0)
+
         print("endTime = = = = =",endTime)
 
         duration = datetime.timedelta(hours = 1)
+        min20 = datetime.timedelta(minutes=20)
+        duration = duration - min20
 
         f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
         if f_obj == "None":
