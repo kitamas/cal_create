@@ -406,7 +406,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     # eventEnds[0] = 2022-10-24 18:00:00
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
-    print("FIRST OPEN START = ",eventStarts[0],"FIRST OPEN END =",eventEnds[0])
+    print("FIRST OPEN START = ",eventStarts[0],"FIRST OPEN END =",eventEnds[0],"GAPS GAPS GAPS = ",gaps)
     # FIRST OPEN START =  2022-10-24 17:00:00 FIRST OPEN END = 2022-10-24 18:00:00
 
     #  start = eventStarts, end = eventEnds, gaps =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
