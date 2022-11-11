@@ -422,7 +422,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         #if gap > duration:
         #This means that a gap is bigger than the desired slot duration, and we can "squeeze" a meeting.
 
-        print("GAPS = ", eventEnds[i])
+            print("GAPS = ", eventEnds[i])
 
             return eventEnds[i]
 
