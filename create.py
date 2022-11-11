@@ -389,6 +389,8 @@ def am_pm_conv(current_dateTime,dt_p_obj,hours):
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
+    print("FUNCTION findFirstOpenSlot. startTime = ",startTime," endTime = ", endTime," duration = ",duration)
+
     def parseDate(rawDate):
         # RAWDATE =  2022-10-17T09:00:00Z
         # Transform the datetime given by the API to a python datetime object.
@@ -404,6 +406,11 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]
     # eventEnds[0] = 2022-10-24 18:00:00
+
+    print("FUNCTION findFirstOpenSlot. eventStarts = ",eventStarts)
+    print("FUNCTION findFirstOpenSlot. eventEnds = ", eventEnds)
+
+
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
     print("FIRST OPEN START = ",eventStarts[0],"FIRST OPEN END =",eventEnds[0],"GAPS GAPS GAPS = ",gaps)
