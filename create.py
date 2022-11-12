@@ -395,7 +395,7 @@ def am_pm_conv(current_dateTime,dt_p_obj,hours):
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
     print("FUNCTION findFirstOpenSlot. startTime = ",startTime," endTime = ", endTime," duration = ",duration)
-    print("FUNCTION findFirstOpenSlot. events = ",events)
+    print("AAAAAAAAAAAAAAAAAAAAAA FUNCTION findFirstOpenSlot. events = ",events)
     def parseDate(rawDate):
         # RAWDATE =  2022-10-17T09:00:00Z
         # Transform the datetime given by the API to a python datetime object.
