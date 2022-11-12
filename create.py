@@ -210,8 +210,8 @@ def check_wd_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    open_start_time = ["08:00", "11:00", "10:00", "11:00", "08:00", "08:00", "10:00"]
-    open_end_time = ["19:00", "17:00", "19:00", "21:00", "17:00", "18:00", "13:00"]
+    open_start_time = ["08:00", "11:00", "10:00", "11:00", "08:00", "13:00", "10:00"]
+    open_end_time = ["19:00", "17:00", "19:00", "21:00", "17:00", "20:00", "13:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -452,7 +452,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+01:00')
 
     eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
-
+    print("AAAAA eventStarts = ", eventStarts)
     eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]
     # eventEnds[0] = 2022-10-24 18:00:00
@@ -477,8 +477,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         #if gap > duration:
         #This means that a gap is bigger than the desired slot duration, and we can "squeeze" a meeting.
 
-            print("for i, gap in enumerate(gaps) eventEnds[i] = ", eventEnds[i])
-
+            print("i = ",i," eventEnds[i] = ", eventEnds[i])
             return eventEnds[i]
 
     #If no suitable gaps are found, return none.
