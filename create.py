@@ -211,7 +211,7 @@ def check_wd_open():
     location = req.get('sessionInfo').get('parameters').get('location')
 
     open_start_time = ["08:00", "11:00", "10:00", "11:00", "08:00", "13:00", "10:00"]
-    open_end_time = ["19:00", "17:00", "19:00", "21:00", "17:00", "20:00", "13:00"]
+    open_end_time = ["19:00", "17:00", "19:00", "21:00", "17:00", "22:00", "13:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -355,8 +355,6 @@ def get_events(dt_p_obj_rounded,duration):
         print('An error occurred: %s' % error)
 
 
-# UUUUUUUUUUUUJ
-
 def get_events_gaps(dt_p_obj_rounded,duration):
 
     try:
@@ -425,7 +423,7 @@ def get_events_gaps(dt_p_obj_rounded,duration):
 
     except HttpError as error:
         print('An error occurred: %s' % error)
-# UUUUUUUUUUUUJ
+
 
 def am_pm_conv(current_dateTime,dt_p_obj,hours):
     # print("hours = ",hours)
@@ -455,6 +453,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
     print("EVENT ENDS eventEnds = ", eventEnds)
+    print("EVENT ENDS eventEnds HOUR = ", eventEnds.hour,type(eventEnds.hour))
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]
     # eventEnds[0] = 2022-10-24 18:00:00
 
@@ -465,20 +464,22 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     print("GAPS GAPS GAPS = ",gaps)
     # gaps =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
+    print("enumerate(gaps) =",enumerate(gaps))
 
     # if ROUNDED startTime + duration < eventStarts[0]:
     if startTime + duration < eventStarts[0]:
         # A slot is open at the start of the desired window.
         return startTime
 
-
     for i, gap in enumerate(gaps):
         if gap >= duration:
         #This means that a gap is bigger or = than the desired slot duration, and we can "squeeze" a meeting. Just after that meeting ends.
         #if gap > duration:
-        #This means that a gap is bigger than the desired slot duration, and we can "squeeze" a meeting.
+        #This means that a gap is bigger than the desired slot duration
 
-            print("i = ",i," eventEnds[i] = ", eventEnds[i])
+            print("i = ",i," eventEnds[i] = ", eventEnds[i],type(eventEnds[i]))
+            # i =  0  eventEnds[i] =  2022-11-12 15:00:00
+
             return eventEnds[i]
 
     #If no suitable gaps are found, return none.
