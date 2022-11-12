@@ -457,18 +457,20 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     print("EVENT ENDS eventEnds = ", eventEnds)
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]  LIST [datetime]
     # eventEnds[0] = 2022-10-24 18:00:00
+
     for x in range(len(eventEnds)):
         print("AX AX AX",eventEnds[x])
-
+        print("AX AX AX  HOR",eventEnds[x].hour)
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
+    # print("GAPS = ",gaps)
+    # GAPS =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
+    # print("enumerate(gaps) =",enumerate(gaps))
+    # enumerate(gaps) = <enumerate object at 0x7f4527c24140>
+
     print("FIRST OPEN START = ",eventEnds[0])
     # FIRST OPEN START =  2022-10-24 17:00:00
-
-    print("GAPS GAPS GAPS = ",gaps)
-    # gaps =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
-    print("enumerate(gaps) =",enumerate(gaps))
 
     # if ROUNDED startTime + duration < eventStarts[0]:
     if startTime + duration < eventStarts[0]:
@@ -481,8 +483,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         #if gap > duration:
         #This means that a gap is bigger than the desired slot duration
 
-            print("i = ",i," eventEnds[i] = ", eventEnds[i],type(eventEnds[i]))
-            # i =  0  eventEnds[i] =  2022-11-12 15:00:00
+            print("i = ",i," eventEnds[i] = ", eventEnds[i])
+            # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
             return eventEnds[i]
 
