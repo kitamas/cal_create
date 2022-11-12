@@ -193,7 +193,7 @@ def hour_rounder(t):
 
 def check_wd_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
-
+    print("current_dateTime =",current_dateTime)
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
 
@@ -418,7 +418,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
-    print("FIRST OPEN START = ",eventStarts[0],"FIRST OPEN END =",eventEnds[0],"GAPS GAPS GAPS = ",gaps)
+    print("FIRST OPEN START = ",eventStarts[0],"FIRST OPEN END =",eventEnds[0])
+    print("GAPS GAPS GAPS = ",gaps)
     # FIRST OPEN START =  2022-10-24 17:00:00 FIRST OPEN END = 2022-10-24 18:00:00
 
     #  start = eventStarts, end = eventEnds, gaps =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
@@ -434,7 +435,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         #if gap > duration:
         #This means that a gap is bigger than the desired slot duration, and we can "squeeze" a meeting.
 
-            print("GAPS = ", eventEnds[i])
+            print("GAPS eventEnds[i] = ", eventEnds[i])
 
             return eventEnds[i]
 
