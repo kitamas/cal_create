@@ -470,8 +470,6 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         # A slot is open at the start of the desired window.
         return startTime
 
-    forgaps = ""
-    foreventendsi = ""
 
     for i, gap in enumerate(gaps):
         if gap >= duration:
@@ -479,10 +477,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         #if gap > duration:
         #This means that a gap is bigger than the desired slot duration, and we can "squeeze" a meeting.
 
-            forgaps += gap
-            foreventendsi += eventEnds[i]
-            print("FOR GAPS", forgaps)
-            print("FOR foreventendsi", foreventendsi)
+            print("for i, gap in enumerate(gaps) eventEnds[i] = ", eventEnds[i])
 
             return eventEnds[i]
 
