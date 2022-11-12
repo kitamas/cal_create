@@ -458,8 +458,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]  LIST [datetime]
     # eventEnds[0] = 2022-10-24 18:00:00
     for x in range(len(eventEnds)):
-        print("AX AX AX")
-        print a[x],
+        print("AX AX AX",eventEnds[x])
+
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
