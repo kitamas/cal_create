@@ -208,7 +208,7 @@ def check_wd_open():
     location = req.get('sessionInfo').get('parameters').get('location')
 
     open_start_time = ["08:00", "11:00", "10:00", "11:00", "08:00", "08:00", "10:00"]
-    open_end_time = ["19:00", "17:00", "19:00", "21:00", "17:00", "13:00", "13:00"]
+    open_end_time = ["19:00", "17:00", "19:00", "21:00", "17:00", "18:00", "13:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -294,8 +294,9 @@ def get_events(dt_p_obj_rounded,duration):
         service = build('calendar', 'v3', credentials=authentication())
 
         # calendar: szemeszet 12:00, gumi 13:00 
-        # start_p 11:59: szemeszet 12:00, gumi 13:00
-        # start_p 12:00: gumi 13:00  
+        # list start_p 12:00: ONLY ONE EVENT: gumi 13:00
+        # list start_p 11:59: TWO EVENTS: szemeszet 12:00, gumi 13:00
+  
         # HOUR:00 - min1 = (HOUR-1):59   
 
         min1 = datetime.timedelta(minutes=1)
@@ -327,10 +328,10 @@ def get_events(dt_p_obj_rounded,duration):
             return start_event
 
         # = = = = = = = = = = = = = = = = = = = = = = 
-        # startTime = datetime.datetime.now() + datetime.timedelta(hours = 2)
-        startTime = dt_p_obj_rounded
+        startTime = datetime.datetime.now() + datetime.timedelta(hours = 1)
+        # startTime = dt_p_obj_rounded
 
-        startTime = startTime - min1
+        # startTime = startTime - min1
 
         print("startTime = = = = = ",startTime)
 
@@ -339,8 +340,6 @@ def get_events(dt_p_obj_rounded,duration):
         print("endTime = = = = =",endTime)
 
         duration = datetime.timedelta(hours = 1)
-        min20 = datetime.timedelta(minutes=20)
-        duration = duration - min20
 
         f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
         if f_obj == "None":
