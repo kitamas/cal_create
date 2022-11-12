@@ -320,8 +320,7 @@ def get_events(dt_p_obj_rounded,duration):
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
                                               maxResults=1, singleEvents=True,
                                               orderBy='startTime').execute()
-        #events = events_result.get('items', [])
-        events = "FOGLALT" + events_result.get('items', [])
+        events = events_result.get('items', [])
 
         # print(json.dumps(events, indent=4))
 
@@ -347,7 +346,7 @@ def get_events(dt_p_obj_rounded,duration):
         start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
         start = start2.strftime("%B %A %H:%M")
 
-        start_event = events[0]['summary'] + " "  + start + " | "
+        start_event = "FOGLALT" + events[0]['summary'] + " "  + start + " | "
         print("only the first element of the list =",start_event)
 
         return start_event
