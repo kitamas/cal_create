@@ -458,10 +458,15 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     # eventEnds[0] = 2022-10-24 18:00:00
 
     free_start_hours = ""
-    for x in range(len(eventEnds)):
-        free_start_hour = str(eventEnds[x].hour) + ", "
+    for i in range(len(eventEnds)):
+        free_start_hour = str(eventEnds[i].hour) + ", "
         free_start_hours += free_start_hour
-        print("HOUR",str(eventEnds[x].hour))
+    print("FREE START HOURS =",free_start_hours)
+
+    free_start_hours = ""
+    for i+1 in range(len(eventEnds)):
+        free_start_hour = str(eventEnds[i].hour) + ", "
+        free_start_hours += free_start_hour
     print("FREE START HOURS =",free_start_hours)
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
