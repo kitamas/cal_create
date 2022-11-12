@@ -93,6 +93,9 @@ def webhook():
     if boolean_wd_open and boolean_get_events:
         main_ret =  main(start_p,end_p,summary,location)    
 
+    get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
+    print("GET EVENTS GAPS RET  = ",get_events_gaps_ret)
+
     #text = main_ret['text'] + check_wd_open_ret[4] + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
     text = " | " + check_wd_open_ret[4] + " | " + get_events_ret
 
@@ -193,7 +196,7 @@ def hour_rounder(t):
 
 def check_wd_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
-    print("current_dateTime =",current_dateTime)
+
     req = request.get_json(force=True)
     # print(json.dumps(req, indent=4))
 
@@ -315,11 +318,10 @@ def get_events(dt_p_obj_rounded,duration):
         print("GET EVENTS END P = ",end_p)
 
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
-                                              maxResults=8, singleEvents=True,
+                                              maxResults=1, singleEvents=True,
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
 
-        # maxResults=1, 
         # print(json.dumps(events, indent=4))
 
         if not events:
@@ -327,32 +329,6 @@ def get_events(dt_p_obj_rounded,duration):
             start_event = 'free'
 
             return start_event
-
-        # = = = = = = = = = = = = = = = = = = = = = = 
-        startTime = datetime.datetime.now() + datetime.timedelta(hours = 1)
-        # startTime = dt_p_obj_rounded
-        # startTime = startTime - min1
-
-        print("startTime = = = = = ",startTime)
-
-        endTime = datetime.datetime(2022, 11, 12, 23, 59, 59, 0)
-
-        print("endTime = = = = =",endTime)
-
-        duration = datetime.timedelta(hours = 1)
-
-        f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
-        if f_obj == "None":
-            f_time = "NINCS"
-        else:
-            print("f_obj = ",f_obj)
-            f_time = f_obj.strftime("%Y-%m-%d %H:%M")
-
-        firsto = "FIRST OPEN: "        
-        print(firsto,f_time)
-
-        # return events_cal1 + events_cal2 + firsto + f_time
-        # = = = = = = = = = = = = = = = = = = = = = = 
 
         """
         start_event = "" 
@@ -375,15 +351,86 @@ def get_events(dt_p_obj_rounded,duration):
 
         return start_event
 
-
     except HttpError as error:
         print('An error occurred: %s' % error)
 
 
+# UUUUUUUUUUUUJ
+
+def get_events_gaps(dt_p_obj_rounded,duration):
+
+    try:
+        service = build('calendar', 'v3', credentials=authentication())
+
+        min1 = datetime.timedelta(minutes=1)
+
+        start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
+        start_p = start_p_min1 + '+00:00'
+        print("GET EVENTS GAPS START P = ",start_p)
+
+        duration = datetime.timedelta(hours=10)
+
+        end_p1 = (dt_p_obj_rounded + duration).isoformat("T", "seconds")
+
+        end_p = end_p1 + '+00:00'
+        print("GET EVENTS GAPS END P = ",end_p)
+
+        events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
+                                              maxResults=8, singleEvents=True,
+                                              orderBy='startTime').execute()
+        events = events_result.get('items', [])
+
+        # print(json.dumps(events, indent=4))
+
+        if not events:
+            print('free')
+            start_event = 'free'
+
+            return start_event
+
+        # = = = = = = = = = = = = = = = = = = = = = = 
+        # startTime = datetime.datetime.now() + datetime.timedelta(hours = 1)
+        startTime = dt_p_obj_rounded
+        # startTime = startTime - min1
+
+        print("startTime GAPS = = = = = ",startTime)
+
+        endTime = datetime.datetime(2022, 11, 12, 23, 59, 59, 0)
+
+        print("endTime GAPS = = = = =",endTime)
+
+        duration = datetime.timedelta(hours = 1)
+
+        f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
+        if f_obj == "None":
+            f_time = "NINCS"
+        else:
+            print("f_obj = ",f_obj)
+            f_time = f_obj.strftime("%Y-%m-%d %H:%M")
+
+        firsto = "FIRST OPEN: "        
+        print(firsto,f_time)
+
+        # only the first element of the list
+
+        start1 = events[0]['start'].get('dateTime', events[0]['start'].get('date'))
+        start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
+        start = start2.strftime("%B %A %H:%M")
+
+        start_event = events[0]['summary'] + " "  + start + " | "
+        print("GAPS GAPS only the first element of the list =",start_event)
+
+        return start_event
+
+
+    except HttpError as error:
+        print('An error occurred: %s' % error)
+# UUUUUUUUUUUUJ
+
 def am_pm_conv(current_dateTime,dt_p_obj,hours):
-    print("hours = ",hours)
-    print("current_dateTime.hour = ",current_dateTime.hour)
-    print("dt_p_obj = ",dt_p_obj)
+    # print("hours = ",hours)
+    # print("current_dateTime.hour = ",current_dateTime.hour)
+    # print("dt_p_obj = ",dt_p_obj)
 
     if current_dateTime.hour < 12  and dt_p_obj > current_dateTime :
         hours_am = hours - 12
@@ -394,16 +441,14 @@ def am_pm_conv(current_dateTime,dt_p_obj,hours):
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
 
-    print("FUNCTION findFirstOpenSlot. startTime = ",startTime," endTime = ", endTime," duration = ",duration)
-    print("AAAAAAAAAAAAAAAAAAAAAA FUNCTION findFirstOpenSlot. events = ",events)
     def parseDate(rawDate):
         # RAWDATE =  2022-10-17T09:00:00Z
         # Transform the datetime given by the API to a python datetime object.
         # return datetime.datetime.strptime(rawDate[:-6]+ rawDate[-6:].replace(":",""), '%Y-%m-%dT%H:%M:%S%z')
 
         # return datetime.datetime.strptime(rawDate, '%Y-%m-%dT%H:%M:%SZ')
-        # return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+02:00')
-        # GMT + 1
+        # GMT + 2  = return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+02:00')
+
         return datetime.datetime.strptime(rawDate,'%Y-%m-%dT%H:%M:%S+01:00')
 
     eventStarts = [parseDate(e['start'].get('dateTime', e['start'].get('date'))) for e in events]
@@ -412,16 +457,13 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]
     # eventEnds[0] = 2022-10-24 18:00:00
 
-    print("FUNCTION findFirstOpenSlot. eventStarts = ",eventStarts)
-    print("FUNCTION findFirstOpenSlot. eventEnds = ", eventEnds)
-
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
     print("FIRST OPEN START = ",eventStarts[0],"FIRST OPEN END =",eventEnds[0])
-    print("GAPS GAPS GAPS = ",gaps)
     # FIRST OPEN START =  2022-10-24 17:00:00 FIRST OPEN END = 2022-10-24 18:00:00
 
-    #  start = eventStarts, end = eventEnds, gaps =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
+    print("GAPS GAPS GAPS = ",gaps)
+    # gaps =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
 
     # if ROUNDED startTime + duration < eventStarts[0]:
     if startTime + duration < eventStarts[0]:
