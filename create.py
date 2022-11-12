@@ -320,7 +320,8 @@ def get_events(dt_p_obj_rounded,duration):
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
                                               maxResults=1, singleEvents=True,
                                               orderBy='startTime').execute()
-        events = events_result.get('items', [])
+        #events = events_result.get('items', [])
+        events = "FOGLALT" + events_result.get('items', [])
 
         # print(json.dumps(events, indent=4))
 
@@ -460,7 +461,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     free_start_hours = ""
     for x in range(len(eventEnds)):
         free_start_hour = str(eventEnds[x].hour) + ", "
-        free_start_hours += free_start_hours
+        free_start_hours += free_start_hour
         print("HOUR",str(eventEnds[x].hour))
     print("FREE START HOURS =",free_start_hours)
 
@@ -485,7 +486,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         #if gap > duration:
         #This means that a gap is bigger than the desired slot duration
 
-            print("i = ",i," eventEnds[i] = ", eventEnds[i])
+            # print("i = ",i," eventEnds[i] = ", eventEnds[i])
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
             return eventEnds[i]
