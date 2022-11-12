@@ -457,14 +457,10 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]  LIST [datetime]
     # eventEnds[0] = 2022-10-24 18:00:00
 
-    free_start_hours = ""
-    for i in range(len(eventEnds)):
-        free_start_hour = str(eventEnds[i].hour) + ", "
-        free_start_hours += free_start_hour
-    print("FREE START HOURS =",free_start_hours)
+    print("LEN EVENTENDS=",len(eventEnds))
 
     free_start_hours = ""
-    for i+1 in range(len(eventEnds)):
+    for i in range(len(eventEnds)):
         free_start_hour = str(eventEnds[i].hour) + ", "
         free_start_hours += free_start_hour
     print("FREE START HOURS =",free_start_hours)
