@@ -84,7 +84,10 @@ def webhook():
     """
 
     if boolean_wd_open:     
-        get_events_ret = get_events(dt_p_obj_rounded,duration)
+        if get_events(dt_p_obj_rounded,duration) != "":
+            get_events_ret = get_events(dt_p_obj_rounded,duration)
+        else:
+            get_events_ret = "nincs esemeny"
         print("GET EVENTS RET  = ",get_events_ret)
 
         if get_events_ret == 'free':
