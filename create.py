@@ -63,18 +63,19 @@ def authentication():
 def webhook():
 
     check_wd_open_ret = check_wd_open()
-
+    check_wd_open_txt = check_wd_open_ret[4]
     start_p =  check_wd_open_ret[0]
     end_p =  check_wd_open_ret[1]
     summary =  check_wd_open_ret[2]
     location =  check_wd_open_ret[3]
+
     boolean_wd_open =  check_wd_open_ret[5]
     dt_p_obj_rounded  =  check_wd_open_ret[6]
     duration =  check_wd_open_ret[7]
     hours_am =  check_wd_open_ret[8]
 
-    print("start_p = ", check_wd_open_ret[0])
-    print("end_p  =", check_wd_open_ret[1])
+    # print("start_p = ", check_wd_open_ret[0])
+    # print("end_p  =", check_wd_open_ret[1])
     # print("boolean_wd_open = ", check_wd_open_ret[5])
     # print("dt_p_obj_rounded = ", dt_p_obj_rounded)
 
@@ -82,13 +83,16 @@ def webhook():
     free_busy_text = free_busy(dt_p_obj_rounded,duration)
     """
 
-    get_events_ret = get_events(dt_p_obj_rounded,duration)
-    print("GET EVENTS RET  = ",get_events_ret)
+    if boolean_wd_open:     
+        get_events_ret = get_events(dt_p_obj_rounded,duration)
+        print("GET EVENTS RET  = ",get_events_ret)
 
-    if get_events_ret == 'free':
-        boolean_get_events = True
+        if get_events_ret == 'free':
+            boolean_get_events = True
+        else:
+            boolean_get_events = False
     else:
-        boolean_get_events = False
+        check_wd_open_txt = "ZÁRVA" 
 
     if boolean_wd_open and boolean_get_events:
         main_ret =  main(start_p,end_p,summary,location)    
@@ -96,8 +100,8 @@ def webhook():
     get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
     print("GET EVENTS GAPS RET  = ",get_events_gaps_ret)
 
-    #text = main_ret['text'] + check_wd_open_ret[4] + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
-    text = " | " + check_wd_open_ret[4] + " | " + get_events_ret
+    #text = main_ret['text'] + check_wd_open_txt + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
+    text = " | " + check_wd_open_txt + " | " + get_events_ret
 
     # event_id = main_ret['event_id']
     event_id = 'event_id'
@@ -211,7 +215,7 @@ def check_wd_open():
     location = req.get('sessionInfo').get('parameters').get('location')
 
     open_start_time = ["08:00", "11:00", "10:00", "11:00", "08:00", "13:00", "10:00"]
-    open_end_time = ["19:00", "17:00", "19:00", "21:00", "17:00", "22:00", "13:00"]
+    open_end_time = ["19:00", "17:00", "19:00", "21:00", "17:00", "22:00", "19:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -346,7 +350,7 @@ def get_events(dt_p_obj_rounded,duration):
         start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
         start = start2.strftime("%B %A %H:%M")
 
-        start_event = "FOGLALT" + events[0]['summary'] + " "  + start + " | "
+        start_event = "FOGLALT: " + events[0]['summary'] + " "  + start + " | "
         print("only the first element of the list =",start_event)
 
         return start_event
