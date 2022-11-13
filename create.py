@@ -84,10 +84,7 @@ def webhook():
     """
 
     if boolean_wd_open:     
-        if get_events(dt_p_obj_rounded,duration) != "":
-            get_events_ret = get_events(dt_p_obj_rounded,duration)
-        else:
-            get_events_ret = "nincs esemeny"
+        get_events_ret = get_events(dt_p_obj_rounded,duration)
         print("GET EVENTS RET  = ",get_events_ret)
 
         if get_events_ret == 'free':
@@ -96,9 +93,12 @@ def webhook():
             boolean_get_events = False
     else:
         check_wd_open_txt = "ZÁRVA" 
+        get_events_ret = "nincs esemeny"
+
 
     if boolean_wd_open and boolean_get_events:
         main_ret =  main(start_p,end_p,summary,location)    
+
 
     get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
     print("GET EVENTS GAPS RET  = ",get_events_gaps_ret)
