@@ -104,7 +104,7 @@ def webhook():
 
     # event_id = main_ret['event_id']
     event_id = 'event_id'
-    print("str(boolean_wd_open)",str(boolean_wd_open),"str(get_events_ret_boolean)",str(get_events_ret_boolean))
+    print(" AAAAAAAAAAAAAAA str(boolean_wd_open)",str(boolean_wd_open),"str(get_events_ret_boolean)",str(get_events_ret_boolean))
 
     res = {
         "fulfillment_response": {
@@ -204,7 +204,7 @@ def check_wd_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
 
     req = request.get_json(force=True)
-    print(json.dumps(req, indent=4))
+    # print(json.dumps(req, indent=4))
 
     year = req.get('sessionInfo').get('parameters').get('date').get('year')
     month = req.get('sessionInfo').get('parameters').get('date').get('month')
@@ -220,7 +220,7 @@ def check_wd_open():
     location = req.get('sessionInfo').get('parameters').get('location')
 
     open_start_time = ["13:00", "09:00", "10:00", "11:00", "08:00", "13:00", "11:00"]
-    open_end_time = ["19:00", "19:00", "19:00", "18:00", "17:00", "19:00", "19:00"]
+    open_end_time = ["21:00", "19:00", "19:00", "18:00", "17:00", "19:00", "19:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -279,18 +279,18 @@ def check_wd_open():
 
 
     if dt_p_obj_rounded < start_pdate_otime:
-        print("KORÁN", dt_p_obj_rounded, "<", start_pdate_otime)
+        # print("KORÁN", dt_p_obj_rounded, "<", start_pdate_otime)
         check_wd_open_text = " KORÁN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
 
     if dt_p_obj_rounded >= end_pdate_otime:
-        print("KÉSŐN", dt_p_obj_rounded, ">=", end_pdate_otime)
+        # print("KÉSŐN", dt_p_obj_rounded, ">=", end_pdate_otime)
         check_wd_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
 
     if dt_p_obj_rounded >= start_pdate_otime and dt_p_obj_rounded + duration <= end_pdate_otime:
-        print("hour rounded + duration = ",dt_p_obj_rounded + duration)
-        print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
+        # print("hour rounded + duration = ",dt_p_obj_rounded + duration)
+        # print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
         #check_wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
         check_wd_open_text = " NYITVA "
         boolean_wd_open = True
@@ -315,7 +315,7 @@ def get_events(dt_p_obj_rounded,duration):
 
         start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
         start_p = start_p_min1 + '+00:00'
-        print("GET EVENTS START P = ",start_p)
+        # print("GET EVENTS START P = ",start_p)
 
         end_p1 = (dt_p_obj_rounded).isoformat("T", "seconds")
         # lists the next hour event !!!
@@ -324,7 +324,7 @@ def get_events(dt_p_obj_rounded,duration):
         # lists the next hour event !!!
 
         end_p = end_p1 + '+00:00'
-        print("GET EVENTS END P = ",end_p)
+        # print("GET EVENTS END P = ",end_p)
 
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
                                               maxResults=1, singleEvents=True,
