@@ -88,7 +88,7 @@ def webhook():
         print("GET EVENTS RET TXT = ",get_events_ret[0],"GET EVENTS RET BOOL = ",get_events_ret[1])
 
     else:
-        check_wd_open_txt = "ZÁRVA" 
+        # check_wd_open_txt = "ZÁRVA" 
         get_events_ret_txt = "nincs esemény"
         get_events_ret_boolean = False
 
