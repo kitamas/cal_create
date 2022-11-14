@@ -209,7 +209,7 @@ def check_wd_open():
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
 
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
-    hours_original = req.get('sessionInfo').get('parameters').get('time').get('hours').get('original')
+    hours_original = req.get('intentInfo').get('parameters').get('time').get('originalValue')
     print("HOURS =",hours," hours_original = ",hours_original)
 
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
