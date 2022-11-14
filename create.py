@@ -63,12 +63,12 @@ def authentication():
 def webhook():
 
     check_wd_open_ret = check_wd_open()
-    check_wd_open_txt = check_wd_open_ret[4]
+
     start_p =  check_wd_open_ret[0]
     end_p =  check_wd_open_ret[1]
     summary =  check_wd_open_ret[2]
     location =  check_wd_open_ret[3]
-
+    check_wd_open_txt = check_wd_open_ret[4]
     boolean_wd_open =  check_wd_open_ret[5]
     dt_p_obj_rounded  =  check_wd_open_ret[6]
     duration =  check_wd_open_ret[7]
@@ -82,14 +82,17 @@ def webhook():
 
     if boolean_wd_open:     
         get_events_ret = get_events(dt_p_obj_rounded,duration)
-        print("GET EVENTS RET  = ",get_events_ret)
+
+        get_events_ret_txt = get_events_ret[0]
+        get_events_ret_boolean = get_events_ret[1]
+        print("GET EVENTS RET TXT = ",get_events_ret[0],"GET EVENTS RET BOOL = ",get_events_ret[1])
 
     else:
         check_wd_open_txt = "ZÁRVA" 
-        get_events_ret = "nincs esemény"
+        get_events_ret_txt = "nincs esemény"
 
 
-    if boolean_wd_open and boolean_get_events:
+    if boolean_wd_open and get_events_ret_boolean:
         main_ret =  main(start_p,end_p,summary,location)    
 
 
@@ -216,7 +219,7 @@ def check_wd_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    open_start_time = ["10:00", "09:00", "10:00", "11:00", "08:00", "13:00", "11:00"]
+    open_start_time = ["13:00", "09:00", "10:00", "11:00", "08:00", "13:00", "11:00"]
     open_end_time = ["19:00", "19:00", "19:00", "18:00", "17:00", "19:00", "19:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
