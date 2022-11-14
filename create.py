@@ -124,8 +124,8 @@ def webhook():
             "session" : "session_name",
             "parameters": {
                 "event_id" : event_id,
-                "wd_open" : wd_open,
-                "free_busy" : free_busy
+                "wd_open" : boolean_wd_open,
+                "free_busy" : boolean_get_events
             }
         }
     }
