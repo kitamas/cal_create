@@ -105,6 +105,8 @@ def webhook():
 
     # event_id = main_ret['event_id']
     event_id = 'event_id'
+    wd_open = "open"
+    free_busy = "free"
 
     res = {
         "fulfillment_response": {
@@ -121,7 +123,9 @@ def webhook():
         "session_info": {
             "session" : "session_name",
             "parameters": {
-                "event_id" : event_id
+                "event_id" : event_id,
+                "wd_open" : wd_open,
+                "free_busy" : free_busy
             }
         }
     }
