@@ -123,7 +123,7 @@ def webhook():
             "parameters": {
                 "event_id" : event_id,
                 "wd_open" : str(boolean_wd_open),
-                "free_busy" : str(boolean_get_events)
+                "free_busy" : str(get_events_ret_boolean)
             }
         }
     }
