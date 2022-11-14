@@ -105,8 +105,7 @@ def webhook():
 
     # event_id = main_ret['event_id']
     event_id = 'event_id'
-    wd_open = "open"
-    free_busy = "free"
+    print("str(boolean_wd_open)",str(boolean_wd_open),"str(boolean_get_events)",str(boolean_get_events))
 
     res = {
         "fulfillment_response": {
@@ -124,8 +123,8 @@ def webhook():
             "session" : "session_name",
             "parameters": {
                 "event_id" : event_id,
-                "wd_open" : boolean_wd_open,
-                "free_busy" : boolean_get_events
+                "wd_open" : str(boolean_wd_open),
+                "free_busy" : str(boolean_get_events)
             }
         }
     }
