@@ -84,13 +84,9 @@ def webhook():
         get_events_ret = get_events(dt_p_obj_rounded,duration)
         print("GET EVENTS RET  = ",get_events_ret)
 
-        if get_events_ret == 'free':
-            boolean_get_events = True
-        else:
-            boolean_get_events = False
     else:
         check_wd_open_txt = "ZÁRVA" 
-        get_events_ret = "nincs esemeny"
+        get_events_ret = "nincs esemény"
 
 
     if boolean_wd_open and boolean_get_events:
@@ -335,8 +331,9 @@ def get_events(dt_p_obj_rounded,duration):
         # print(json.dumps(events, indent=4))
 
         if not events:
-            print('free')
-            start_event = 'free'
+            boolean_get_events = True
+            start_event_txt = 'free'
+            start_event = [start_event_txt,boolean_get_events]
 
             return start_event
 
@@ -357,9 +354,11 @@ def get_events(dt_p_obj_rounded,duration):
         #start = start2.strftime("%B %A %H:%M")
         start = start2.strftime("%A %H:%M")
 
-        start_event = "FOGLALT: " + events[0]['summary'] + " "  + start + " | "
-        print("only the first element of the list =",start_event)
+        start_event_txt = "FOGLALT: " + events[0]['summary'] + " "  + start + " | "
+        print("only the first element of the list =",start_event_txt)
 
+        boolean_get_events = False
+        start_event = [start_event_txt,boolean_get_events]
         return start_event
 
     except HttpError as error:
