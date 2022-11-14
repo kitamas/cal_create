@@ -90,7 +90,7 @@ def webhook():
     else:
         check_wd_open_txt = "ZÁRVA" 
         get_events_ret_txt = "nincs esemény"
-
+        get_events_ret_boolean = get_events_ret[1]
 
     if boolean_wd_open and get_events_ret_boolean:
         main_ret =  main(start_p,end_p,summary,location)    
