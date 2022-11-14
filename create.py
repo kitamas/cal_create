@@ -209,8 +209,8 @@ def check_wd_open():
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
 
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
+
     #hours_original = req.get('intentInfo').get('parameters').get('time').get('originalValue')
-    #print("HOURS =",hours," hours_original = ",hours_original)
 
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
 
@@ -351,7 +351,8 @@ def get_events(dt_p_obj_rounded,duration):
 
         start1 = events[0]['start'].get('dateTime', events[0]['start'].get('date'))
         start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
-        start = start2.strftime("%B %A %H:%M")
+        #start = start2.strftime("%B %A %H:%M")
+        start = start2.strftime("%A %H:%M")
 
         start_event = "FOGLALT: " + events[0]['summary'] + " "  + start + " | "
         print("only the first element of the list =",start_event)
