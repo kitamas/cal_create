@@ -412,17 +412,17 @@ def get_events_gaps(dt_p_obj_rounded,duration):
         duration = datetime.timedelta(hours = 1)
 
         f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
+        print("this is f obj = return from findfirstopenslot",f_obj,type(f_obj))
+
         if f_obj == "None":
             f_time = "NINCS"
         else:
-            print("f_obj = ",f_obj)
+            print("ELSE f_obj = ",f_obj)
             f_time = f_obj.strftime("%Y-%m-%d %H:%M")
-
-        firsto = "firsto FIRST OPEN: "        
-        print(firsto,f_time)
+        
+        print("F OBJ = ",f_obj," F_TIME =" ,f_time)
 
         return f_obj
-
 
     except HttpError as error:
         print('An error occurred: %s' % error)
