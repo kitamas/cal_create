@@ -97,7 +97,7 @@ def webhook():
 
 
     get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
-    print("GET EVENTS GAPS RET  = ",get_events_gaps_ret)
+    print("GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
 
     #text = main_ret['text'] + check_wd_open_txt + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret_txt + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
     text = " | " + check_wd_open_txt + " | " + get_events_ret_txt
@@ -418,21 +418,10 @@ def get_events_gaps(dt_p_obj_rounded,duration):
             print("f_obj = ",f_obj)
             f_time = f_obj.strftime("%Y-%m-%d %H:%M")
 
-        firsto = "AAAAAAAAAAA firsto FIRST OPEN: "        
+        firsto = "firsto FIRST OPEN: "        
         print(firsto,f_time)
 
-        # only the first element of the list
-
-
-        start1 = events[0]['start'].get('dateTime', events[0]['start'].get('date'))
-        start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
-        start = start2.strftime("%B %A %H:%M")
-
-        start_event = events[0]['summary'] + " "  + start + " | "
-        print("GAPS GAPS only the first element of the list =",start_event)
-
-
-        return start_event
+        return f_obj
 
 
     except HttpError as error:
