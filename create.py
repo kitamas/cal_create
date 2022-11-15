@@ -85,7 +85,7 @@ def webhook():
 
         get_events_ret_txt = get_events_ret[0]
         get_events_ret_boolean = get_events_ret[1]
-        print("GET EVENTS RET TXT = ",get_events_ret[0],"GET EVENTS RET BOOL = ",get_events_ret[1])
+        # print("GET EVENTS RET TXT = ",get_events_ret[0],"GET EVENTS RET BOOL = ",get_events_ret[1])
 
     else:
         # check_wd_open_txt = "ZÁRVA" 
@@ -104,7 +104,7 @@ def webhook():
 
     # event_id = main_ret['event_id']
     event_id = 'event_id'
-    print("str(boolean_wd_open) = ",str(boolean_wd_open),"str(get_events_ret_boolean) = ",str(get_events_ret_boolean))
+    # print("str(boolean_wd_open) = ",str(boolean_wd_open),"str(get_events_ret_boolean) = ",str(get_events_ret_boolean))
 
     res = {
         "fulfillment_response": {
