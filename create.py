@@ -104,7 +104,7 @@ def webhook():
 
     # event_id = main_ret['event_id']
     event_id = 'event_id'
-    print(" AAAAAAAAAAAAAAA str(boolean_wd_open)",str(boolean_wd_open),"str(get_events_ret_boolean)",str(get_events_ret_boolean))
+    print("str(boolean_wd_open) = ",str(boolean_wd_open),"str(get_events_ret_boolean) = ",str(get_events_ret_boolean))
 
     res = {
         "fulfillment_response": {
@@ -171,7 +171,7 @@ def main(start_p,end_p,summary,location):
     ).execute()
 
     # text = "Event created. Starts: " + event_result['start']['dateTime'] + " Ends: " + event_result['end']['dateTime'] + " id: " + event_result['id']
-    # !!!!! timeZone": "Europe/Budapest" !!!!! start hour + 1
+    # timeZone": "Europe/Budapest" -> hour = hour + 1
 
     start_event = datetime.datetime.strptime(event_result['start']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
     end_event = datetime.datetime.strptime(event_result['end']['dateTime'],'%Y-%m-%dT%H:%M:%S%z')
@@ -219,8 +219,8 @@ def check_wd_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    open_start_time = ["13:00", "09:00", "10:00", "11:00", "08:00", "13:00", "11:00"]
-    open_end_time = ["21:00", "19:00", "19:00", "18:00", "17:00", "19:00", "19:00"]
+    open_start_time = ["08:00", "09:00", "10:00", "11:00", "08:00", "13:00", "11:00"]
+    open_end_time = ["17:00", "22:00", "19:00", "18:00", "17:00", "19:00", "19:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -234,7 +234,7 @@ def check_wd_open():
 
     dt_p_week_day = dt_p_obj.weekday()
     dt_p_week_day_name = week_days[dt_p_week_day]
-    print("dt_p_week_day_name:", dt_p_week_day_name)
+    # print("dt_p_week_day_name:", dt_p_week_day_name)
 
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
@@ -399,10 +399,9 @@ def get_events_gaps(dt_p_obj_rounded,duration):
 
             return start_event
 
-        # = = = = = = = = = = = = = = = = = = = = = = 
         # startTime = datetime.datetime.now() + datetime.timedelta(hours = 1)
-        startTime = dt_p_obj_rounded
         # startTime = startTime - min1
+        startTime = dt_p_obj_rounded
 
         print("startTime GAPS = = = = = ",startTime)
 
