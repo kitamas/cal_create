@@ -418,12 +418,12 @@ def get_events_gaps(dt_p_obj_rounded,duration):
             print("f_obj = ",f_obj)
             f_time = f_obj.strftime("%Y-%m-%d %H:%M")
 
-        firsto = "FIRST OPEN: "        
+        firsto = "AAAAAAAAAAA firsto FIRST OPEN: "        
         print(firsto,f_time)
 
         # only the first element of the list
 
-        """
+
         start1 = events[0]['start'].get('dateTime', events[0]['start'].get('date'))
         start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
         start = start2.strftime("%B %A %H:%M")
@@ -431,7 +431,7 @@ def get_events_gaps(dt_p_obj_rounded,duration):
         start_event = events[0]['summary'] + " "  + start + " | "
         print("GAPS GAPS only the first element of the list =",start_event)
 
-        """
+
         return start_event
 
 
