@@ -432,7 +432,6 @@ def get_events_gaps(dt_p_obj_rounded,duration):
         print("GAPS GAPS only the first element of the list =",start_event)
 
         """
-        start_event = "RETURN RETURN def get_events_gaps(dt_p_obj_rounded,duration):"
         return start_event
 
 
@@ -471,8 +470,6 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     print("EVENT ENDS eventEnds = ", eventEnds)
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]  LIST [datetime]
     # eventEnds[0] = 2022-10-24 18:00:00
-
-    print("LEN EVENTENDS=",len(eventEnds))
 
     free_start_hours = ""
     for i in range(len(eventEnds)):
