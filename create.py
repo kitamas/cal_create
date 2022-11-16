@@ -377,10 +377,7 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
         end_p1 = (dt_end_p_obj + duration).isoformat("T", "seconds")
 
         end_p = end_p1 + '+00:00'
-
         print("GET EVENTS GAPS END P = ",end_p)
-        print("MASODIK GET EVENTS GAPS END P dt_end_p_obj= ",dt_end_p_obj)
-
 
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
                                               maxResults=8, singleEvents=True,
@@ -401,7 +398,10 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
 
         print("startTime GAPS = = = = = ",startTime)
 
-        endTime = datetime.datetime(2022, 11, 12, 23, 59, 59, 0)
+        # endTime = datetime.datetime(2022, 11, 12, 23, 59, 59, 0)
+
+        endTime = dt_end_p_obj
+        print("MASODIK GET EVENTS GAPS END P dt_end_p_obj= ",dt_end_p_obj)
 
         print("endTime GAPS = = = = =",endTime)
 
