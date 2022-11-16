@@ -217,8 +217,8 @@ def check_wd_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    open_start_time = ["08:00", "10:00", "11:00", "11:00", "08:00", "13:00", "11:00"]
-    open_end_time = ["17:00", "19:00", "19:00", "18:00", "17:00", "19:00", "19:00"]
+    open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "08:00"]
+    open_end_time = ["17:00", "17:00", "17:00", "18:00", "17:00", "13:00", "12:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -250,8 +250,9 @@ def check_wd_open():
     # print("HOUR open_end_time[dt_p_week_day][0:2]",open_end_time[dt_p_week_day][0:2])
     # print("MINUTE open_end_time[dt_p_week_day][3:5]",open_end_time[dt_p_week_day][3:5])
 
-    ddd = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
-    print("DDD DDD DDD = ",ddd,type(ddd)) 
+    ddd = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
+    print("DDD DDD DDD = ",ddd,type(ddd))
+    # 2022-11-16 11:00:00 <class 'datetime.datetime'> 
 
     end_p = (dt_p_obj + duration).isoformat("T", "seconds")
 
