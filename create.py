@@ -372,11 +372,12 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
         start_p = start_p_min1 + '+00:00'
         print("GET EVENTS GAPS START P = ",start_p)
 
-        duration = datetime.timedelta(hours=10)
-
-        end_p1 = (dt_p_obj_rounded + duration).isoformat("T", "seconds")
+        # duration = datetime.timedelta(hours=10)
+        # end_p1 = (dt_p_obj_rounded + duration).isoformat("T", "seconds")
+        end_p1 = (dt_end_p_obj + duration).isoformat("T", "seconds")
 
         end_p = end_p1 + '+00:00'
+
         print("GET EVENTS GAPS END P = ",end_p)
         print("MASODIK GET EVENTS GAPS END P dt_end_p_obj= ",dt_end_p_obj)
 
