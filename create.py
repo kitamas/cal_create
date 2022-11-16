@@ -251,12 +251,11 @@ def check_wd_open():
     # print("MINUTE open_end_time[dt_p_week_day][3:5]",open_end_time[dt_p_week_day][3:5])
 
     dt_end_p_obj = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
-    print("dt_end_p_obj = ",dt_end_p_obj,type(dt_end_p_obj))
-    # 2022-11-16 17:00:00 <class 'datetime.datetime'>
+    # dt_end_p_obj =  2022-11-16 17:00:00 <class 'datetime.datetime'>
 
     # end_p = (dt_p_obj + duration).isoformat("T", "seconds")
     end_p = (dt_end_p_obj).isoformat("T", "seconds")
-    print("end_p = ",end_p)
+    # end_p =  2022-11-16T17:00:00
 
     if current_dateTime > dt_p_obj:
         print("A ",dt_p_obj,"idő már elmúlt. A jelenlegi idő:",current_dateTime)
@@ -267,10 +266,9 @@ def check_wd_open():
         return check_wd_open_ret
 
     start_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
-
     end_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
 
-    # print("start_pdate_otime =", start_pdate_otime)
+    print("start_pdate_otime =", start_pdate_otime)
     # print("end_pdate_otime = ", end_pdate_otime)
 
 
