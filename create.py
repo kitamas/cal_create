@@ -211,13 +211,9 @@ def check_wd_open():
     year = req.get('sessionInfo').get('parameters').get('date').get('year')
     month = req.get('sessionInfo').get('parameters').get('date').get('month')
     day = req.get('sessionInfo').get('parameters').get('date').get('day')
-
     hours = req.get('sessionInfo').get('parameters').get('time').get('hours')
-
-    #hours_original = req.get('intentInfo').get('parameters').get('time').get('originalValue')
-
+    # HOURS ORIGINAL FROM USER hours_original = req.get('intentInfo').get('parameters').get('time').get('originalValue')
     minutes = req.get('sessionInfo').get('parameters').get('time').get('minutes')
-
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
@@ -232,6 +228,7 @@ def check_wd_open():
     dt_p_obj = datetime.datetime.strptime(dt_p_string, '%Y,%m,%d,%H,%M')
     # 2022-09-25 00:00:00 - string to datetime object
 
+    # Dialogflow am - pm converter (10:00 <-> 22:00)
     hours_am = am_pm_conv(current_dateTime,dt_p_obj,hours)
 
     dt_p_week_day = dt_p_obj.weekday()
@@ -240,16 +237,22 @@ def check_wd_open():
 
     dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
-    # hour_rounded = dt_p_obj_rounded
-    # print("DT PARAM OBJ HOUR ROUNDED:", dt_p_obj_rounded,type(dt_p_obj_rounded))
+    # print("DT PARAM OBJ ROUNDED:", dt_p_obj_rounded,type(dt_p_obj_rounded))
     # 2022-10-31 21:00:00 <class 'datetime.datetime'>
 
     start_p = dt_p_obj_rounded.isoformat("T", "seconds")
-    # print("START from parameter ROUNDED= ",start_p,type(start_p))
+    # print("START from parameter ROUNDED = start_p = ",start_p,type(start_p))
 
     duration = datetime.timedelta(hours=1)
 
-    #end_p = (dt_p_obj + datetime.timedelta(hours=1)).isoformat("T", "seconds")
+    # open end time weekday obj
+    # print("open_end_time[dt_p_week_day] = ", open_end_time[dt_p_week_day], type(open_end_time[dt_p_week_day]))
+    # print("HOUR open_end_time[dt_p_week_day][0:2]",open_end_time[dt_p_week_day][0:2])
+    # print("MINUTE open_end_time[dt_p_week_day][3:5]",open_end_time[dt_p_week_day][3:5])
+
+    ddd = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
+    print("DDD DDD DDD = ",ddd,type(ddd)) 
+
     end_p = (dt_p_obj + duration).isoformat("T", "seconds")
 
 
@@ -261,20 +264,9 @@ def check_wd_open():
         check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,duration,hours_am]  
         return check_wd_open_ret
 
-    # print("open_start_time:", open_start_time[dt_p_week_day])
-    # print("open_end_time:", open_end_time[dt_p_week_day])
-
-    # open_start_time[dt_p_week_day] = 10:00 <class 'str'>
-    # print("HOUR open_start_time[dt_p_week_day][0:2]",open_start_time[dt_p_week_day][0:2])
-    # print("MINUTE open_start_time[dt_p_week_day][3:5]",open_start_time[dt_p_week_day][3:5])
-
-    # print("STRP open_start_time[dt_p_week_day] = ",dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2])))
-
     start_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
-    # day: parameter date, open start time, obj
 
     end_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
-    # day: parameter date, end start time, obj
 
     # print("start_pdate_otime =", start_pdate_otime)
     # print("end_pdate_otime = ", end_pdate_otime)
@@ -291,7 +283,6 @@ def check_wd_open():
         boolean_wd_open = False
 
     if dt_p_obj_rounded >= start_pdate_otime and dt_p_obj_rounded + duration <= end_pdate_otime:
-        # print("hour rounded + duration = ",dt_p_obj_rounded + duration)
         # print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
         #check_wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
         check_wd_open_text = " NYITVA "
