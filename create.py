@@ -61,7 +61,7 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-
+    print("WEBHOOK - WEBHOOK - WEBHOOK, START_P = ",start_p)
     check_wd_open_ret = check_wd_open()
 
     start_p =  check_wd_open_ret[0]
@@ -394,8 +394,8 @@ def get_events_gaps(dt_p_obj_rounded,duration):
         # print(json.dumps(events, indent=4))
 
         if not events:
-            print('free')
-            start_event = 'free'
+            print('free gaps')
+            start_event = 'free gaps'
 
             return start_event
 
