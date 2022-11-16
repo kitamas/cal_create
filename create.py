@@ -61,7 +61,7 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    print("WEBHOOK - WEBHOOK - WEBHOOK, START_P = ",start_p)
+
     check_wd_open_ret = check_wd_open()
 
     start_p =  check_wd_open_ret[0]
@@ -73,6 +73,8 @@ def webhook():
     dt_p_obj_rounded  =  check_wd_open_ret[6]
     duration =  check_wd_open_ret[7]
     hours_am =  check_wd_open_ret[8]
+
+    print("WEBHOOK - WEBHOOK - WEBHOOK, START_P = ",start_p)
 
     # print("start_p = ", check_wd_open_ret[0])
     # print("end_p  =", check_wd_open_ret[1])
