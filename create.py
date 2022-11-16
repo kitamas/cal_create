@@ -370,12 +370,8 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
 
         start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
         start_p = start_p_min1 + '+00:00'
-        print("GET EVENTS GAPS START P = ",start_p)
 
-        # duration = datetime.timedelta(hours=10)
-        # end_p1 = (dt_p_obj_rounded + duration).isoformat("T", "seconds")
-        end_p1 = (dt_end_p_obj + duration).isoformat("T", "seconds")
-
+        end_p1 = (dt_end_p_obj - duration).isoformat("T", "seconds")
         end_p = end_p1 + '+00:00'
         print("GET EVENTS GAPS END P = ",end_p)
 
@@ -396,19 +392,15 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
         # startTime = startTime - min1
         startTime = dt_p_obj_rounded
 
-        print("startTime GAPS = = = = = ",startTime)
-
         # endTime = datetime.datetime(2022, 11, 12, 23, 59, 59, 0)
 
         endTime = dt_end_p_obj
-        print("MASODIK GET EVENTS GAPS END P dt_end_p_obj= ",dt_end_p_obj)
-
-        print("endTime GAPS = = = = =",endTime)
+        print("QQQQQ endTime = dt_end_p_obj = ",endTime)
 
         duration = datetime.timedelta(hours = 1)
 
         f_obj = findFirstOpenSlot(events,startTime,endTime,duration)
-        print("this is f obj = return from findfirstopenslot",f_obj,type(f_obj))
+        print("this is f obj = returned from findfirstopenslot",f_obj,type(f_obj))
 
         if f_obj == "None":
             f_time = "NINCS"
