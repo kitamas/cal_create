@@ -71,8 +71,9 @@ def webhook():
     check_wd_open_txt = check_wd_open_ret[4]
     boolean_wd_open =  check_wd_open_ret[5]
     dt_p_obj_rounded  =  check_wd_open_ret[6]
-    duration =  check_wd_open_ret[7]
-    hours_am =  check_wd_open_ret[8]
+    dt_end_p_obj  =  check_wd_open_ret[7]
+    duration =  check_wd_open_ret[8]
+    hours_am =  check_wd_open_ret[9]
 
     print("WEBHOOK - WEBHOOK - WEBHOOK, START_P = ",start_p)
 
@@ -98,7 +99,8 @@ def webhook():
         main_ret =  main(start_p,end_p,summary,location)    
 
 
-    get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
+    # get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
+    get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
     print("GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
 
     #text = main_ret['text'] + check_wd_open_txt + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret_txt + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
@@ -265,11 +267,10 @@ def check_wd_open():
         check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,duration,hours_am]  
         return check_wd_open_ret
 
+    # open time and closed time on parameter day
     start_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
     end_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
-
-    print("start_pdate_otime =", start_pdate_otime)
-    # print("end_pdate_otime = ", end_pdate_otime)
+    # start_pdate_otime = 2022-11-16 08:00:00
 
 
     if dt_p_obj_rounded < start_pdate_otime:
@@ -288,7 +289,7 @@ def check_wd_open():
         check_wd_open_text = " NYITVA "
         boolean_wd_open = True
 
-    check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,duration,hours_am] 
+    check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,dt_end_p_obj,duration,hours_am] 
     return check_wd_open_ret
 
 
@@ -361,7 +362,7 @@ def get_events(dt_p_obj_rounded,duration):
         print('An error occurred: %s' % error)
 
 
-def get_events_gaps(dt_p_obj_rounded,duration):
+def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
 
     try:
         service = build('calendar', 'v3', credentials=authentication())
@@ -378,6 +379,8 @@ def get_events_gaps(dt_p_obj_rounded,duration):
 
         end_p = end_p1 + '+00:00'
         print("GET EVENTS GAPS END P = ",end_p)
+        print("MASODIK GET EVENTS GAPS END P dt_end_p_obj= ",dt_end_p_obj)
+
 
         events_result = service.events().list(calendarId='61u5i3fkss34a4t50vr1j5l7e4@group.calendar.google.com', timeMin=start_p,timeMax=end_p,
                                               maxResults=8, singleEvents=True,
