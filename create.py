@@ -245,17 +245,18 @@ def check_wd_open():
 
     duration = datetime.timedelta(hours=1)
 
-    # open end time weekday obj
+    # create dt_end_p_obj (open end time weekday obj)
     # print("open_end_time[dt_p_week_day] = ", open_end_time[dt_p_week_day], type(open_end_time[dt_p_week_day]))
     # print("HOUR open_end_time[dt_p_week_day][0:2]",open_end_time[dt_p_week_day][0:2])
     # print("MINUTE open_end_time[dt_p_week_day][3:5]",open_end_time[dt_p_week_day][3:5])
 
-    ddd = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
-    print("DDD DDD DDD = ",ddd,type(ddd))
-    # 2022-11-16 11:00:00 <class 'datetime.datetime'> 
+    dt_end_p_obj = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
+    print("dt_end_p_obj = ",dt_end_p_obj,type(dt_end_p_obj))
+    # 2022-11-16 17:00:00 <class 'datetime.datetime'>
 
-    end_p = (dt_p_obj + duration).isoformat("T", "seconds")
-
+    # end_p = (dt_p_obj + duration).isoformat("T", "seconds")
+    end_p = (dt_end_p_obj).isoformat("T", "seconds")
+    print("end_p = ",end_p)
 
     if current_dateTime > dt_p_obj:
         print("A ",dt_p_obj,"idő már elmúlt. A jelenlegi idő:",current_dateTime)
