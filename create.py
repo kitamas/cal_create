@@ -255,8 +255,7 @@ def check_wd_open():
     dt_end_p_obj = dt_p_obj.replace(minute=0, hour=int(open_end_time[dt_p_week_day][0:2]))
     # dt_end_p_obj =  2022-11-16 17:00:00 <class 'datetime.datetime'>
 
-    # end_p = (dt_p_obj + duration).isoformat("T", "seconds")
-    end_p = (dt_end_p_obj).isoformat("T", "seconds")
+    end_p = (dt_p_obj + duration).isoformat("T", "seconds")
     # end_p =  2022-11-16T17:00:00
 
     if current_dateTime > dt_p_obj:
