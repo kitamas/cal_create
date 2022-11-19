@@ -102,7 +102,7 @@ def webhook():
     print("GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
 
     #text = main_ret['text'] + check_wd_open_txt + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret_txt + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
-    text = " | " + check_wd_open_txt + " | " + get_events_ret_txt
+    text = check_wd_open_txt + get_events_ret_txt
 
     # event_id = main_ret['event_id']
     event_id = 'event_id'
@@ -346,9 +346,10 @@ def get_events(dt_p_obj_rounded,duration):
         start1 = events[0]['start'].get('dateTime', events[0]['start'].get('date'))
         start2 = datetime.datetime.strptime(start1,'%Y-%m-%dT%H:%M:%S%z')
         #start = start2.strftime("%B %A %H:%M")
-        start = start2.strftime("%A %H:%M")
+        start = start2.strftime("%H:%M")
 
-        start_event_txt = "FOGLALT: " + events[0]['summary'] + " "  + start + " | "
+        # start_event_txt = "Foglalt. " + events[0]['summary'] + " "  + start + " | "
+        start_event_txt = start + "Foglalt. " 
         print("only the first element of the list =",start_event_txt)
 
         boolean_get_events = False
