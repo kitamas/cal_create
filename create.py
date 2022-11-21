@@ -283,7 +283,8 @@ def check_wd_open():
     if dt_p_obj_rounded >= start_pdate_otime and dt_p_obj_rounded + duration <= end_pdate_otime:
         # print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
         #check_wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
-        check_wd_open_text = " Nyitva. "
+        # check_wd_open_text = " Nyitva. "
+        check_wd_open_text = " "
         boolean_wd_open = True
 
     check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,dt_end_p_obj,duration,hours_am] 
