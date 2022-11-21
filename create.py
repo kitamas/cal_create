@@ -277,13 +277,13 @@ def check_wd_open():
 
     if dt_p_obj_rounded >= end_pdate_otime:
         # print("KÉSŐN", dt_p_obj_rounded, ">=", end_pdate_otime)
-        check_wd_open_text = " KÉSŐN. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
+        check_wd_open_text = " KÉSŐ. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         boolean_wd_open = False
 
     if dt_p_obj_rounded >= start_pdate_otime and dt_p_obj_rounded + duration <= end_pdate_otime:
         # print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
         #check_wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
-        check_wd_open_text = " Parkoló nyitva. "
+        check_wd_open_text = " Nyitva. "
         boolean_wd_open = True
 
     check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,dt_end_p_obj,duration,hours_am] 
@@ -326,7 +326,7 @@ def get_events(dt_p_obj_rounded,duration):
 
         if not events:
             boolean_get_events = True
-            start_event_txt = 'free'
+            start_event_txt = ''
             start_event = [start_event_txt,boolean_get_events]
 
             return start_event
@@ -349,7 +349,7 @@ def get_events(dt_p_obj_rounded,duration):
         start = start2.strftime("%H:%M")
 
         # start_event_txt = "Foglalt. " + events[0]['summary'] + " "  + start + " | "
-        start_event_txt = start + " időpontban a parkoló foglalt. " 
+        start_event_txt = start + " időpont foglalt. " 
         print("only the first element of the list =",start_event_txt)
 
         boolean_get_events = False
