@@ -63,7 +63,7 @@ def authentication():
 def webhook():
 
     check_wd_open_ret = check_wd_open()
-    print("FUNCTION WEBHOOK")
+    print(" AAAAAAAAAA FUNCTION WEBHOOK")
     start_p =  check_wd_open_ret[0]
     end_p =  check_wd_open_ret[1]
     summary =  check_wd_open_ret[2]
