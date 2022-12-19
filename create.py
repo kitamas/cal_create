@@ -61,9 +61,9 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
+    print("BBBBB FUNCTION WEBHOOK")
 
     check_wd_open_ret = check_wd_open()
-    print(" AAAAAAAAAA FUNCTION WEBHOOK")
     start_p =  check_wd_open_ret[0]
     end_p =  check_wd_open_ret[1]
     summary =  check_wd_open_ret[2]
@@ -82,8 +82,9 @@ def webhook():
 
 
     if boolean_wd_open:     
-        get_events_ret = get_events(dt_p_obj_rounded,duration)
+        print("IF BOOLEAN WD OPEN")
 
+        get_events_ret = get_events(dt_p_obj_rounded,duration)
         get_events_ret_txt = get_events_ret[0]
         get_events_ret_boolean = get_events_ret[1]
         print("IF BOOLEAN WD OPEN GET EVENTS RET TXT = ",get_events_ret[0],"GET EVENTS RET BOOL = ",get_events_ret[1])
