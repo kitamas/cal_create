@@ -64,6 +64,7 @@ def webhook():
     print("BBBBB FUNCTION WEBHOOK")
 
     check_wd_open_ret = check_wd_open()
+
     start_p =  check_wd_open_ret[0]
     end_p =  check_wd_open_ret[1]
     summary =  check_wd_open_ret[2]
@@ -88,19 +89,24 @@ def webhook():
         get_events_ret_txt = get_events_ret[0]
         get_events_ret_boolean = get_events_ret[1]
         print("IF BOOLEAN WD OPEN GET EVENTS RET TXT = ",get_events_ret[0],"GET EVENTS RET BOOL = ",get_events_ret[1])
-
+            if get_events_ret[1]:
+                print("IF BOOLEAN WD OPEN AND GET EVENTS RET BOOL = ",get_events_ret[1])
+                get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+                print("1111 GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
     else:
         # check_wd_open_txt = "ZÁRVA" 
         get_events_ret_txt = "zárva, nem kérdez eseményt"
         get_events_ret_boolean = False
+        # KELL? get_events_ret_boolean = False
 
-    if boolean_wd_open and get_events_ret_boolean:
+    # KELL? if boolean_wd_open and get_events_ret_boolean:
+    if get_events_ret_boolean:
         main_ret =  create_event_main(start_p,end_p,summary,location)    
 
 
     # get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
     get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
-    print("GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
+    print("2222 GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
 
     #text = main_ret['text'] + check_wd_open_txt + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret_txt + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
     text = check_wd_open_txt + get_events_ret_txt
@@ -330,7 +336,7 @@ def get_events(dt_p_obj_rounded,duration):
 
         if not events:
             boolean_get_events = True
-            start_event_txt = ''
+            start_event_txt = 'nincs esemény'
             start_event = [start_event_txt,boolean_get_events]
 
             return start_event
@@ -354,7 +360,8 @@ def get_events(dt_p_obj_rounded,duration):
 
         # start_event_txt = "Foglalt. " + events[0]['summary'] + " "  + start + " | "
         start_event_txt = start + " időpont foglalt. " 
-        print("only the first element of the list =",start_event_txt)
+        # print("only the first element of the list =",start_event_txt)
+        print("IDOPONT FOGLALT",start_event_txt)
 
         boolean_get_events = False
         start_event = [start_event_txt,boolean_get_events]
