@@ -104,8 +104,8 @@ def webhook():
     #text = main_ret['text'] + check_wd_open_txt + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret_txt + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
     text = check_wd_open_txt + get_events_ret_txt
 
-    event_id = main_ret['event_id']
-    # event_id = 'event_id'
+    #event_id = main_ret['event_id']
+    event_id = 'event_id'
     # print("str(boolean_wd_open) = ",str(boolean_wd_open),"str(get_events_ret_boolean) = ",str(get_events_ret_boolean))
 
     res = {
