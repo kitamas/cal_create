@@ -63,7 +63,7 @@ def authentication():
 def webhook():
 
     check_wd_open_ret = check_wd_open()
-
+    print("FUNCTION WEBHOOK")
     start_p =  check_wd_open_ret[0]
     end_p =  check_wd_open_ret[1]
     summary =  check_wd_open_ret[2]
@@ -86,15 +86,15 @@ def webhook():
 
         get_events_ret_txt = get_events_ret[0]
         get_events_ret_boolean = get_events_ret[1]
-        # print("GET EVENTS RET TXT = ",get_events_ret[0],"GET EVENTS RET BOOL = ",get_events_ret[1])
+        print("IF BOOLEAN WD OPEN GET EVENTS RET TXT = ",get_events_ret[0],"GET EVENTS RET BOOL = ",get_events_ret[1])
 
     else:
         # check_wd_open_txt = "ZÁRVA" 
-        get_events_ret_txt = "nincs esemény"
+        get_events_ret_txt = "zárva, nem kérdez eseményt"
         get_events_ret_boolean = False
 
     if boolean_wd_open and get_events_ret_boolean:
-        main_ret =  main(start_p,end_p,summary,location)    
+        main_ret =  create_event_main(start_p,end_p,summary,location)    
 
 
     # get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
@@ -133,8 +133,8 @@ def webhook():
     return res
 
 
-def main(start_p,end_p,summary,location):
-
+def create_event_main(start_p,end_p,summary,location):
+    print("FUNCTION create_event_main")
     start = start_p
     # 2022-10-09T12:00:00
 
@@ -191,6 +191,7 @@ def main(start_p,end_p,summary,location):
 
 
 def hour_rounder(t):
+    print("FUNCTION hour_rounder")
     # Rounds to nearest hour by adding a timedelta hour if minute >= 30
     # return (t.replace(second=0, microsecond=0, minute=0, hour=t.hour) + datetime.timedelta(hours=t.minute // 30))
 
@@ -203,6 +204,7 @@ def hour_rounder(t):
 
 
 def check_wd_open():
+    print("FUNCTION check_wd_open")
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
 
     req = request.get_json(force=True)
@@ -293,7 +295,7 @@ def check_wd_open():
 
 #def get_events(start_p,end_p):
 def get_events(dt_p_obj_rounded,duration):
-
+    print("FUNCTION get_events")
     try:
         service = build('calendar', 'v3', credentials=authentication())
 
@@ -362,7 +364,7 @@ def get_events(dt_p_obj_rounded,duration):
 
 
 def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
-
+    print("FUNCTION get_events_gaps")
     try:
         service = build('calendar', 'v3', credentials=authentication())
 
@@ -430,7 +432,7 @@ def am_pm_conv(current_dateTime,dt_p_obj,hours):
 
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
-
+    print("FUNCTION findFirstOpenSlot")
     def parseDate(rawDate):
         # RAWDATE =  2022-10-17T09:00:00Z
         # Transform the datetime given by the API to a python datetime object.
