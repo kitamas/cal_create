@@ -86,7 +86,7 @@ def webhook():
         print("IF BOOLEAN WD OPEN")
 
         get_events_ret = get_events(dt_p_obj_rounded,duration)
-        # get_events_ret_txt = get_events_ret[0]
+        get_events_ret_txt = get_events_ret[0]
         get_events_ret_boolean = get_events_ret[1]
         print("IF BOOLEAN WD OPEN GET EVENTS RET TXT = ",get_events_ret[0],"GET EVENTS RET BOOL = ",get_events_ret[1])
         if get_events_ret[1]:
