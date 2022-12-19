@@ -95,7 +95,7 @@ def webhook():
             print("1111 GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
             get_events_ret_txt = "111" + get_events_ret[0] + get_events_gaps_ret
     else:
-        # check_wd_open_txt = "ZÁRVA" 
+        check_wd_open_txt = "ZÁRVA" 
         get_events_ret_txt = "zárva, nem kérdez eseményt"
         get_events_ret_boolean = False
         # KELL? get_events_ret_boolean = False
