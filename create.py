@@ -93,7 +93,7 @@ def webhook():
             print("IF BOOLEAN WD OPEN AND GET EVENTS RET BOOL = ",get_events_ret[1])
             get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("1111 GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
-            get_events_ret_txt = "111" + get_events_ret[0] + get_events_gaps_ret
+            get_events_ret_txt = "111" + get_events_ret[0]
     else:
         check_wd_open_txt = "ZÁRVA" 
         get_events_ret_txt = "zárva, nem kérdez eseményt"
