@@ -466,7 +466,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     for i in range(len(eventEnds)):
         free_start_hour = str(eventEnds[i].hour) + ", "
         free_start_hours += free_start_hour
-    print("FREE START HOURS =",free_start_hours)
+    print("11111 FREE START HOURS =",free_start_hours)
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
@@ -482,7 +482,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     if startTime + duration < eventStarts[0]:
         # A slot is open at the start of the desired window.
         print("if startTime + duration < eventStarts. return startTime", startTime)
-        print("1111 FREE START HOURS =",free_start_hours)
+        print("22222 FREE START HOURS =",free_start_hours)
         return startTime
 
     for i, gap in enumerate(gaps):
@@ -494,7 +494,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             # print("i = ",i," eventEnds[i] = ", eventEnds[i])
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
-            print("2222 FREE START HOURS =",free_start_hours)
+            print("33333 FREE START HOURS =",free_start_hours)
             return eventEnds[i]
 
     #If no suitable gaps are found, return none.
