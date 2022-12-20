@@ -360,8 +360,8 @@ def get_events(dt_p_obj_rounded,duration):
         #start = start2.strftime("%B %A %H:%M")
         start = start2.strftime("%H:%M")
 
-        # start_event_txt = "Foglalt. " + events[0]['summary'] + " "  + start + " | "
-        start_event_txt = start + " időpont foglalt. " 
+        start_event_txt = "Foglalt. " + events[0]['summary'] + " "  + start + " | "
+        # start_event_txt = start + " időpont foglalt. " 
         # print("only the first element of the list =",start_event_txt)
         print("IDOPONT FOGLALT",start_event_txt)
 
@@ -475,12 +475,14 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     # print("enumerate(gaps) =",enumerate(gaps))
     # enumerate(gaps) = <enumerate object at 0x7f4527c24140>
 
-    print("FIRST OPEN START = ",eventEnds[0])
+    # print("FIRST OPEN START = ",eventEnds[0])
     # FIRST OPEN START =  2022-10-24 17:00:00
 
     # if ROUNDED startTime + duration < eventStarts[0]:
     if startTime + duration < eventStarts[0]:
         # A slot is open at the start of the desired window.
+        print("if startTime + duration < eventStarts. return startTime", startTime)
+        print("1111 FREE START HOURS =",free_start_hours)
         return startTime
 
     for i, gap in enumerate(gaps):
@@ -492,6 +494,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             # print("i = ",i," eventEnds[i] = ", eventEnds[i])
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
+            print("1111 FREE START HOURS =",free_start_hours)
             return eventEnds[i]
 
     #If no suitable gaps are found, return none.
