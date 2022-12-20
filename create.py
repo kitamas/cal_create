@@ -92,8 +92,8 @@ def webhook():
         if get_events_ret[1]:
             print("IF BOOLEAN WD OPEN AND GET get_events_ret_boolean = ",get_events_ret[1])
             get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
-            print("1111 GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
-            get_events_ret_txt = "111" + get_events_ret[0]
+            print("get_events_gaps_ret = ",get_events_gaps_ret)
+            get_events_ret_txt = get_events_ret[0] + " szabad: " + get_events_gaps_ret
     else:
         # check_wd_open_txt = "WD ZÁRVA" 
         print("IF BOOLEAN WD OPEN ELSE. wd zárva, nem kérdez eseményt")
@@ -338,7 +338,7 @@ def get_events(dt_p_obj_rounded,duration):
 
         if not events:
             boolean_get_events = True
-            start_event_txt = 'nincs esemény'
+            start_event_txt = ' nincs esemény az időpontban '
             start_event = [start_event_txt,boolean_get_events]
 
             return start_event
@@ -360,7 +360,7 @@ def get_events(dt_p_obj_rounded,duration):
         #start = start2.strftime("%B %A %H:%M")
         start = start2.strftime("%H:%M")
 
-        start_event_txt = "Foglalt. " + events[0]['summary'] + " "  + start + " | "
+        start_event_txt = "Foglalt. " + events[0]['summary'] + " "  + start
         # start_event_txt = start + " időpont foglalt. " 
         # print("only the first element of the list =",start_event_txt)
         print("IDOPONT FOGLALT",start_event_txt)
@@ -422,7 +422,7 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
             # f_time = f_obj.strftime("%Y-%m-%d %H:%M")
             f_time = findFirstOpenSlot_ret
 
-        print("findFirstOpenSlot_ret = ",findFirstOpenSlot_ret," F_TIME =" ,f_time)
+        print("findFirstOpenSlot_ret = ",findFirstOpenSlot_ret)
 
         return findFirstOpenSlot_ret
 
