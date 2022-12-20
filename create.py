@@ -227,7 +227,7 @@ def check_wd_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    open_start_time = ["08:00", "08:00", "08:00", "08:00", "08:00", "08:00", "08:00"]
+    open_start_time = ["08:00", "10:00", "08:00", "08:00", "08:00", "08:00", "08:00"]
     open_end_time = ["17:00", "20:00", "17:00", "17:00", "17:00", "16:00", "12:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
