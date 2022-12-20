@@ -479,7 +479,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     # FIRST OPEN START =  2022-10-24 17:00:00
 
     # if ROUNDED startTime + duration < eventStarts[0]:
-    # if KELL? if startTime + duration < eventStarts[0]:
+    # KELL ez? 
+    if startTime + duration < eventStarts[0]:
         # A slot is open at the start of the desired window.
         print("if startTime + duration < eventStarts. return startTime", startTime)
         return startTime
