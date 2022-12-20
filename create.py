@@ -495,8 +495,9 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
             print("33333 FREE START HOURS =",free_start_hours)
-            print("eventEnds[i] =",eventEnds[i])
-            return eventEnds[i]
+            # eventEnds[i] = 2022-12-20 15:00:00
+            # return eventEnds[i]
+            return free_start_hours
 
     #If no suitable gaps are found, return none.
     return "None"
