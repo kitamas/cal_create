@@ -61,7 +61,7 @@ def authentication():
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
-    print("BBBBB FUNCTION WEBHOOK")
+    print("FUNCTION WEBHOOK")
 
     check_wd_open_ret = check_wd_open()
 
@@ -88,14 +88,15 @@ def webhook():
         get_events_ret = get_events(dt_p_obj_rounded,duration)
         get_events_ret_txt = get_events_ret[0]
         get_events_ret_boolean = get_events_ret[1]
-        print("IF BOOLEAN WD OPEN GET EVENTS RET TXT = ",get_events_ret[0],"GET EVENTS RET BOOL = ",get_events_ret[1])
+        print("IF BOOLEAN WD OPEN. get_events_ret_txt = ",get_events_ret[0],"get_events_ret_boolean = ",get_events_ret[1])
         if get_events_ret[1]:
-            print("IF BOOLEAN WD OPEN AND GET EVENTS RET BOOL = ",get_events_ret[1])
+            print("IF BOOLEAN WD OPEN AND GET get_events_ret_boolean = ",get_events_ret[1])
             get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("1111 GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
             get_events_ret_txt = "111" + get_events_ret[0]
     else:
         # check_wd_open_txt = "WD ZÁRVA" 
+        print("IF BOOLEAN WD OPEN ELSE. wd zárva, nem kérdez eseményt")
         get_events_ret_txt = " wd zárva, nem kérdez eseményt"
         get_events_ret_boolean = False
         # KELL? get_events_ret_boolean = False
@@ -105,9 +106,9 @@ def webhook():
         main_ret =  create_event_main(start_p,end_p,summary,location)    
 
 
-    # get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
-    get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
-    print("2222 GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
+    # #### get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
+    # get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+    # print("2222 GET EVENTS GAPS RET f_obj = ",get_events_gaps_ret)
 
     #text = main_ret['text'] + check_wd_open_txt + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret_txt + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
     text = check_wd_open_txt + get_events_ret_txt
@@ -227,7 +228,7 @@ def check_wd_open():
     summary = req.get('sessionInfo').get('parameters').get('summary')
     location = req.get('sessionInfo').get('parameters').get('location')
 
-    open_start_time = ["08:00", "11:00", "08:00", "08:00", "08:00", "08:00", "08:00"]
+    open_start_time = ["08:00", "12:00", "08:00", "08:00", "08:00", "08:00", "08:00"]
     open_end_time = ["17:00", "20:00", "17:00", "17:00", "17:00", "16:00", "12:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
