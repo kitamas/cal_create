@@ -93,7 +93,7 @@ def webhook():
             print("IF BOOLEAN WD OPEN AND GET get_events_ret_boolean = ",get_events_ret[1])
             get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("get_events_gaps_ret = ",get_events_gaps_ret)
-            get_events_ret_txt = get_events_ret[0] + " szabad: " + get_events_gaps_ret
+            get_events_ret_txt = get_events_ret[0] + " 1. szabad: " + get_events_gaps_ret
     else:
         # check_wd_open_txt = "WD ZÁRVA" 
         print("IF BOOLEAN WD OPEN ELSE. wd zárva, nem kérdez eseményt")
@@ -112,7 +112,7 @@ def webhook():
 
     #text = main_ret['text'] + check_wd_open_txt + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret_txt + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
     #text = check_wd_open_txt + get_events_ret_txt
-    text = check_wd_open_txt + get_events_ret_txt + " szabad: " + get_events_gaps_ret
+    text = check_wd_open_txt + get_events_ret_txt + " 2. szabad: " + get_events_gaps_ret
 
     #event_id = main_ret['event_id']
     event_id = 'event_id'
@@ -230,7 +230,7 @@ def check_wd_open():
     location = req.get('sessionInfo').get('parameters').get('location')
 
     open_start_time = ["08:00", "09:00", "08:00", "08:00", "08:00", "08:00", "08:00"]
-    open_end_time = ["17:00", "23:00", "17:00", "17:00", "17:00", "16:00", "12:00"]
+    open_end_time = ["17:00", "18:00", "23:00", "17:00", "17:00", "16:00", "12:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
