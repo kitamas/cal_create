@@ -92,7 +92,7 @@ def webhook():
             # get_events_ret_txt = get_events_ret[0] + " 1. szabad: " + get_events_gaps_ret
             get_events_ret_txt = get_events_ret[0]
     else:
-        wd_open_txt = "if wd_open_boolean else: wd zárva" 
+        # wd_open_txt = "if wd_open_boolean else: wd zárva" 
         print("IF BOOLEAN WD OPEN ELSE. wd zárva, nem kérdez eseményt")
         get_events_ret_txt = " wd zárva, nem kérdez eseményt"
         get_events_ret_boolean = False
