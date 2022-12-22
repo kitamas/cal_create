@@ -242,7 +242,8 @@ def wd_open():
     # 2022-09-25 00:00:00 - string to datetime object
 
     # Dialogflow am - pm converter (10:00 <-> 22:00)
-    hours_am = am_pm_conv(current_dateTime,dt_p_obj,hours)
+    # hours_am = am_pm_conv(current_dateTime,dt_p_obj,hours)
+    hours_am = "hours_am"
 
     dt_p_week_day = dt_p_obj.weekday()
     dt_p_week_day_name = week_days[dt_p_week_day]
