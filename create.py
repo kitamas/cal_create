@@ -275,7 +275,7 @@ def wd_open():
         wd_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') + "."
         wd_open_boolean = False
 
-        wd_open_ret = [start_p,end_p,summary,location,wd_open_text,wd_open_boolean,dt_p_obj_rounded,duration,hours_am]  
+        wd_open_ret = [start_p,end_p,summary,location,wd_open_text,wd_open_boolean,dt_p_obj_rounded,dt_end_p_obj,duration,hours_am]  
         return wd_open_ret
 
     # open time and closed time on parameter day
@@ -301,7 +301,8 @@ def wd_open():
         wd_open_text = " "
         wd_open_boolean = True
 
-    wd_open_ret = [start_p,end_p,summary,location,wd_open_text,wd_open_boolean,dt_p_obj_rounded,dt_end_p_obj,duration,hours_am] 
+    wd_open_ret = [start_p,end_p,summary,location,wd_open_text,wd_open_boolean,dt_p_obj_rounded,dt_end_p_obj,duration,hours_am]
+
     return wd_open_ret
 
 
