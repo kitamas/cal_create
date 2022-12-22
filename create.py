@@ -63,46 +63,46 @@ def authentication():
 def webhook():
     print("FUNCTION WEBHOOK")
 
-    check_wd_open_ret = check_wd_open()
+    wd_open_ret = wd_open()
 
-    start_p =  check_wd_open_ret[0]
-    end_p =  check_wd_open_ret[1]
-    summary =  check_wd_open_ret[2]
-    location =  check_wd_open_ret[3]
-    check_wd_open_txt = check_wd_open_ret[4]
-    boolean_wd_open =  check_wd_open_ret[5]
-    dt_p_obj_rounded  =  check_wd_open_ret[6]
-    dt_end_p_obj  =  check_wd_open_ret[7]
-    duration =  check_wd_open_ret[8]
-    hours_am =  check_wd_open_ret[9]
+    start_p =  wd_open_ret[0]
+    end_p =  wd_open_ret[1]
+    summary =  wd_open_ret[2]
+    location =  wd_open_ret[3]
+    wd_open_txt = wd_open_ret[4]
+    wd_open_boolean =  wd_open_ret[5]
+    dt_p_obj_rounded  =  wd_open_ret[6]
+    dt_end_p_obj  =  wd_open_ret[7]
+    duration =  wd_open_ret[8]
+    hours_am =  wd_open_ret[9]
 
-    # print("start_p = ", check_wd_open_ret[0])
-    # print("end_p  =", check_wd_open_ret[1])
-    # print("boolean_wd_open = ", check_wd_open_ret[5])
+    # print("start_p = ", wd_open_ret[0])
+    # print("end_p  = ", wd_open_ret[1])
+    # print("wd_open_boolean = ", wd_open_ret[5])
     # print("dt_p_obj_rounded = ", dt_p_obj_rounded)
 
 
-    if boolean_wd_open:     
-        print("IF BOOLEAN WD OPEN")
+    if wd_open_boolean:     
+        print("IF wd_open_boolean == True")
 
         get_events_ret = get_events(dt_p_obj_rounded,duration)
         get_events_ret_txt = get_events_ret[0]
         get_events_ret_boolean = get_events_ret[1]
-        print("IF BOOLEAN WD OPEN. get_events_ret_txt = ",get_events_ret[0],"get_events_ret_boolean = ",get_events_ret[1])
+        print("IF wd_open_boolean. get_events_ret_txt = ",get_events_ret[0],"get_events_ret_boolean = ",get_events_ret[1])
         if get_events_ret[1]:
-            print("IF BOOLEAN WD OPEN AND GET get_events_ret_boolean = ",get_events_ret[1])
+            print("IF wd_open_boolean = ", wd_open_boolean ," AND get_events_ret_boolean = ",get_events_ret[1])
             get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("get_events_gaps_ret = ",get_events_gaps_ret)
             # get_events_ret_txt = get_events_ret[0] + " 1. szabad: " + get_events_gaps_ret
             get_events_ret_txt = get_events_ret[0]
     else:
-        # check_wd_open_txt = "WD ZÁRVA" 
+        # wd_open_txt = "WD ZÁRVA" 
         print("IF BOOLEAN WD OPEN ELSE. wd zárva, nem kérdez eseményt")
         get_events_ret_txt = " wd zárva, nem kérdez eseményt"
         get_events_ret_boolean = False
         # KELL? get_events_ret_boolean = False
 
-    # KELL? if boolean_wd_open and get_events_ret_boolean:
+    # KELL? if wd_open_boolean and get_events_ret_boolean:
     if get_events_ret_boolean:
         main_ret =  create_event_main(start_p,end_p,summary,location)    
 
@@ -111,13 +111,13 @@ def webhook():
     get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
     print("GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
 
-    #text = main_ret['text'] + check_wd_open_txt + " B_1wd= " + str(check_wd_open_ret[5]) + " | " + get_events_ret_txt + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
-    #text = check_wd_open_txt + get_events_ret_txt
-    text = check_wd_open_txt + get_events_ret_txt + " Szabad: " + get_events_gaps_ret
+    #text = main_ret['text'] + wd_open_txt + " B_1wd= " + str(wd_open_ret[5]) + " | " + get_events_ret_txt + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
+    #text = wd_open_txt + get_events_ret_txt
+    text = wd_open_txt + get_events_ret_txt + " Szabad: " + get_events_gaps_ret
 
     #event_id = main_ret['event_id']
     event_id = 'event_id'
-    # print("str(boolean_wd_open) = ",str(boolean_wd_open),"str(get_events_ret_boolean) = ",str(get_events_ret_boolean))
+    # print("str(wd_open_boolean) = ",str(wd_open_boolean),"str(get_events_ret_boolean) = ",str(get_events_ret_boolean))
 
     res = {
         "fulfillment_response": {
@@ -135,7 +135,7 @@ def webhook():
             "session" : "session_name",
             "parameters": {
                 "event_id" : event_id,
-                "wd_open" : str(boolean_wd_open),
+                "wd_open" : str(wd_open_boolean),
                 "free_busy" : str(get_events_ret_boolean)
             }
         }
@@ -214,8 +214,8 @@ def hour_rounder(t):
         return (t.replace(second=0, microsecond=0, minute=0))
 
 
-def check_wd_open():
-    print("FUNCTION check_wd_open")
+def wd_open():
+    print("FUNCTION wd_open")
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
 
     req = request.get_json(force=True)
@@ -271,11 +271,11 @@ def check_wd_open():
 
     if current_dateTime > dt_p_obj:
         print("A ",dt_p_obj,"idő már elmúlt. A jelenlegi idő:",current_dateTime)
-        check_wd_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') + "."
-        boolean_wd_open = False
+        wd_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') + "."
+        wd_open_boolean = False
 
-        check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,duration,hours_am]  
-        return check_wd_open_ret
+        wd_open_ret = [start_p,end_p,summary,location,wd_open_text,wd_open_boolean,dt_p_obj_rounded,duration,hours_am]  
+        return wd_open_ret
 
     # open time and closed time on parameter day
     start_pdate_otime = dt_p_obj.replace(minute=0, hour=int(open_start_time[dt_p_week_day][0:2]))
@@ -285,23 +285,23 @@ def check_wd_open():
 
     if dt_p_obj_rounded < start_pdate_otime:
         # print("KORÁN", dt_p_obj_rounded, "<", start_pdate_otime)
-        check_wd_open_text = " Korán. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
-        boolean_wd_open = False
+        wd_open_text = " Korán. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
+        wd_open_boolean = False
 
     if dt_p_obj_rounded >= end_pdate_otime:
         # print("KÉSŐN", dt_p_obj_rounded, ">=", end_pdate_otime)
-        check_wd_open_text = " Késő. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
-        boolean_wd_open = False
+        wd_open_text = " Késő. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
+        wd_open_boolean = False
 
     if dt_p_obj_rounded >= start_pdate_otime and dt_p_obj_rounded + duration <= end_pdate_otime:
         # print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
-        #check_wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
-        # check_wd_open_text = " Nyitva. "
-        check_wd_open_text = " "
-        boolean_wd_open = True
+        # wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
+        # wd_open_text = " Nyitva. "
+        wd_open_text = " "
+        wd_open_boolean = True
 
-    check_wd_open_ret = [start_p,end_p,summary,location,check_wd_open_text,boolean_wd_open,dt_p_obj_rounded,dt_end_p_obj,duration,hours_am] 
-    return check_wd_open_ret
+    wd_open_ret = [start_p,end_p,summary,location,wd_open_text,wd_open_boolean,dt_p_obj_rounded,dt_end_p_obj,duration,hours_am] 
+    return wd_open_ret
 
 
 #def get_events(start_p,end_p):
