@@ -115,7 +115,7 @@ def webhook():
 
     # text = main_ret['text'] + wd_open_txt + " B_1wd= " + str(wd_open_ret[5]) + " | " + get_events_ret_txt + " | B_ev= " + str(boolean_get_events) + " hours_am:" + str(hours_am)
     # text = wd_open_txt + get_events_ret_txt
-    text = wd_open_txt + get_events_ret_txt + " Szabad: " + get_events_gaps_ret
+    text = wd_open_txt + get_events_ret_txt + " 2. Szabad: " + get_events_gaps_ret
 
     # event_id = main_ret['event_id']
     event_id = 'event_id'
@@ -402,8 +402,8 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
         # print(json.dumps(events, indent=4))
 
         if not events:
-            print('free gaps')
-            start_event = 'free gaps'
+            print('get_event_gaps=no events')
+            start_event = 'get_event_gaps=start_events=no events'
 
             return start_event
 
