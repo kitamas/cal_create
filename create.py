@@ -97,7 +97,8 @@ def webhook():
             main_ret =  create_event_main(start_p,end_p,summary,location)    
             event_id = main_ret['event_id']
             print("444444 if get_events_ret_boolean = main_ret =  create_event_main")
-
+        else:
+            event_id = ""
     else:
         # wd_open_txt = "if wd_open_boolean else: wd zárva" 
         print("IF WD OPEN BOOLEAN ELSE. wd zárva, nem kérdez eseményt")
