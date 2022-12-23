@@ -95,8 +95,9 @@ def webhook():
             # IF WD_OPEN_BOOLEAN =  True  AND GET_EVENTS_RET_BOOLEAN =  True
 
             get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
-            print("111111 get_events_gaps_ret = ",get_events_gaps_ret)
+
             get_events_ret_txt = get_events_ret[0] + " 1. szabad: " + get_events_gaps_ret
+            print("111111 get_events_ret_txt = get_events_ret[0]:",get_events_ret[0]," +  1. szabad:  + get_events_gaps_ret = ", get_events_gaps_ret)
             # get_events_ret_txt = get_events_ret[0]
 
     else:
@@ -127,6 +128,7 @@ def webhook():
     # text = wd_open_txt + " hours_am:" + str(hours_am)
     text = wd_open_txt + get_events_ret_txt + " 2. Szabad: " + get_events_gaps_ret
 
+    print("TEXT RES ELOTT = ",text)
     print("str(wd_open_boolean) = ",str(wd_open_boolean),"str(get_events_ret_boolean) = ",str(get_events_ret_boolean))
 
 
