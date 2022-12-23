@@ -79,30 +79,37 @@ def webhook():
     # print("start_p = ", wd_open_ret[0], " end_p = ", wd_open_ret[1], " wd_open_boolean = ", wd_open_ret[5], " dt_p_obj_rounded = ", dt_p_obj_rounded)
 
     if wd_open_boolean:     
-        print("IF wd_open_boolean == True")
+        print("IF WD OPEN BOOLEAN")
 
         get_events_ret = get_events(dt_p_obj_rounded,duration)
         get_events_ret_txt = get_events_ret[0]
         get_events_ret_boolean = get_events_ret[1]
-        print("IF wd_open_boolean. get_events_ret_txt = ",get_events_ret[0],"get_events_ret_boolean = ",get_events_ret[1])
+
+        # boolean_get_events = True = Szabad
+
+        print("IF WD_OPEN_BOOLEAN. get_events_ret_txt = ",get_events_ret[0],"get_events_ret_boolean = ",get_events_ret[1])
         if get_events_ret[1]:
-            print("IF wd_open_boolean = ", wd_open_boolean ," AND get_events_ret_boolean = ",get_events_ret[1])
+            print("IF WD_OPEN_BOOLEAN = ", wd_open_boolean ," AND GET_EVENTS_RET_BOOLEAN = ",get_events_ret[1])
             get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("111111 get_events_gaps_ret = ",get_events_gaps_ret)
             # get_events_ret_txt = get_events_ret[0] + " 1. szabad: " + get_events_gaps_ret
             get_events_ret_txt = get_events_ret[0]
+
     else:
         # wd_open_txt = "if wd_open_boolean else: wd zárva" 
-        print("IF BOOLEAN WD OPEN ELSE. wd zárva, nem kérdez eseményt")
+        print("IF WD OPEN BOOLEAN ELSE. wd zárva, nem kérdez eseményt")
         get_events_ret_txt = " wd zárva, nem kérdez eseményt"
         get_events_ret_boolean = False
         # KELL? get_events_ret_boolean = False
 
     # KELL? if wd_open_boolean and get_events_ret_boolean:
 
+    event_id = 'event_id'
+
+    print("event_id ELSO ERTEK = ",event_id)
     if get_events_ret_boolean:
         main_ret =  create_event_main(start_p,end_p,summary,location)    
-
+        event_id = main_ret['event_id']
 
     # get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
 
@@ -117,9 +124,11 @@ def webhook():
     # text = wd_open_txt + get_events_ret_txt
     text = wd_open_txt + get_events_ret_txt + " 2. Szabad: " + get_events_gaps_ret
 
-    # event_id = main_ret['event_id']
-    event_id = 'event_id'
+
+    # event_id = 'event_id'
     # print("str(wd_open_boolean) = ",str(wd_open_boolean),"str(get_events_ret_boolean) = ",str(get_events_ret_boolean))
+
+    print("event_id res elott = ",event_id)
 
     res = {
         "fulfillment_response": {
