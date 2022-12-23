@@ -102,8 +102,8 @@ def webhook():
             print("444444 if get_events_ret_boolean = main_ret =  create_event_main")
 
         else:
-            #event_id = ""
-            get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+            # event_id = ""
+            get_events_gaps_ret = "111 Szabad:" + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("1111 GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
 
     else:
@@ -114,7 +114,7 @@ def webhook():
         # KELL? get_events_ret_boolean = False
     
     # text = wd_open_txt + " hours_am:" + str(hours_am)
-    text = wd_open_txt + get_events_ret_txt + " Szabad: " + get_events_gaps_ret
+    text = wd_open_txt + get_events_ret_txt + get_events_gaps_ret + "eventsid: " + events_id
 
     res = {
         "fulfillment_response": {
