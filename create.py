@@ -104,9 +104,9 @@ def webhook():
 
     # KELL? if wd_open_boolean and get_events_ret_boolean:
 
-    #event_id = 'event_id'
+    event_id = ''
 
-    #print("event_id ELSO ERTEK = ",event_id)
+    print("event_id ELSO ERTEK = ",event_id)
     if get_events_ret_boolean:
         main_ret =  create_event_main(start_p,end_p,summary,location)    
         event_id = main_ret['event_id']
