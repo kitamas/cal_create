@@ -126,7 +126,7 @@ def webhook():
     print("GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
 
     # text = wd_open_txt + " hours_am:" + str(hours_am)
-    text = wd_open_txt + get_events_ret_txt + " 2. Szabad: " + get_events_gaps_ret
+    text = wd_open_txt + get_events_ret_txt + " 2. Szabad: "
 
     print("TEXT RES ELOTT = ",text)
     print("str(wd_open_boolean) = ",str(wd_open_boolean),"str(get_events_ret_boolean) = ",str(get_events_ret_boolean))
