@@ -103,6 +103,7 @@ def webhook():
         print("IF WD OPEN BOOLEAN ELSE. wd zárva, nem kérdez eseményt")
         get_events_ret_txt = " wd zárva, nem kérdez eseményt"
         get_events_ret_boolean = False
+        event_id = ""
         # KELL? get_events_ret_boolean = False
 
     # KELL? if wd_open_boolean and get_events_ret_boolean:
