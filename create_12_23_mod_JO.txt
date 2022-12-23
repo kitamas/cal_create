@@ -78,8 +78,7 @@ def webhook():
 
     # print("start_p = ", wd_open_ret[0], " end_p = ", wd_open_ret[1], " wd_open_boolean = ", wd_open_ret[5], " dt_p_obj_rounded = ", dt_p_obj_rounded)
 
-    get_events_gaps_ret = ""
-    event_id = ""
+    get_events_gaps_ret = "IF WD OPEN BOOLEAN ELOTT"
 
     if wd_open_boolean:     
         print("IF WD OPEN BOOLEAN")
@@ -96,25 +95,50 @@ def webhook():
         if get_events_ret_boolean:
             print("IF WD_OPEN_BOOLEAN = ", wd_open_boolean ," AND GET_EVENTS_RET_BOOLEAN = ",get_events_ret[1])
 
-            # event_id = ""
+            event_id = ""
             main_ret =  create_event_main(start_p,end_p,summary,location)    
             event_id = main_ret['event_id']
             print("444444 if get_events_ret_boolean = main_ret =  create_event_main")
-
         else:
-            #event_id = ""
+            event_id = ""
             get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("1111 GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
 
     else:
+        # wd_open_txt = "if wd_open_boolean else: wd zárva" 
         print("IF WD OPEN BOOLEAN ELSE. wd zárva, nem kérdez eseményt")
         get_events_ret_txt = " wd zárva, nem kérdez eseményt"
         get_events_ret_boolean = False
-        # event_id = ""
+        event_id = ""
         # KELL? get_events_ret_boolean = False
-    
+
+    # KELL? if wd_open_boolean and get_events_ret_boolean:
+
+    """
+    event_id = ""
+
+    if get_events_ret_boolean:
+        main_ret =  create_event_main(start_p,end_p,summary,location)    
+        event_id = main_ret['event_id']
+    """    
+
+    # get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,duration)
+
+    # if get_events_ret_boolean:
+        # get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+        # print("GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
+
+    """
+    get_events_gaps_ret = get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+    print("22222 GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
+    """
+
     # text = wd_open_txt + " hours_am:" + str(hours_am)
-    text = wd_open_txt + get_events_ret_txt + " Szabad: " + get_events_gaps_ret
+    text = wd_open_txt + get_events_ret_txt + " 2. Szabad: " + get_events_gaps_ret
+
+    print("TEXT RES ELOTT = ",text)
+    print("str(wd_open_boolean) = ",str(wd_open_boolean),"str(get_events_ret_boolean) = ",str(get_events_ret_boolean))
+
 
     res = {
         "fulfillment_response": {
