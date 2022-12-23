@@ -96,21 +96,18 @@ def webhook():
         if get_events_ret_boolean:
             print("IF WD_OPEN_BOOLEAN = ", wd_open_boolean ," AND GET_EVENTS_RET_BOOLEAN = ",get_events_ret[1])
 
-            # event_id = ""
             main_ret =  create_event_main(start_p,end_p,summary,location)    
             event_id = main_ret['event_id']
-            print("444444 if get_events_ret_boolean = main_ret =  create_event_main")
+            print("if get_events_ret_boolean = main_ret =  create_event_main")
 
         else:
-            # event_id = ""
-            get_events_gaps_ret = "111 Szabad:" + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
-            print("1111 GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
+            get_events_gaps_ret = "Szabad: " + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+            print("GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
 
     else:
         print("IF WD OPEN BOOLEAN ELSE. wd zárva, nem kérdez eseményt")
         get_events_ret_txt = " wd zárva, nem kérdez eseményt"
         get_events_ret_boolean = False
-        # event_id = ""
         # KELL? get_events_ret_boolean = False
     
     # text = wd_open_txt + " hours_am:" + str(hours_am)
