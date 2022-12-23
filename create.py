@@ -101,12 +101,12 @@ def webhook():
             print("if get_events_ret_boolean = main_ret =  create_event_main")
 
         else:
-            get_events_gaps_ret = "Szabad: " + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+            get_events_gaps_ret = " Szabad: " + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
 
     else:
-        print("IF WD OPEN BOOLEAN ELSE. wd zárva, nem kérdez eseményt")
-        get_events_ret_txt = " wd zárva, nem kérdez eseményt"
+        print("IF WD OPEN BOOLEAN ELSE. wd zárva, nem kérdez eseményt. ")
+        get_events_ret_txt = " wd zárva, nem kérdez eseményt. "
         get_events_ret_boolean = False
         # KELL? get_events_ret_boolean = False
     
@@ -499,7 +499,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             return free_start_hours
 
     #If no suitable gaps are found, return none.
-    return "None"
+    return " Nincs szabad."
     
     app.run()
 
