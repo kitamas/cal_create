@@ -114,7 +114,7 @@ def webhook():
         # KELL? get_events_ret_boolean = False
     
     # text = wd_open_txt + " hours_am:" + str(hours_am)
-    text = wd_open_txt + get_events_ret_txt + get_events_gaps_ret + "eventsid: " + events_id
+    text = wd_open_txt + get_events_ret_txt + get_events_gaps_ret + "event_id: " + event_id
 
     res = {
         "fulfillment_response": {
