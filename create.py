@@ -391,10 +391,10 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
 
-        print(json.dumps(events, indent=4))
+        # print(json.dumps(events, indent=4))
 
         if not events:
-            print('get_event_gaps = no events')
+            print('NO EVENTS NO EVENTS get_event_gaps = no events')
             start_event = 'get_event_gaps = start_events = no events'
 
             return start_event
