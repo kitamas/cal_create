@@ -462,11 +462,19 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]  LIST [datetime]
     # eventEnds[0] = 2022-10-24 18:00:00
 
+    """
     free_start_hours = ""
     for i in range(len(eventEnds)):
         free_start_hour = str(eventEnds[i].hour) + ", "
         free_start_hours += free_start_hour
     print("FREE START HOURS =",free_start_hours)
+    """
+
+    busy_start_hours = ""
+    for i in range(len(eventEnds)):
+        busy_start_hour = str(eventEnds[i].hour) + ", "
+        busy_start_hours += busy_start_hour
+    print("BUSY START HOURS =",busy_start_hours)
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
@@ -494,10 +502,10 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             # print("i = ",i," eventEnds[i] = ", eventEnds[i])
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
-            print("22222 FREE START HOURS =",free_start_hours)
+            print("22222 BUSY START HOURS =",busy_start_hours)
             # eventEnds[i] = 2022-12-20 15:00:00
             # return eventEnds[i]
-            return free_start_hours
+            return busy_start_hours
 
     #If no suitable gaps are found, return none.
     print("33333 no suitable gaps are found.")
