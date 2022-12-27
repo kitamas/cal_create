@@ -417,7 +417,7 @@ def get_events_gaps(start_dt_p_obj_rounded,end_wd_open_obj,duration):
             f_time = "NINCS"
         else:
             print("ELSE findFirstOpenSlot_ret = ",findFirstOpenSlot_ret)
-            f_time = f_obj.strftime("%Y-%m-%d %H:%M")
+            f_time = findFirstOpenSlot_ret.strftime("%Y-%m-%d %H:%M")
             # f_time = findFirstOpenSlot_ret
 
         print("findFirstOpenSlot_ret = ",findFirstOpenSlot_ret," f_time = ",f_time)
