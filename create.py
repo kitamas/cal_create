@@ -391,17 +391,18 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
                                               orderBy='startTime').execute()
         events = events_result.get('items', [])
 
-        # print(json.dumps(events, indent=4))
+        print(json.dumps(events, indent=4))
 
         if not events:
-            print('get_event_gaps=no events')
-            start_event = 'get_event_gaps=start_events=no events'
+            print('get_event_gaps = no events')
+            start_event = 'get_event_gaps = start_events = no events'
 
             return start_event
 
         # startTime = datetime.datetime.now() + datetime.timedelta(hours = 1)
         # startTime = startTime - min1
         startTime = dt_p_obj_rounded
+        print("startTime = dt_p_obj_rounded = ",startTime)
 
         # endTime = datetime.datetime(2022, 11, 12, 23, 59, 59, 0)
 
@@ -499,7 +500,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             return free_start_hours
 
     #If no suitable gaps are found, return none.
-    return " Nincs szabad."
+    return " Nincs szabad. "
     
     app.run()
 
