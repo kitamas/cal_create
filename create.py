@@ -101,7 +101,7 @@ def webhook():
             print("if get_events_ret_boolean = main_ret =  create_event_main")
 
         else:
-            get_events_gaps_ret = " Szabad: " + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+            get_events_gaps_ret = " Szabad időpont: " + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
 
     else:
@@ -442,7 +442,7 @@ def am_pm_conv(current_dateTime,dt_p_obj,hours):
 
 
 def findFirstOpenSlot(events,startTime,endTime,duration):
-    print("FUNCTION findFirstOpenSlot")
+    print("FUNCTION findFirstOpenSlot. startTime = ",startTime,"endTime = ", endTime)
     def parseDate(rawDate):
         # RAWDATE =  2022-10-17T09:00:00Z
         # Transform the datetime given by the API to a python datetime object.
