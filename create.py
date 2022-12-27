@@ -338,8 +338,8 @@ def get_events(start_dt_p_obj_rounded,duration):
             boolean_get_events = True
             start_event_txt = ' nincs esemény az időpontban '
             start_event = [start_event_txt,boolean_get_events]
-            #return start_event
-            return "start_event"
+            return start_event
+
 
         """
         start_event = "" 
@@ -396,7 +396,6 @@ def get_events_gaps(start_dt_p_obj_rounded,end_wd_open_obj,duration):
         if not events:
             print('NO EVENTS NO EVENTS get_event_gaps = no events')
             start_event = 'get_event_gaps = start_events = no events'
-
             return start_event
 
         # startTime = datetime.datetime.now() + datetime.timedelta(hours = 1)
@@ -418,12 +417,13 @@ def get_events_gaps(start_dt_p_obj_rounded,end_wd_open_obj,duration):
             f_time = "NINCS"
         else:
             print("ELSE findFirstOpenSlot_ret = ",findFirstOpenSlot_ret)
-            # f_time = f_obj.strftime("%Y-%m-%d %H:%M")
-            f_time = findFirstOpenSlot_ret
+            f_time = f_obj.strftime("%Y-%m-%d %H:%M")
+            # f_time = findFirstOpenSlot_ret
 
-        print("findFirstOpenSlot_ret = ",findFirstOpenSlot_ret)
+        print("findFirstOpenSlot_ret = ",findFirstOpenSlot_ret," f_time = ",f_time)
 
-        return findFirstOpenSlot_ret
+        return f_time
+        # return findFirstOpenSlot_ret
 
     except HttpError as error:
         print('An error occurred: %s' % error)
