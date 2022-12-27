@@ -500,7 +500,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         if gap >= duration:
     """
 
-    for i in range(len(gaps)):
+    #for i in range(len(gaps)):
+    for i in range(2):
 
         if gaps[i] >= duration:
 
