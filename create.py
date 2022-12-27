@@ -466,7 +466,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     for i in range(len(eventEnds)):
         free_start_hour = str(eventEnds[i].hour) + ", "
         free_start_hours += free_start_hour
-    print("11111 FREE START HOURS =",free_start_hours)
+    print("FREE START HOURS =",free_start_hours)
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
@@ -501,6 +501,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     #If no suitable gaps are found, return none.
     return " Nincs szabad. "
+    return free_start_hours
     
     app.run()
 
