@@ -492,7 +492,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     if startTime + duration < eventStarts[0]:
         # A slot is open at the start of the desired window.
         print("11111 if startTime + duration < eventStarts. return startTime", startTime)
-        return startTime
+        # return startTime
+        return "startTime"
 
     """
     # for i in range(len(gaps)):
@@ -519,7 +520,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     # If no suitable gaps are found, return none.
     # print("33333 If no suitable gaps are found, return none.")
-    # return " If no suitable gaps are found, return none. "
-    return "busy_start_hours: " + busy_start_hours
+    return " If no suitable gaps are found, return none. "
+    # return "busy_start_hours: " + busy_start_hours
 
     app.run()
