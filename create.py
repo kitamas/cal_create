@@ -495,7 +495,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         return startTime
 
     # for i, gap in enumerate(gaps):
-    for i, gap in range len(gaps):
+    for i, gap in range(len(gaps)):
         if gap >= duration:
         #This means that a gap is bigger or = than the desired slot duration, and we can "squeeze" a meeting. Just after that meeting ends.
         # if gap > duration:
