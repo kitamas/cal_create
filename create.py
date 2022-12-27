@@ -504,7 +504,10 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             print("22222 i = ",i," eventStarts[i] = ", eventStarts[i])
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
-            return eventEnds[i]
+            t = eventStarts[i].strftime("%B %A %H:%M")
+            print("AAAAAAAAAAAA t=",t,"type(t)=",type(t))
+            eventStarts[i] = t
+            return eventStarts[i]
 
     # If no suitable gaps are found, return none.
     # print("33333 If no suitable gaps are found, return none.")
