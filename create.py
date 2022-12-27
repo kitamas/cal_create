@@ -512,7 +512,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
             t = eventStarts[i].strftime("%B %A %H:%M")
-            print("AAAAAAAAAAAA t=",t,"type(t)=",type(t))
+            print("BBBBB t=",t,"type(t)=",type(t))
             eventStarts[i] = " eventStarts[i] = " + t
             return eventStarts[i]
 
