@@ -479,8 +479,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
     print("GAPS = ",gaps,"type gaps = ",type(gaps),"len(gaps) =",len(gaps), "type(len(gaps))=",type(len(gaps)))
-    # GAPS =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)] type gaps =  <class 'list'>
-    # GAPS =  
+    # GAPS =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]  type gaps =  <class 'list'> len(gaps) = 1 type(len(gaps))= <class 'int'>
+ 
     print("enumerate(gaps) =",enumerate(gaps))
     # enumerate(gaps) = <enumerate object at 0x7f4527c24140>
 
@@ -494,8 +494,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         print("11111 if startTime + duration < eventStarts. return startTime", startTime)
         return startTime
 
-    for i, gap in enumerate(gaps):
-    # for i, gap in len(gaps):
+    # for i, gap in enumerate(gaps):
+    for i, gap in range len(gaps):
         if gap >= duration:
         #This means that a gap is bigger or = than the desired slot duration, and we can "squeeze" a meeting. Just after that meeting ends.
         # if gap > duration:
