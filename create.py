@@ -478,7 +478,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
-    print("GAPS = ",gaps)
+    print("GAPS = ",gaps,"type gaps = ",type(gaps))
     # GAPS =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
     print("enumerate(gaps) =",enumerate(gaps))
     # enumerate(gaps) = <enumerate object at 0x7f4527c24140>
