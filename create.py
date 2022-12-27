@@ -482,7 +482,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     # KELL ez? 
     if startTime + duration < eventStarts[0]:
         # A slot is open at the start of the desired window.
-        print("if startTime + duration < eventStarts. return startTime", startTime)
+        print("11111 if startTime + duration < eventStarts. return startTime", startTime)
         return startTime
 
     for i, gap in enumerate(gaps):
@@ -494,13 +494,14 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             # print("i = ",i," eventEnds[i] = ", eventEnds[i])
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
-            print("33333 FREE START HOURS =",free_start_hours)
+            print("22222 FREE START HOURS =",free_start_hours)
             # eventEnds[i] = 2022-12-20 15:00:00
             # return eventEnds[i]
             return free_start_hours
 
     #If no suitable gaps are found, return none.
     # return " Nincs szabad. "
+    print("33333 If no suitable gaps are found, return none. free_start_hours = ",free_start_hours)
     return free_start_hours
     
     app.run()
