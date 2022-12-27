@@ -471,8 +471,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     """
 
     busy_start_hours = ""
-    for i in range(len(eventEnds)):
-        busy_start_hour = str(eventEnds[i].hour) + ", "
+    for i in range(len(eventStarts)):
+        busy_start_hour = str(eventStarts[i].hour) + ", "
         busy_start_hours += busy_start_hour
     print("BUSY START HOURS =",busy_start_hours)
 
