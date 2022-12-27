@@ -466,11 +466,11 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     for i in range(len(eventEnds)):
         free_start_hour = str(eventEnds[i].hour) + ", "
         free_start_hours += free_start_hour
-    # print("11111 FREE START HOURS =",free_start_hours)
+    print("11111 FREE START HOURS =",free_start_hours)
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
-    # print("GAPS = ",gaps)
+    print("GAPS = ",gaps)
     # GAPS =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
     # print("enumerate(gaps) =",enumerate(gaps))
     # enumerate(gaps) = <enumerate object at 0x7f4527c24140>
