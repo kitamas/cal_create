@@ -500,9 +500,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             return free_start_hours
 
     #If no suitable gaps are found, return none.
-    # return " Nincs szabad. "
-    print("33333 If no suitable gaps are found, return none. free_start_hours = ",free_start_hours)
-    return free_start_hours
+    print("33333 no suitable gaps are found.")
+    return " no suitable gaps are found. "
     
     app.run()
 
