@@ -511,7 +511,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             print("22222 i = ",i," eventStarts[i] = ", eventStarts[i])
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
-            t = eventStarts[i].strftime("%B %A %H:%M")
+            t = eventStarts[i].strftime("%B %A %H:%M") + "FOR"
             ts += t 
             print("BBBBB ts=",ts,"type(ts)=",type(ts))
             eventStarts[i] = " eventStarts[i] = " + ts
