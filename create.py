@@ -338,8 +338,8 @@ def get_events(start_dt_p_obj_rounded,duration):
             boolean_get_events = True
             start_event_txt = ' nincs esemény az időpontban '
             start_event = [start_event_txt,boolean_get_events]
-
-            return start_event
+            #return start_event
+            return "start_event"
 
         """
         start_event = "" 
