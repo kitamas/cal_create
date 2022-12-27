@@ -499,7 +499,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         # if gap > duration:
         #This means that a gap is bigger than the desired slot duration
 
-            print("22222 i = ",i," startEnds[i] = ", startEnds[i])
+            print("22222 i = ",i," eventStarts[i] = ", eventStarts[i])
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
             print("22222 BUSY START HOURS =",busy_start_hours)
