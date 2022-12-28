@@ -71,12 +71,12 @@ def webhook():
     location =  wd_open_ret[3]
     wd_open_txt = wd_open_ret[4]
     wd_open_boolean =  wd_open_ret[5]
-    dt_p_obj_rounded  =  wd_open_ret[6]
+    start_dt_p_obj_rounded  =  wd_open_ret[6]
     dt_end_p_obj  =  wd_open_ret[7]
     duration =  wd_open_ret[8]
     hours_am =  wd_open_ret[9]
 
-    # print("start_p = ", wd_open_ret[0], " end_p = ", wd_open_ret[1], " wd_open_boolean = ", wd_open_ret[5], " dt_p_obj_rounded = ", dt_p_obj_rounded)
+    # print("start_p = ", wd_open_ret[0], " end_p = ", wd_open_ret[1], " wd_open_boolean = ", wd_open_ret[5], " start_dt_p_obj_rounded = ", start_dt_p_obj_rounded)
 
     get_events_gaps_ret = ""
     event_id = ""
@@ -84,7 +84,7 @@ def webhook():
     if wd_open_boolean:     
         print("IF WD OPEN BOOLEAN")
 
-        get_events_ret = get_events(dt_p_obj_rounded,duration)
+        get_events_ret = get_events(start_dt_p_obj_rounded,duration)
         get_events_ret_txt = get_events_ret[0]
         get_events_ret_boolean = get_events_ret[1]
 
@@ -101,7 +101,7 @@ def webhook():
             print("if get_events_ret_boolean = main_ret =  create_event_main")
 
         else:
-            get_events_gaps_ret = " Foglalt gaps időpont(ok): " + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+            get_events_gaps_ret = " Szabad időpont(ok): " + get_events_gaps(start_dt_p_obj_rounded,dt_end_p_obj,duration)
             print("GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
 
     else:
@@ -243,12 +243,12 @@ def wd_open():
     dt_p_week_day_name = week_days[dt_p_week_day]
     # print("dt_p_week_day_name:", dt_p_week_day_name)
 
-    dt_p_obj_rounded = hour_rounder(dt_p_obj)
+    start_dt_p_obj_rounded = hour_rounder(dt_p_obj)
 
-    # print("DT PARAM OBJ ROUNDED:", dt_p_obj_rounded,type(dt_p_obj_rounded))
+    # print("DT PARAM OBJ ROUNDED:", start_dt_p_obj_rounded,type(start_dt_p_obj_rounded))
     # 2022-10-31 21:00:00 <class 'datetime.datetime'>
 
-    start_p = dt_p_obj_rounded.isoformat("T", "seconds")
+    start_p = start_dt_p_obj_rounded.isoformat("T", "seconds")
     # print("START from parameter ROUNDED = start_p = ",start_p,type(start_p))
 
     duration = datetime.timedelta(hours=1)
@@ -269,7 +269,7 @@ def wd_open():
         wd_open_text = " A " + dt_p_obj.strftime('%H:%M') + " idő már elmúlt. A jelenlegi idő: " + current_dateTime.strftime('%H:%M') + "."
         wd_open_boolean = False
 
-        wd_open_ret = [start_p,end_p,summary,location,wd_open_text,wd_open_boolean,dt_p_obj_rounded,dt_end_p_obj,duration,hours_am]  
+        wd_open_ret = [start_p,end_p,summary,location,wd_open_text,wd_open_boolean,start_dt_p_obj_rounded,dt_end_p_obj,duration,hours_am]  
         return wd_open_ret
 
     # open time and closed time on parameter day
@@ -278,30 +278,30 @@ def wd_open():
     # start_pdate_otime = 2022-11-16 08:00:00
 
 
-    if dt_p_obj_rounded < start_pdate_otime:
-        # print("KORÁN", dt_p_obj_rounded, "<", start_pdate_otime)
+    if start_dt_p_obj_rounded < start_pdate_otime:
+        # print("KORÁN", start_dt_p_obj_rounded, "<", start_pdate_otime)
         wd_open_text = " Korán. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         wd_open_boolean = False
 
-    if dt_p_obj_rounded >= end_pdate_otime:
-        # print("KÉSŐN", dt_p_obj_rounded, ">=", end_pdate_otime)
+    if start_dt_p_obj_rounded >= end_pdate_otime:
+        # print("KÉSŐN", start_dt_p_obj_rounded, ">=", end_pdate_otime)
         wd_open_text = " Késő. " + dt_p_week_day_name + " nyitás: " + open_start_time[dt_p_week_day] + " zárás: " + open_end_time[dt_p_week_day]
         wd_open_boolean = False
 
-    if dt_p_obj_rounded >= start_pdate_otime and dt_p_obj_rounded + duration <= end_pdate_otime:
-        # print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
-        # wd_open_text = open_start_time[dt_p_week_day] + " <= " + dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
+    if start_dt_p_obj_rounded >= start_pdate_otime and start_dt_p_obj_rounded + duration <= end_pdate_otime:
+        # print(" KOZOTTE", open_start_time[dt_p_week_day], "<=", start_dt_p_obj_rounded + duration, "<=", open_end_time[dt_p_week_day])
+        # wd_open_text = open_start_time[dt_p_week_day] + " <= " + start_dt_p_obj_rounded.strftime("%B %A %H:%M") + " <= " + open_end_time[dt_p_week_day]
         # wd_open_text = " Nyitva. "
         wd_open_text = " "
         wd_open_boolean = True
 
-    wd_open_ret = [start_p,end_p,summary,location,wd_open_text,wd_open_boolean,dt_p_obj_rounded,dt_end_p_obj,duration,hours_am]
+    wd_open_ret = [start_p,end_p,summary,location,wd_open_text,wd_open_boolean,start_dt_p_obj_rounded,dt_end_p_obj,duration,hours_am]
 
     return wd_open_ret
 
 
 #def get_events(start_p,end_p):
-def get_events(dt_p_obj_rounded,duration):
+def get_events(start_dt_p_obj_rounded,duration):
     print("FUNCTION get_events")
     try:
         service = build('calendar', 'v3', credentials=authentication())
@@ -314,14 +314,14 @@ def get_events(dt_p_obj_rounded,duration):
 
         min1 = datetime.timedelta(minutes=1)
 
-        start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
+        start_p_min1 = (start_dt_p_obj_rounded - min1).isoformat("T", "seconds")
         start_p = start_p_min1 + '+00:00'
         # print("GET EVENTS START P = ",start_p)
 
-        end_p1 = (dt_p_obj_rounded).isoformat("T", "seconds")
+        end_p1 = (start_dt_p_obj_rounded).isoformat("T", "seconds")
         # lists the next hour event !!!
-        # end_p1 = (dt_p_obj_rounded + min1).isoformat("T", "seconds")
-        # end_p1 = (dt_p_obj_rounded + duration - min1).isoformat("T", "seconds")
+        # end_p1 = (start_dt_p_obj_rounded + min1).isoformat("T", "seconds")
+        # end_p1 = (start_dt_p_obj_rounded + duration - min1).isoformat("T", "seconds")
         # lists the next hour event !!!
 
         end_p = end_p1 + '+00:00'
@@ -371,14 +371,14 @@ def get_events(dt_p_obj_rounded,duration):
         print('An error occurred: %s' % error)
 
 
-def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
+def get_events_gaps(start_dt_p_obj_rounded,dt_end_p_obj,duration):
     print("FUNCTION get_events_gaps")
     try:
         service = build('calendar', 'v3', credentials=authentication())
 
         min1 = datetime.timedelta(minutes=1)
 
-        start_p_min1 = (dt_p_obj_rounded - min1).isoformat("T", "seconds")
+        start_p_min1 = (start_dt_p_obj_rounded - min1).isoformat("T", "seconds")
         start_p = start_p_min1 + '+00:00'
 
         # end_p1 = (dt_end_p_obj - duration).isoformat("T", "seconds")
@@ -402,8 +402,8 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
         # startTime , endTime: The start and end of the desired window where the new event should be placed, as a python datetime.
         # startTime = datetime.datetime.now() + datetime.timedelta(hours = 1)
         # startTime = startTime - min1
-        startTime = dt_p_obj_rounded
-        print("startTime = dt_p_obj_rounded = ",startTime)
+        startTime = start_dt_p_obj_rounded
+        print("startTime = start_dt_p_obj_rounded = ",startTime)
 
         # endTime = datetime.datetime(2022, 11, 12, 23, 59, 59, 0)
 
