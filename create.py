@@ -399,6 +399,7 @@ def get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration):
 
             return start_event
 
+        # startTime , endTime: The start and end of the desired window where the new event should be placed, as a python datetime.
         # startTime = datetime.datetime.now() + datetime.timedelta(hours = 1)
         # startTime = startTime - min1
         startTime = dt_p_obj_rounded
@@ -494,6 +495,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         print("11111 if startTime + duration < eventStarts. return startTime", startTime)
         return startTime
 
+    ts = ""
     # for i in range(len(gaps)):
     for i, gap in enumerate(gaps):
         if gap >= duration:
@@ -501,11 +503,12 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         # if gap > duration:
         # This means that a gap is bigger than the desired slot duration
 
-            print("22222 i = ",i," eventStarts[i] = ", eventStarts[i])
+            print("22222 i = ",i," eventEnds[i] = ", eventEnds[i])
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
             t = eventEnds[i].strftime("%B %A %H:%M")
-            print("AAAAAAAAAAAA t=",t,"type(t)=",type(t))
+            ts += t
+            print("AAAAAAAAAAAA ts=",ts,"type(t)=",type(t))
             eventEnds[i] = t
         return eventEnds[i]
 
