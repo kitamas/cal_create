@@ -101,7 +101,7 @@ def webhook():
             print("if get_events_ret_boolean = main_ret =  create_event_main")
 
         else:
-            get_events_gaps_ret = " Foglalt gaps időpont(ok): " + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+            get_events_gaps_ret = " Szabad gaps időpont(ok): " + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
 
     else:
@@ -458,65 +458,46 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
 
-    print("EVENT STARTS EVENT STARTS eventStarts = ", eventStarts)
-    print("EVENT ENDS EVENT ENDS eventEnds = ", eventEnds)
+    print("EVENT STARTS eventStarts = ", eventStarts)
+    print("EVENT ENDS eventEnds = ", eventEnds)
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]  LIST [datetime]
-    # eventEnds[0] = 2022-10-24 18:00:00
-
-    """
-    free_start_hours = ""
-    for i in range(len(eventEnds)):
-        free_start_hour = str(eventEnds[i].hour) + ", "
-        free_start_hours += free_start_hour
-    print("FREE START HOURS =",free_start_hours)
-    """
 
     busy_start_hours = ""
     for i in range(len(eventStarts)):
         busy_start_hour = str(eventStarts[i].hour) + ", "
         busy_start_hours += busy_start_hour
-    print("BUSY START HOURS =",busy_start_hours)
+    print("BUSY START HOURS = ",busy_start_hours)
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
-    print("GAPS = ",gaps,"type gaps = ",type(gaps),"len(gaps) =",len(gaps), "type(len(gaps))=",type(len(gaps)))
-    # GAPS =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]  type gaps =  <class 'list'> len(gaps) = 1 type(len(gaps))= <class 'int'>
- 
-    print("enumerate(gaps) =",enumerate(gaps))
-    # enumerate(gaps) = <enumerate object at 0x7f4527c24140>
+    print("GAPS = ",gaps,"type gaps = ",type(gaps),"len(gaps) =",len(gaps),"enumerate(gaps) =",enumerate(gaps))
+    # GAPS =  
 
-    # print("FIRST OPEN START = ",eventEnds[0])
-    # FIRST OPEN START =  2022-10-24 17:00:00
 
-    # if ROUNDED startTime + duration < eventStarts[0]:
-    # KELL ez? 
+    """
+    # is this needed? 
     if startTime + duration < eventStarts[0]:
         # A slot is open at the start of the desired window.
-        print("11111 if startTime + duration < eventStarts. return startTime", startTime)
+        print("if startTime + duration < eventStarts. return startTime", startTime)
         return startTime
+    """
 
-    ts = ""
+    eventEnds_ts = ""
     # for i in range(len(gaps)):
     for i, gap in enumerate(gaps):
         if gap >= duration:
         # This means that a gap is bigger or = than the desired slot duration, and we can "squeeze" a meeting. Just after that meeting ends.
         # if gap > duration:
-        # This means that a gap is bigger than the desired slot duration
 
-            print("22222 i = ",i," eventEnds[i] = ", eventEnds[i])
-            # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
-
-            t = eventEnds[i].strftime("%B %A %H:%M")
-            ts += t
-            print("AAAAAAAAAAAA ts=",ts,"type(t)=",type(t))
-            eventEnds[i] = t
+            eventEnds_t = eventEnds[i].strftime("%B %A %H:%M")
+            eventEnds_ts += eventEnds_t
             # return eventEnds[i]
-    print("BBBBB ts=",ts,"type(t)=",type(t))
-    return eventEnds[i]
+
+    print("BBBBB eventEnds_ts=",eventEnds_ts,"type(t)=",type(t))
+    return eventEnds_ts
 
     # If no suitable gaps are found, return none.
-    # print("33333 If no suitable gaps are found, return none.")
-    # return " If no suitable gaps are found, return none. "
-    return "busy_start_hours: " + busy_start_hours
+    # return "busy_start_hours: " + busy_start_hours
+    return " If no suitable gaps are found, return none. "
 
     app.run()
