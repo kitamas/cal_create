@@ -101,7 +101,7 @@ def webhook():
             print("if get_events_ret_boolean = main_ret =  create_event_main")
 
         else:
-            get_events_gaps_ret = " Szabad gaps időpont(ok): " + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
+            get_events_gaps_ret = " Foglalt gaps időpont(ok): " + get_events_gaps(dt_p_obj_rounded,dt_end_p_obj,duration)
             print("GET EVENTS GAPS RET get_events_gaps_ret = ",get_events_gaps_ret)
 
     else:
@@ -458,8 +458,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     eventEnds = [parseDate(e['end'].get('dateTime', e['end'].get('date'))) for e in events]
 
-    print("EVENT STARTS eventStarts = ", eventStarts)
-    print("EVENT ENDS eventEnds = ", eventEnds)
+    print("EVENT STARTS EVENT STARTS eventStarts = ", eventStarts)
+    print("EVENT ENDS EVENT ENDS eventEnds = ", eventEnds)
     # eventEnds = [datetime.datetime(2022, 10, 24, 18, 0), datetime.datetime(2022, 10, 24, 20, 0), datetime.datetime(2022, 10, 24, 22, 0)]  LIST [datetime]
 
     busy_start_hours = ""
@@ -471,8 +471,7 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
     print("GAPS = ",gaps,"type gaps = ",type(gaps),"len(gaps) =",len(gaps),"enumerate(gaps) =",enumerate(gaps))
-    # GAPS =  
-
+    # GAPS = 
 
     """
     # is this needed? 
@@ -490,10 +489,10 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         # if gap > duration:
 
             eventEnds_t = eventEnds[i].strftime("%B %A %H:%M")
-            eventEnds_ts += eventEnds_t
+            eventEnds_ts += eventEnds_t + " "
             # return eventEnds[i]
 
-    print("BBBBB eventEnds_ts=",eventEnds_ts)
+    print("eventEnds_ts=",eventEnds_ts)
     return eventEnds_ts
 
     # If no suitable gaps are found, return none.
