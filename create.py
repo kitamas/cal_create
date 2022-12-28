@@ -510,7 +510,8 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
             ts += t
             print("AAAAAAAAAAAA ts=",ts,"type(t)=",type(t))
             eventEnds[i] = t
-        return eventEnds[i]
+            # return eventEnds[i]
+    return eventEnds[i]
 
     # If no suitable gaps are found, return none.
     # print("33333 If no suitable gaps are found, return none.")
