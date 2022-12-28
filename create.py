@@ -225,7 +225,7 @@ def wd_open():
     location = req.get('sessionInfo').get('parameters').get('location')
 
     open_start_time = ["08:00", "09:00", "08:00", "08:00", "08:00", "08:00", "08:00"]
-    open_end_time = ["17:00", "18:00", "17:00", "21:00", "17:00", "16:00", "12:00"]
+    open_end_time = ["17:00", "18:00", "21:00", "21:00", "17:00", "16:00", "12:00"]
 
     week_days = ("hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap")
 
@@ -478,9 +478,10 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
 
     gaps = [start-end for (start,end) in zip(eventStarts[1:], eventEnds[:-1])]
 
-    print("GAPS = ",gaps)
-    # GAPS =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]
-    # print("enumerate(gaps) =",enumerate(gaps))
+    print("GAPS = ",gaps,"type gaps = ",type(gaps),"len(gaps) =",len(gaps), "type(len(gaps))=",type(len(gaps)))
+    # GAPS =  [datetime.timedelta(seconds=3600), datetime.timedelta(seconds=3600)]  type gaps =  <class 'list'> len(gaps) = 1 type(len(gaps))= <class 'int'>
+ 
+    print("enumerate(gaps) =",enumerate(gaps))
     # enumerate(gaps) = <enumerate object at 0x7f4527c24140>
 
     # print("FIRST OPEN START = ",eventEnds[0])
@@ -493,19 +494,20 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
         print("11111 if startTime + duration < eventStarts. return startTime", startTime)
         return startTime
 
+    # for i in range(len(gaps)):
     for i, gap in enumerate(gaps):
         if gap >= duration:
-        #This means that a gap is bigger or = than the desired slot duration, and we can "squeeze" a meeting. Just after that meeting ends.
+        # This means that a gap is bigger or = than the desired slot duration, and we can "squeeze" a meeting. Just after that meeting ends.
         # if gap > duration:
-        #This means that a gap is bigger than the desired slot duration
+        # This means that a gap is bigger than the desired slot duration
 
-            # print("i = ",i," eventEnds[i] = ", eventEnds[i])
+            print("22222 i = ",i," eventStarts[i] = ", eventStarts[i])
             # i =  1  eventEnds[i] =  2022-11-12 16:00:00 <class 'datetime.datetime'>
 
-            print("22222 BUSY START HOURS =",busy_start_hours)
-            # eventEnds[i] = 2022-12-20 15:00:00
-            # return eventEnds[i]
-            return busy_start_hours
+            t = eventStarts[i].strftime("%B %A %H:%M")
+            print("AAAAAAAAAAAA t=",t,"type(t)=",type(t))
+            eventStarts[i] = t
+            return eventStarts[i]
 
     # If no suitable gaps are found, return none.
     # print("33333 If no suitable gaps are found, return none.")
@@ -513,4 +515,3 @@ def findFirstOpenSlot(events,startTime,endTime,duration):
     return "busy_start_hours: " + busy_start_hours
 
     app.run()
-
