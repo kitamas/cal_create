@@ -213,7 +213,7 @@ def wd_open():
     current_dateTime = datetime.datetime.now() + datetime.timedelta(hours=1)
 
     req = request.get_json(force=True)
-    # print(json.dumps(req, indent=4))
+    print(json.dumps(req, indent=4))
 
     year = req.get('sessionInfo').get('parameters').get('date').get('year')
     month = req.get('sessionInfo').get('parameters').get('date').get('month')
